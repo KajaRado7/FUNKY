@@ -39,3 +39,4 @@ Zaduženja : <br/>
 Klaudia Bučić -> registracija, prijava, forme <br/>
 Kaja Radošević -> filter za događaje, ponuđeni događaji ( ovisno o odabiru određene regije ) <br/>
 Dejana Pivac -> regije i detalji o događjima, firebase <br/>
+Chiara Batelić -> dodavanje novih događaja, profil korisnika, firebase.
