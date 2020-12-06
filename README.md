@@ -38,3 +38,4 @@ Link na prototip : https://www.figma.com/proto/fXN1gQGspc4bFr34YLFlPZ/Funky-Copy
 Zaduženja : <br/>
 Klaudia Bučić -> registracija, prijava, forme <br/>
 Kaja Radošević -> filter za događaje, ponuđeni događaji ( ovisno o odabiru određene regije ) <br/>
+Dejana Pivac -> regije i detalji o događjima, firebase <br/>
