@@ -1,110 +1,154 @@
 <template>
- <div class="about">
-  <h1>Register</h1>
-    <br>
-   <div class="container">
-   <div class="row">
-   <div class="col-sm"></div>
-   <div class="col-sm">
- <form>
-    <div class="form-group">
-     <label for="inputName">Full name</label>
-     <input type="name" 
-            v-model="inputName" 
-            class="form-control" 
-            id="inputName"  
-            placeholder="e.g. Bob Wills"
-            minlength="3" 
-            maxlength="30" />
-  </div>
-  <br>
-  <div class="form-group">
-   <label for="exampleInputEmail1">Email address</label>
-   <input type="email" 
-          v-model="email"
-          class="form-control" 
-          id="email" 
-          aria-describedby="emailHelp" 
-          placeholder="e.g. Bobwills@email.com" />
-  </div>
-  <br>
-  <div class="form-group">
-   <label for="exampleInputPassword1">Password</label>
-   <input type="password" 
-          v-model="password"
-          class="form-control" 
-          id="password" 
-          placeholder="Password" />
-    <div v-if="submitted && $v.password.$error" class="invalid-feedback">
-        <span v-if="!$v.password.required">Password is required</span>
-        <span v-if="!$v.password.minLength">Password must be at least 6 characters</span>
+    <div class="container" style="max-width: 500px; text-align: left">
+
+        <div class="alert alert-success" role="alert" style="max-width: 500px; text-align: center; background-color: #F5B85C">
+            <h2 class="alert-heading">Registracija</h2>
+        </div>
+
+        <form @submit.prevent="handleSubmit">
+            <div class="form-group">
+                <label for="name">Full name</label>
+                <input type="text" 
+                       v-model="userForm.name" 
+                       id="name" name="name" 
+                       placeholder="e.g. Bob Wills"
+                       class="form-control"
+                    :class="{ 'is-invalid': isSubmitted && $v.userForm.name.$error }" />
+                <div v-if="isSubmitted && !$v.userForm.name.required" class="invalid-feedback">Name field is required</div>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" 
+                       v-model="userForm.email" 
+                       id="email"
+                       placeholder="e.g. Bobwills@email.com" 
+                       name="email" 
+                       class="form-control"
+                    :class="{ 'is-invalid': isSubmitted && $v.userForm.email.$error }" />
+                <div v-if="isSubmitted && $v.userForm.email.$error" class="invalid-feedback">
+                    <span v-if="!$v.userForm.email.required">Email field is required</span>
+                    <span v-if="!$v.userForm.email.email">Please provide valid email</span>
+                </div>
+            </div>
+            <br>
+
+          
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" 
+                       v-model="userForm.password" 
+                       id="password"
+                       placeholder="Password" 
+                       name="password" 
+                       class="form-control"
+                    :class="{ 'is-invalid': isSubmitted && $v.userForm.password.$error }" />
+                <div v-if="isSubmitted && $v.userForm.password.$error" class="invalid-feedback">
+                    <span v-if="!$v.userForm.password.required">Password field is required</span>
+                    <span v-if="!$v.userForm.password.minLength">Password should be at least 5 characters long</span>
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group">
+                <label for="confirmPassword">Repeat password</label>
+                <input type="password" 
+                       v-model="userForm.confirmPassword" 
+                       id="confirmPassword"
+                       placeholder="Repeat password" 
+                       name="confirmPassword"
+                       class="form-control" :class="{ 'is-invalid': isSubmitted && $v.userForm.confirmPassword.$error }" />
+                <div v-if="isSubmitted && $v.userForm.confirmPassword.$error" class="invalid-feedback">
+                    <span v-if="!$v.userForm.confirmPassword.required">Confirm Password field is required</span>
+                    <span v-else-if="!$v.userForm.confirmPassword.sameAsPassword">Passwords should be matched</span>
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group form-check">
+                <input type="checkbox" 
+                       v-model="userForm.accept" @change="$v.userForm.accept.$touch()" 
+                       id="accept" 
+                       class="form-check-input">
+                <label class="form-check-label" :class="{ 'is-invalid': isSubmitted && $v.userForm.accept.$error }" for="accept">Accept terms &nbsp; conditions</label>
+
+                <div v-if="isSubmitted && $v.userForm.accept.$error" class="invalid-feedback">
+                    <span v-if="!$v.userForm.accept.required">Accept terms and conditions</span>
+                </div>
+            </div>
+            <br>
+
+            <div class="form-group" style="max-width: 500px; text-align: center">
+                <button class="btn btn-danger btn-block" style="background-color: #F5B85C">Register</button>
+            </div>
+        </form>
+        
     </div>
-  </div>
-  <br>
-  <div class="form-group">
-   <label for="exampleInputPassword1">Repeat password</label>
-   <input type="password" 
-          v-model="repeatPassword"
-          class="form-control" 
-          id="repeatPassword" 
-          placeholder="Repeat password" />
-    <div v-if="submitted && $v.repeatPassword.$error" class="invalid-feedback">
-           <span v-if="!$v.repeatPassword.required">Confirm Password is required</span>
-           <span v-else-if="!$v.repeatPassword.sameAsPassword">Passwords must match</span>
-     </div>
- </div>
- <br>
- <button type="button" @click="registracija" class="btn btn-primary">Register</button>
- </form>
- </div>
- <div class="col-sm"></div>
- </div>
- </div>
- </div>
 </template>
 
 <script>
-import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
-import {firebase} from "@/firebase";
+    import {
+        required,
+        email,
+        minLength,
+        sameAs
+    } from "vuelidate/lib/validators";
 
-export default {
-    name: "registracija",
-    data(){
-        return{
-            inputName: "",
-            email:"",
-            password:"",
-            repeatPassword:"",
-         submitted: false 
-        };
-    },
-    validations: {
-        user: {
-            inputName: {required},
-            email: {required, email},
-            password: {required, minLength: minLength(6)},
-            repeatPassword:{required, sameAsPassword: sameAs('password')},
-        }
-    },
-    methods: {
-            registracija(){
-                firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-                    function(){
-                        console.log("Uspješna registracija!");
-                    }).catch(function(error){
-                            console.error("Došlo je do greške!", error)
-                        });
-                console.log("Nastavak");
-            },
-    },  
-    handleSubmit(e) {
-                this.submitted = true;
+    export default {
+        data() {
+            return {
+                userForm: {
+                    name: "",
+                    email: "",
+                    password: "",
+                    confirmPassword: "",
+                    accept: ""
+                },
+                isSubmitted: false
+            };
+        },
+        validations: {
+            userForm: {
+                name: {
+                    required
+                },
+                email: {
+                    required,
+                    email
+                },
+                password: {
+                    required,
+                    minLength: minLength(5)
+                },
+                confirmPassword: {
+                    required,
+                    sameAsPassword: sameAs('password')
+                },
+                accept: {
+                    required (val) {
+                      return val
+                    }
+                }
+            }
+        },
+        methods: {
+            handleSubmit() {
+                this.isSubmitted = true;
+
                 this.$v.$touch();
                 if (this.$v.$invalid) {
                     return;
                 }
 
-                alert("SUCCESS!! :-)\n\n" + JSON.stringify(this.user));
+                alert("SUCCESS!" + JSON.stringify(this.userForm));
             }
-};
+        }
+    };
 </script>
+
+<style lang="scss">
+.form-group > label {
+    font-weight: 600;
+}
+</style>
