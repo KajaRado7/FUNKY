@@ -3,6 +3,14 @@ import App from './App.vue'
 import router from './router'
 import Vuelidate from 'vuelidate'
 
+import GoogleAuth from '@/config/google.js'
+const gauthOption = {
+  clientId: 'xxxxxxxxxxx.apps.googleusercontent.com',
+  scope: 'profile email',
+  prompt: 'select_account'
+}
+Vue.use(GoogleAuth, gauthOption)
+
 Vue.use(Vuelidate);
 Vue.config.productionTip = false
 

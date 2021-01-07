@@ -2,22 +2,10 @@
     <div class="container" style="max-width: 500px; text-align: left">
 
         <div class="alert alert-success" role="alert" style="max-width: 500px; text-align: center; background-color: #F5B85C">
-            <h2 class="alert-heading">Registracija</h2>
+            <h2 class="alert-heading">Log in</h2>
         </div>
 
         <form @submit.prevent="handleSubmit">
-            <div class="form-group">
-                
-                <label for="name">Full name</label>
-                <input type="text" 
-                       v-model="userForm.name" 
-                       id="name" name="name" 
-                       placeholder="e.g. Bob Wills"
-                       class="form-control"
-                    :class="{ 'is-invalid': isSubmitted && $v.userForm.name.$error }" />
-                <div v-if="isSubmitted && !$v.userForm.name.required" class="invalid-feedback">Name field is required</div>
-            </div>
-            <br>
 
             <div class="form-group">
                 <label for="email">Email</label>
@@ -52,21 +40,6 @@
             </div>
             <br>
 
-            <div class="form-group">
-                <label for="confirmPassword">Repeat password</label>
-                <input type="password" 
-                       v-model="userForm.confirmPassword" 
-                       id="confirmPassword"
-                       placeholder="Repeat password" 
-                       name="confirmPassword"
-                       class="form-control" :class="{ 'is-invalid': isSubmitted && $v.userForm.confirmPassword.$error }" />
-                <div v-if="isSubmitted && $v.userForm.confirmPassword.$error" class="invalid-feedback">
-                    <span v-if="!$v.userForm.confirmPassword.required">Confirm Password field is required</span>
-                    <span v-else-if="!$v.userForm.confirmPassword.sameAsPassword">Passwords should be matched</span>
-                </div>
-            </div>
-            <br>
-
             <div class="form-group form-check">
                 <input type="checkbox" 
                        v-model="userForm.accept" @change="$v.userForm.accept.$touch()" 
@@ -81,7 +54,7 @@
             <br>
 
             <div class="form-group" style="max-width: 500px; text-align: center">
-                <button class="btn btn-danger btn-block" style="background-color: #F5B85C">Register</button>
+                <button class="btn btn-danger btn-block" style="background-color: #F5B85C">Log in</button>
             </div>
         </form>
         
@@ -100,10 +73,8 @@
         data() {
             return {
                 userForm: {
-                    name: "",
                     email: "",
                     password: "",
-                    confirmPassword: "",
                     accept: ""
                 },
                 isSubmitted: false
@@ -111,9 +82,6 @@
         },
         validations: {
             userForm: {
-                name: {
-                    required
-                },
                 email: {
                     required,
                     email
@@ -121,10 +89,6 @@
                 password: {
                     required,
                     minLength: minLength(5)
-                },
-                confirmPassword: {
-                    required,
-                    sameAsPassword: sameAs('password')
                 },
                 accept: {
                     required (val) {
