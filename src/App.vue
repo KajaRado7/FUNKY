@@ -1,12 +1,21 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/registracija">Registracija</router-link> |
-      <router-link to="/login">Log in</router-link> |
-      <router-link to="/početna">Početna</router-link>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <div id="app">
+        <div id="nav">
+          <router-link to="/">Home</router-link>
+          |
+          <router-link to="/Registracija">Registracija</router-link>
+          |
+          <router-link to="/Login">Log in</router-link>
+          |
+          <router-link to="/Početna">Početna</router-link>
+        </div>
+        <router-view />
+      </div>
     </div>
-    <router-view/>
+    <div class="col-1"></div>
   </div>
 </template>
 
@@ -21,7 +30,6 @@
 
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -32,4 +40,3 @@
   }
 }
 </style>
-
