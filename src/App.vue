@@ -11,6 +11,8 @@
           <router-link to="/Login">Log in</router-link>
           |
           <router-link to="/Početna">Početna</router-link>
+          |
+          <router-link to="/AddEvent">Add event</router-link>
         </div>
         <router-view />
       </div>
