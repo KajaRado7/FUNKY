@@ -87,7 +87,7 @@
       <br />
 
       <div class="form_group">
-        <button class="btn_login">
+        <button @click="login()" class="btn_login">
           <b>Log in</b>
         </button>
       </div>

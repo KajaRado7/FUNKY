@@ -3,7 +3,7 @@
     <div
       class="alert alert-success"
       role="alert"
-      style="max-width: 500px; text-align: center; background-color: #F5B85C"
+      style="max-width: 500px; text-align: center; background-color: #F5B85C; border-radius: 15px"
     >
       <h2 class="alert-heading">Registration</h2>
     </div>
@@ -146,6 +146,7 @@
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
 
 export default {
+  name: "signup()",
   data() {
     return {
       userForm: {

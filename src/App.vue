@@ -17,7 +17,9 @@
     </div>
     <div class="col-1"></div>
   </div>
+
 </template>
+
 
 <style lang="scss">
 #app {
@@ -39,4 +41,5 @@
     }
   }
 }
+
 </style>
