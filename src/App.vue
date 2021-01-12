@@ -45,3 +45,8 @@
 }
 
 </style>
+<style>
+ body {
+   background-color:#1A1A1A;
+}
+</style>

@@ -1,10 +1,9 @@
 <template>
-  <div class="container" style="max-width: 500px; text-align: left">
+  <div class="container" style="max-width: 500px; text-align: left; color:white" >
     <div
       class="alert alert-success"
       role="alert"
-      style="max-width: 500px; text-align: center; background-color: #F5B85C; border-radius: 15px"
-    >
+      style="max-width: 500px; text-align: center; background-color: #F5B85C; border-radius: 15px; color: black">
       <h2 class="alert-heading">Registration</h2>
     </div>
 

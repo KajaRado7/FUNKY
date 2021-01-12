@@ -1,11 +1,10 @@
 <template>
-  <div class="container" style="max-width: 500px; text-align: left">
+  <div class="container" style="max-width: 500px; text-align: left; color:white">
     <div
       class="alert alert-success"
       role="alert"
-      style="max-width: 500px; text-align: center; background-color: #F5B85C"
-    >
-      <h2 class="alert-heading">Log in</h2>
+      style="max-width: 500px; text-align: center; background-color: #F5B85C; color: black">
+      <h2 class="alert-heading">Login</h2>
     </div>
 
     <form @submit.prevent="handleSubmit">
@@ -88,7 +87,7 @@
 
       <div class="form_group">
         <button @click="login()" class="btn_login">
-          <b>Log in</b>
+          <b>Login</b>
         </button>
       </div>
     </form>

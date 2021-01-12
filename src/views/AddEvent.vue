@@ -3,7 +3,7 @@
                   		<div class="container"
                              style="max-width: 500px; 
                                     text-align: left; 
-                                    color: black">
+                                    color: white">
 						<br/>
 						<br/>
                          <div style="max-width: 500px; 
@@ -12,7 +12,8 @@
                                     border: none;
                                      border-radius: 15px; 
                                      padding: 16px 150px; 
-                                     display: inline-block">
+                                     display: inline-block;
+                                     color: black">
                                      
 						 <h2>Add event</h2>
 						 </div>

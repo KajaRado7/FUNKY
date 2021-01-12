@@ -14,7 +14,7 @@
     <br />
     <br />
     <p>Already have an account ?</p>
-    <router-link to="/Login" class="nav-link"><b>Log in</b></router-link>
+    <router-link to="/Login" class="nav-link"><b>Login</b></router-link>
   </div>
 </template>
 
