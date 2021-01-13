@@ -28,5 +28,55 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
+<style scoped>
+.card {
+  border-bottom: 2px solid #F5B85C;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  background-color: #1A1A1A;
+  
+}
+
+.card-img-top{ 
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10%;   /* zaobljenost rubova*/
+}
+
+.card-body {
+  height: 5px;
+  text-align: left;
+  margin-top: 0%;
+  margin-bottom: 3%;
+}
+
+.card-text {
+  margin: 70;
+  margin-left: -10px;
+  color: #D0D0D0;
+} 
+
+.actions {
+  position: absolute;
+  top: 185px;  
+  right: -10px;
+  padding: 25px 20px;
+  float: right;
+}
+
+.actions red {
+    color: #C92525;
+  }
+
+.actions i {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+</style>
+
 
 

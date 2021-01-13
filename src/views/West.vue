@@ -1,5 +1,4 @@
 <template>
-  <div :style="myStyle" id="wrapper">
   <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
@@ -7,7 +6,6 @@
       
     </div>
     <div class="col-1"></div>
-  </div>
   </div>
 </template>
 
@@ -21,12 +19,12 @@
 
 import DogadajiCard from '@/components/DogadajiCard.vue'
 
-let cards = [];
+let cards = []
 
 cards = [
-  '@/assets/dostojevski.jpg',
-  '@/assets/zaigrana-koza.jpg',
-  '@/assets/rasskol.jpg',
+  "https://cdn.discordapp.com/attachments/776752694466707466/780142704683384832/dostojevskiiii.jpg",
+  "https://cdn.discordapp.com/attachments/776752694466707466/780141433914130443/81839990_3369511939786727_8260664549204557824_o.jpg",  /*@/assets/zaigrana-koza.jpg" ne radi why doe*/
+  "https://cdn.discordapp.com/attachments/776752694466707466/780144785737908224/rasskol.jpg",
 ];
 
 export default {    
@@ -42,58 +40,5 @@ export default {
 };
 
 </script>
-
-
-<style scoped>
-
-/*.card {
-  border-bottom: 2px solid #F5B85C;
-  border-bottom-left-radius: 0%;
-  border-bottom-right-radius: 0%;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  background-color:#0D0D0D;
-}
-
-.card-img-top{ 
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10%;   /* zaobljenost rubova*/
-
-
-/*.card-body {
-  height: 5px;
-  text-align: left;
-  margin-top: 0%;
-  margin-bottom: 3%;
-}
-
-.card-text {
-  margin: 70;
-  margin-left: -10px;
-  color: #D0D0D0;
-} 
-
-.actions {
-  position: absolute;
-  top: 185px;  
-  right: -10px;
-  padding: 25px 20px;
-  float: right;
-}
-
-.actions red {
-    color: #C92525;
-  }
-
-.actions i {
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-
-*/
-</style>
-
 
 
