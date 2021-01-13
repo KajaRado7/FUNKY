@@ -1,9 +1,13 @@
 <template>
-  <div class="container" style="max-width: 500px; text-align: left; color:white">
+  <div
+    class="container"
+    style="max-width: 500px; text-align: left; color:white"
+  >
     <div
       class="alert alert-success"
       role="alert"
-      style="max-width: 500px; text-align: center; background-color: #F5B85C; color: black">
+      style="max-width: 500px; text-align: center; background-color: #F5B85C; border-radius: 15px; color: black"
+    >
       <h2 class="alert-heading">Login</h2>
     </div>
 
@@ -142,7 +146,6 @@ export default {
 
 <style scoped>
 .btn_login {
-  position: fixed;
   background-color: #f5b85c;
   border: none;
   border-radius: 15px;
@@ -150,7 +153,8 @@ export default {
   padding: 16px 32px;
   text-align: center;
   font-size: 16px;
-  display: inline-block;
+  display: block;
+  margin: auto;
   text-decoration: none;
 }
 .form_group > label {
