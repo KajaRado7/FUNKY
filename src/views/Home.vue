@@ -39,6 +39,18 @@ p {
 .form_group {
   max-width: 500px;
   text-align: center;
+  color:#EAC2EA;
+  width: 150%;
+  height: 275px;
+  padding: 20px 20px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  border-radius: 8px;
+  background-color: #454545;
+  font-size: 18px;
+  resize: none;
+  margin:auto; 
+  margin-top: 15%;
 }
 .btn_email {
   width: 290px;

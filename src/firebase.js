@@ -2,6 +2,7 @@ import firebase from "firebase/app" ;
 import "firebase/auth";
 import "firebase/firestore";
 
+
 var firebaseConfig = {
     apiKey: "AIzaSyD4NH_W17xv1ILKn4Jcbesr2vrYg0RS040",
     authDomain: "funky-7760b.firebaseapp.com",
@@ -12,7 +13,7 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
+  
   export {
       firebase,
   };
