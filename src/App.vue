@@ -18,11 +18,83 @@
         <router-view />
       </div>
     </div>
+
+    <nav class="nav">
+      <a href="#" class="nav__link">
+        <img class="regions" src="@/assets/placeholder.png" />
+        <span class="nav__text">Regions</span>
+      </a>
+
+      <a href="#" class="nav__link">
+        <img class="favorites" src="@/assets/like.png" />
+        <span class="nav__text">My favorites</span>
+      </a>
+
+      <a href="#" class="nav__link">
+        <img class="user" src="@/assets/user.png" />
+        <span class="nav__text">My Profile</span>
+      </a>
+    </nav>
+
     <div class="col-1"></div>
   </div>
 </template>
 
 <style lang="scss">
+// elementi za Bottom Icon-Based Navigation Menu (u doradi)
+//-----------------------------------------------------
+.favorites {
+  display: flex;
+  height: 35%;
+  width: 21%;
+  margin-bottom: 9px;
+}
+.regions {
+  display: flex;
+  height: 38%;
+  width: 25%;
+  margin-bottom: 7px;
+  margin-left: 10%;
+}
+.user {
+  display: flex;
+  height: 35%;
+  width: 21%;
+  margin-bottom: 9px;
+}
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 80px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  overflow-x: auto;
+}
+
+.nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  min-width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: sans-serif;
+  font-size: 13px;
+  color: white;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.nav__icon {
+  font-size: 18px;
+}
+//-----------------------------------------------------
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
