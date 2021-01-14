@@ -23,9 +23,12 @@ import DogadajiCard from '@/components/DogadajiCard.vue';
 let cards = [];
 
 cards = [
-  'https://cdn.discordapp.com/attachments/776752694466707466/780142704683384832/dostojevskiiii.jpg',
-  'https://cdn.discordapp.com/attachments/776752694466707466/780141433914130443/81839990_3369511939786727_8260664549204557824_o.jpg' /*@/assets/zaigrana-koza.jpg" ne radi why doe*/,
-  'https://cdn.discordapp.com/attachments/776752694466707466/780144785737908224/rasskol.jpg',
+  {url: 'https://cdn.discordapp.com/attachments/776752694466707466/780142704683384832/dostojevskiiii.jpg', 
+    naslov: "Dostojevski night", heart: false},
+  {url: 'https://cdn.discordapp.com/attachments/776752694466707466/780141433914130443/81839990_3369511939786727_8260664549204557824_o.jpg' /*@/assets/zaigrana-koza.jpg" ne radi why doe*/,
+    naslov: 'Večer društvenih igara', heart: false},
+  {url: 'https://cdn.discordapp.com/attachments/776752694466707466/780144785737908224/rasskol.jpg',
+    naslov: 'Svirka lokalnog benda Rasskol', heart: false}
 ];
 
 export default {
