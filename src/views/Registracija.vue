@@ -147,10 +147,11 @@
 </template>
 
 <script>
+import {firebase} from '@/firebase';
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
 
 export default {
-  name: 'signup()',
+  name: 'signup',
   data() {
     return {
       userForm: {
@@ -189,15 +190,18 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.isSubmitted = true;
-
-      this.$v.$touch();
-      if (this.$v.$invalid) {
-        return;
-      }
-
-      alert('SUCCESS!' + JSON.stringify(this.userForm));
+      firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
+      .then(function(){
+        console.log('Uspješna registracija.');
+      })
+      .catch(function(error){
+        console.error('Došlo je do greške',error);
+      });
+      console.log('Nastavak');
     },
+
   },
 };
 </script>

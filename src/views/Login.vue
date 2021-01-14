@@ -90,7 +90,7 @@
       <br />
 
       <div class="form_group">
-        <button @click="login()" class="btn_login">
+        <button @click="handleSubmit()" class="btn_login">
           <b>Login</b>
         </button>
       </div>
@@ -99,9 +99,11 @@
 </template>
 
 <script>
+import {firebase} from '@/firebase';
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
 
 export default {
+  name: 'login',
   data() {
     return {
       userForm: {
@@ -131,14 +133,19 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.isSubmitted = true;
+      console.log('login...' + this.userForm.email);
 
-      this.$v.$touch();
-      if (this.$v.$invalid) {
-        return;
-      }
+      firebase
+      .auth()
+      .signInWithEmailAndPassword(this.userForm.email,this.userForm.password)
+      .then(function(result) {
+        console.log('Uspješna prijava.', result);
 
-      alert('SUCCESS!' + JSON.stringify(this.userForm));
+      })
+      .catch(function(error){
+        console.error('Došlo je do greške', error);
+      });
+       this.$router.replace({ name: 'početna'});
     },
   },
 };

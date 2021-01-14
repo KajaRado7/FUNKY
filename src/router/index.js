@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -32,7 +33,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Početna.vue')
+    component: () => import(/* webpackChunkName: "početna" */ '../views/Početna.vue'),
+    meta: {
+      needsUser: true,
+    },
   },
   {
   path: '/addevent',
@@ -52,10 +56,22 @@ const routes = [
   }
 ]
 
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
+router.beforeEach( (to, from, next) => {
+  console.log('Stara rute', from.name, '->', to.name, 'korisnik', store.name)
+
+const noUser = store.currentUser === null;
+
+if (noUser && to.meta.needsUser) {
+     next('login');
+} else {
+     next();
+}
+});
 
 export default router

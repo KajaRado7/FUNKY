@@ -40,6 +40,56 @@
   </div>
 </template>
 
+<script>
+import store from '@/store';
+import {firebase} from '@/firebase';
+import router from '@/router';
+
+firebase.auth().onAuthStateChanged((user) => {
+     const currentRoute = router.currentRoute;
+
+     console.log("PROVJERA STANJA LOGINA!");
+     if (user) {
+         // User is signed in.
+         console.log('* User', user.email);
+         store.currentUser = user.email;
+		 
+		 if(!currentRoute.meta.needsUser){
+		    router.push({ name: 'početna' });
+     } else {
+         // User is not signed in.
+         console.log('* No user');
+         store.currentUser = null;
+	 
+     if (currentRoute.meta.needsUser) {
+        router.push({ name: 'login' });
+    }
+  }
+ }
+});
+
+
+export default{
+    name: 'app',
+	data(){
+	   return{
+	      store,
+		  
+		};
+	},
+	methods: {
+	   logout(){
+	         firebase
+			    .auth()
+				  .signOut().then(() => {
+				     this.$router.push({ name: 'login' });
+				});
+	   
+	   }
+	}
+}
+</script>
+
 <style lang="scss">
 // elementi za Bottom Icon-Based Navigation Menu (u doradi)
 //-----------------------------------------------------
