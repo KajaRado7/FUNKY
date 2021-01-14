@@ -10,8 +10,7 @@
           |
           <router-link to="/Login">Log in</router-link>
           |
-          <router-link to="/Početna">Početna</router-link>
-          |
+
           <router-link to="/AddEvent">Add event</router-link>
           |
           <router-link to="/West">West</router-link>
@@ -21,9 +20,7 @@
     </div>
     <div class="col-1"></div>
   </div>
-
 </template>
-
 
 <style lang="scss">
 #app {
@@ -45,10 +42,7 @@
     }
   }
 }
-
-</style>
-<style>
- body {
-   background-color:#1A1A1A;
+body {
+  background-color: #1a1a1a;
 }
 </style>

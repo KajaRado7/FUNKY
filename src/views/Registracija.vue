@@ -142,6 +142,7 @@
         </button>
       </div>
     </form>
+    <footer id="footer"></footer>
   </div>
 </template>
 
@@ -202,6 +203,11 @@ export default {
 </script>
 
 <style scoped>
+#footer {
+  width: 100%;
+  height: 100px;
+}
+
 .btn_register {
   background-color: #f5b85c;
   border: none;
