@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
-      <dogadaji-card v-for="card in cards" :key="card" :info="card" />
+      <regije-card v-for="card in cards" :key="card" :info="card" />
       <!-- kada stavimo : onda ovaj = prima js  ako stavim samo info prenjet ce se string -->
     </div>
     <div class="col-1"></div>
@@ -12,25 +12,26 @@
 
 <script>
 
-import DogadajiCard from '@/components/DogadajiCard.vue';
+import RegijeCard from '@/components/RegijeCard.vue';
 
 let cards = [];
 
 cards = [
-  {img: require("@/assets/dostojevski.jpg"), naslov: "Dostojevski night", heart:false},
-  {img: require("@/assets/zaigrana-koza.jpg"), naslov: 'Večer društvenih igara', heart: false},
-  {img: require("@/assets/rasskol.jpg"), naslov: 'Svirka lokalnog benda Rasskol', heart: false}
+  {img: require("@/assets/zagreb.png"), naslov: "Sjeverna Hrvatska"},
+  {img: require("@/assets/dubrovnik.jpg"), naslov: 'Južna Hrvatska'},
+  {img: require("@/assets/amfiteatar.jpg"), naslov: 'Zapadna Hrvatska'},
+  {img: require("@/assets/suncokreti.jpg"), naslov: 'Istočna Hrvatska'}
 ];
 
 export default {
-  name: 'west',
+  name: 'regije',
   data: function() {
     return {
       cards: cards,
     };
   },
   components: {
-    DogadajiCard,
+    RegijeCard,
   },
 };
 </script>

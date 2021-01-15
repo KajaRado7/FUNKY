@@ -1,20 +1,12 @@
 <template>
   <div class="card" >
-  <img class="card-img-top" :src="info.url">   <!-- info je u west gdje su sve slike navedene -->
+  <img class="card-img-top" :src="info.img">   <!-- info je u west gdje su sve slike navedene -->
   <div class="card-body">
     <p class="card-text">{{ info.naslov }}</p>
     <div class="actions" id="heart  ">
       <i class="far fa-heart" v-if="!info.heart" @click="info.heart = !info.heart"></i>
       <i class="fas fa-heart red" v-if="info.heart" @click="info.heart = !info.heart"></i>
     </div> 
-
-  <!--    
-    <button class="far fa-heart" v-on:click="heart = !heart"></button>
-    <button class="fas fa-heart red" v-on:click="redHeart = !redHeart" ></button>
-  -->
-
-  
-
   </div>
   </div>
 </template>

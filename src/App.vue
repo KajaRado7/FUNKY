@@ -10,7 +10,8 @@
           |
           <router-link to="/Login">Log in</router-link>
           |
-
+          <router-link to="/Regije">Regije</router-link>
+          |
           <router-link to="/AddEvent">Add event</router-link>
           |
           <router-link to="/West">West</router-link>
