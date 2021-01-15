@@ -1,5 +1,6 @@
 <template>
   <div class="box">
+    <p class="account">Create your account</p>
     <router-link to="/Registracija">
       <button class="btn_email">
         <img src="@/assets/email.png" class="email_ikona" />
@@ -45,7 +46,7 @@
     <br />
     <br />
     <p>Already have an account ?</p>
-    <router-link to="/Login" class="nav-link"><b>Login</b></router-link>
+    <router-link to="/Login" class="login-link"><b>Login</b></router-link>
   </div>
 </template>
 
@@ -77,6 +78,9 @@ export default {
 </script>
 
 <style scoped>
+.account {
+  font-size: 23px;
+}
 .google_ikona {
   float: left;
   height: 10%;
@@ -90,7 +94,7 @@ export default {
 p {
   color: whitesmoke;
 }
-.nav-link {
+.login-link {
   color: #f5b85c;
 }
 .box {
@@ -98,7 +102,7 @@ p {
   text-align: center;
   color: white;
   width: fixed;
-  height: 275px;
+  height: 340px;
   padding: 20px 20px;
   box-sizing: border-box;
   border: 1px solid #ccc;
