@@ -25,11 +25,13 @@
           </label>
         </div>
         <br />
-        <div>
-          <div>
-            <input type="file" @change="previewImage" accept="image/*" />
+        <div class="box">
+           <div>
+            <input type="file" @change="previewImage" accept="image/*" style="background-color: #F5B85C;" id="actual-btn" hidden />
+            <label class="choose" for="actual-btn">Choose Image</label>
           </div>
           <div>
+            <br/>
             <p>
               Progress: {{ uploadValue.toFixed() + '%' }}
               <progress id="progress" :value="uploadValue" max="100"></progress>
@@ -38,7 +40,7 @@
           <div v-if="imageData != null">
             <img class="preview" :src="picture" />
             <br />
-            <button @click="onUpload">Upload</button>
+            <button @click="onUpload" style="background-color: #F5B85C">Upload</button>
           </div>
         </div>
       </div>
@@ -258,7 +260,7 @@ export default {
         .put(this.imageData);
       storageRef.on(
         `state_changed`,
-        (snapshot) => {
+         snapshot => {
           this.uploadValue =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         },
@@ -310,4 +312,33 @@ img.preview {
   gap: 10px;
   grid-auto-rows: minmax(30px, auto);
 }
+.box {
+  max-width: 500px;
+  text-align: center;
+  color: white;
+  width: fixed;
+  height: 200px;
+  padding: 20px 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: rgba(78, 76, 76, 0.77);
+  font-size: 16px;
+  margin: auto;
+  margin-top: 5%;
+  resize: both;
+  overflow: auto;
+
+  
+}
+.choose {
+  background-color:  #f5b85c;
+  color: black;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
 </style>
