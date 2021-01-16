@@ -25,10 +25,11 @@ import RegijeCard from '@/components/RegijeCard.vue';
 let cards = [];
 
 cards = [
-  { img: require('@/assets/zagreb.png'), naslov: 'Sjeverna Hrvatska' },
+  { img: require('@/assets/zagreb.png'), naslov: 'Središnja Hrvatska' },
   { img: require('@/assets/dubrovnik.jpg'), naslov: 'Južna Hrvatska' },
   { img: require('@/assets/amfiteatar.jpg'), naslov: 'Zapadna Hrvatska' },
   { img: require('@/assets/suncokreti.jpg'), naslov: 'Istočna Hrvatska' },
+  { img: require('@/assets/plitvicka-jezera.jpg'), naslov: 'Gorska Hrvatska' },
 ];
 
 export default {
