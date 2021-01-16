@@ -145,7 +145,7 @@ export default {
       .catch(function(error){
         console.error('Došlo je do greške', error);
       });
-       this.$router.replace({ name: 'početna'});
+       this.$router.replace({ name: 'Regije'});
     },
   },
 };

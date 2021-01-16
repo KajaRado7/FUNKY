@@ -29,18 +29,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Login.vue'),
   },
-  {
-    path: '/početna',
-    name: 'Početna',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "početna" */ '../views/Početna.vue'),
-    meta: {
-      needsUser: true,
-    },
-  },
+ 
   {
     path: '/addevent',
     name: 'AddEvent',
@@ -64,6 +53,9 @@ const routes = [
     name: 'Regije',
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Regije.vue'),
+      meta: {
+        needsUser: true,
+      },
   },
 
   {
@@ -91,7 +83,7 @@ router.beforeEach((to, from, next) => {
   const noUser = store.currentUser === null;
 
   if (noUser && to.meta.needsUser) {
-    next('login');
+    next('Login');
   } else {
     next();
   }

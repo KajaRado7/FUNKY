@@ -50,32 +50,7 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    loginWithGoogle() {
-      this.$gAuth
-        .signIn()
-        .then((GoogleUser) => {
-          //on success do something
-          console.log('GoogleUser', GoogleUser);
-          console.log('getId', GoogleUser.getId());
-          console.log('getBasicProfile', GoogleUser.getBasicProfile());
-          console.log('getAuthResponse', GoogleUser.getAuthResponse());
-          var userInfo = {
-            loginType: 'google',
-            google: GoogleUser,
-          };
-          this.$store.commit('setLoginUser', userInfo);
-          router.push('/home');
-        })
-        .catch((error) => {
-          console.log('error', error);
-        });
-    },
-  },
-};
-</script>
+
 
 <style scoped>
 .account {

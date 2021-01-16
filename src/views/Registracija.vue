@@ -137,7 +137,7 @@
       <br />
 
       <div class="form_group">
-        <button class="btn_register">
+        <button class="btn_register" @click="handleSubmit()">
           <b>Register</b>
         </button>
       </div>
@@ -195,12 +195,15 @@ export default {
       .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
       .then(function(){
         console.log('Uspješna registracija.');
+        
       })
       .catch(function(error){
         console.error('Došlo je do greške',error);
       });
       console.log('Nastavak');
+      this.$router.push({ name: "Login" });
     },
+    
 
   },
 };
