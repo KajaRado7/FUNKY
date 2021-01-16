@@ -1,12 +1,18 @@
-<template>
+<!--<template>
   <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
       <regije-card v-for="card in cards" :key="card" :info="card" />
-      <!-- kada stavimo : onda ovaj = prima js  ako stavim samo info prenjet ce se string -->
+      <!-- kada stavimo : onda ovaj = prima js  ako stavim samo info prenjet ce se string 
     </div>
     <div class="col-1"></div>
     <footer id="footer"></footer>
+  </div>
+</template> -->
+
+<template>
+  <div id="cards">
+   <regije-card v-for="card in cards" :key="card" :info="card" />
   </div>
 </template>
 
@@ -40,5 +46,10 @@ export default {
 #footer {
   width: 100%;
   height: 100px;
+}
+
+.cards{
+  max-width: 500px;
+  align-content: center;
 }
 </style>

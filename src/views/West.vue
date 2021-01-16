@@ -8,6 +8,8 @@
     <div class="col-1"></div>
     <footer id="footer"></footer>
   </div>
+
+  
 </template>
 
 <script>

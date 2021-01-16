@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .card {
-  width: 18rem;
+  max-width: 500px;
   margin-bottom: 35px;
   margin-top: 17px;
   border-bottom: 2px solid #F5B85C;

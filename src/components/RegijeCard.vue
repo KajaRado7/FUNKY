@@ -17,7 +17,9 @@ export default {
 
 <style scoped>
 .card {
-  width: 18rem;
+  align-content: center;
+  text-align: center;
+  max-width: 500px;
   margin-bottom: 25px;
   margin-top: 17px;
   border-bottom: none;
