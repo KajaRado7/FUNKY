@@ -11,22 +11,24 @@
 </template> -->
 
 <template>
-  <div id="cards">
-   <regije-card v-for="card in cards" :key="card" :info="card" />
+  <div class="container" style="max-width: 500px;">
+    <div id="cards">
+      <regije-card v-for="card in cards" :key="card" :info="card" />
+    </div>
+    <footer id="footer"></footer>
   </div>
 </template>
 
 <script>
-
 import RegijeCard from '@/components/RegijeCard.vue';
 
 let cards = [];
 
 cards = [
-  {img: require("@/assets/zagreb.png"), naslov: "Sjeverna Hrvatska"},
-  {img: require("@/assets/dubrovnik.jpg"), naslov: 'Južna Hrvatska'},
-  {img: require("@/assets/amfiteatar.jpg"), naslov: 'Zapadna Hrvatska'},
-  {img: require("@/assets/suncokreti.jpg"), naslov: 'Istočna Hrvatska'}
+  { img: require('@/assets/zagreb.png'), naslov: 'Sjeverna Hrvatska' },
+  { img: require('@/assets/dubrovnik.jpg'), naslov: 'Južna Hrvatska' },
+  { img: require('@/assets/amfiteatar.jpg'), naslov: 'Zapadna Hrvatska' },
+  { img: require('@/assets/suncokreti.jpg'), naslov: 'Istočna Hrvatska' },
 ];
 
 export default {
@@ -48,7 +50,7 @@ export default {
   height: 100px;
 }
 
-.cards{
+.cards {
   max-width: 500px;
   align-content: center;
 }

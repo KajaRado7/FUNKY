@@ -24,28 +24,28 @@
       </div>
     </div>
 
-    <!----NAVIGATION ICON BASED MENU--------------------------------------------------->
+    <!----NavigationIconBasedMenu--------------------------------------------------->
     <div class="bottomNav">
       <div>
-        <router-link to="/regije" class="nav-link">
-          <img class="regions" src="@/assets/placeholder.png" />
+        <router-link to="/regije" class="navItem">
+          <font-awesome-icon icon="map-marker-alt" size="2x" />
           Regions
         </router-link>
       </div>
       <div>
-        <router-link to="/favoriti" class="nav-link">
-          <img class="favorites" src="@/assets/like.png" />
+        <router-link to="/favoriti" class="navItem">
+          <font-awesome-icon icon="heart" size="2x" />
           My favorites
         </router-link>
       </div>
       <div>
-        <router-link to="/account" class="nav-link">
-          <img class="user" src="@/assets/user.png" />
-          My account
+        <router-link to="/account" class="navItem">
+          <font-awesome-icon icon="user" size="2x" />
+          Account
         </router-link>
       </div>
     </div>
-    <!----NAVIGATION ICON BASED MENU--------------------------------------------------->
+    <!----NavigationIconBasedMenu--------------------------------------------------->
 
     <div class="col-1"></div>
   </div>
@@ -100,50 +100,44 @@ export default {
 </script>
 
 <style lang="scss">
-// elementi za Bottom Icon-Based Navigation Menu (u doradi)
-//-----------------------------------------------------
-.favorites {
-  display: flex;
-  height: 48%;
-  width: 38%;
-}
-.regions {
-  display: flex;
-  height: 50%;
-  width: 54%;
-}
-.user {
-  display: flex;
-  height: 50%;
-  width: 50%;
-}
 .bottomNav {
   justify-content: space-evenly;
   display: flex;
 
   position: fixed;
   bottom: 0;
-  width: 100%;
-  height: 65px;
+  left: 0;
+  right: 0;
 
   background-color: rgba(0, 0, 0, 0.25);
 }
-* {
-  box-sizing: border-box;
+
+.navItem {
+  color: white;
+  display: flex;
+  flex-grow: 1;
+
+  justify-content: center;
+  align-items: center;
+
+  font-weight: light;
+
+  padding: 0.75rem;
+
+  font-awesome-icon {
+    margin-right: 0.5rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .navItem {
+    flex-direction: column;
+
+    font-awesome-icon {
+      margin: 0;
+    }
+  }
 }
 
-.nav-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-grow: 1;
-  min-width: 50px;
-  white-space: nowrap;
-  font-size: 10px;
-  color: white;
-  text-decoration: none;
-}
 //-----------------------------------------------------
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
