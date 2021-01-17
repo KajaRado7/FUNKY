@@ -53,10 +53,10 @@ const routes = [
     name: 'Regije',
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Regije.vue'),
-   meta: {
+      meta: {
         needsUser: true,
       },
-  },
+      },
 
   {
     path: '/favoriti',

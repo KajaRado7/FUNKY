@@ -100,6 +100,7 @@
 
 <script>
 import {firebase} from '@/firebase';
+import router from '@/router';
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
 
 export default {
@@ -133,6 +134,14 @@ export default {
   },
   methods: {
     handleSubmit() {
+      {
+        this.isSubmitted = true;
+
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      }
+      }
       console.log('login...' + this.userForm.email);
 
       firebase
@@ -140,12 +149,12 @@ export default {
       .signInWithEmailAndPassword(this.userForm.email,this.userForm.password)
       .then(function(result) {
         console.log('Uspješna prijava.', result);
-
+        
       })
-      .catch(function(error){
-        console.error('Došlo je do greške', error);
+      .catch(function(e){
+        console.error('Došlo je do greške', e);
       });
-       this.$router.replace({ name: 'Regije'});
+      this.$router.replace({ name: 'Regije'});
     },
   },
 };

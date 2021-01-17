@@ -18,9 +18,8 @@
         <label>Full name</label>
         <br />
         <br />
-        <br />
+        <br /><p>{{userForm.name}}</p>
         <div class="hr">
-          <span>{{userForm.name}}</span>
         </div>
         <br />
         <br />
@@ -28,9 +27,8 @@
         <label>E-mail</label>
         <br />
         <br />
-        <br />
+        <br /><p>{{userForm.email}}</p>
         <div class="hr">
-          <span>{{userForm.email}}</span>
         </div>
         <br />
         <br />
@@ -38,9 +36,7 @@
         <label>Password</label>
         <br />
         <br />
-        <br />
-        <div class="hr"></div>
-        <span>{{userForm.password}}</span>
+        <br /><p>{{userForm.password}}</p>        <div class="hr"></div>
         <br />
         <br />
         <br />
@@ -61,11 +57,11 @@
             Edit Profile
             <small></small>
           </button>
-          <br/>
+         
           <button
             type="button"
             class="btn btn-outline-secondary text-uppercase"
-            onclick="signOut()"
+            @click="logout()"
             style="max-width: 500px; 
 										       text-align: center; 
 											   background-color: #F5B85C; 
@@ -85,10 +81,13 @@
 
 <script>
 import {firebase} from '@/firebase';
+import store from '@/store';
+import router from '@/router';
 
 export default {
   data(){
     return{
+      store,
       userForm: {
         name: null,
         email: null,
@@ -97,11 +96,23 @@ export default {
     }
   },
     created(){
-      let user = firebase.auth().currentUser;
+      firebase.auth().onAuthStateChanged((userForm) => {
+        if(userForm){
+          this.userForm = userForm;
+        } else {
+          this.userForm = null;
+        }
+      })
 
-      this.userForm.name = user.userForm.name;
-      this.userForm.email = user.userForm.email;
-      this.userForm.password = user.userForm.password;
+    },
+    methods: {
+      logout(){
+        firebase.auth().signOut().then(() => {
+          firebase.auth().onAuthStateChanged(() => {
+            this.$router.push({ name: 'Login' });
+          })
+        })
+      }
     }
   };
 </script>
