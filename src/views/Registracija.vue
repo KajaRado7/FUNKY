@@ -190,12 +190,24 @@ export default {
   },
   methods: {
     handleSubmit() {
+      this.isSubmitted = true;
+
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        return;
+      }
       firebase
       .auth()
       .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
+      .then((res) => {
+        res.userForm.updateProfile({
+          name: this.userForm.name
+        })
+     
       .then(function(){
         console.log('Uspješna registracija.');
         
+      })
       })
       .catch(function(error){
         console.error('Došlo je do greške',error);

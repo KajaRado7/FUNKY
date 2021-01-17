@@ -63,8 +63,7 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     // User is signed in.
     console.log('* User', user.email);
-    store.currentUser = user.email;
-
+  }
     if (!currentRoute.meta.needsUser) {
       router.push({ name: 'Regije' });
     } else {
@@ -76,7 +75,6 @@ firebase.auth().onAuthStateChanged((user) => {
         router.push({ name: 'Login' });
       }
     }
-  }
 });
 
 export default {
@@ -92,7 +90,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.push({ name: 'login' });
+          this.$router.push({ name: 'Login' });
         });
     },
   },
