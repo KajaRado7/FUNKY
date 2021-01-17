@@ -7,7 +7,16 @@
     </div>
     <div class="col-1"></div>
     <footer id="footer"></footer>
+  </div> 
+
+<!--<template>
+  <div class="container" style="max-width: 500px;">
+    <div id="cards">
+      <regije-card v-for="card in cards" :key="card" :info="card" />
+    </div>
+    <footer id="footer"></footer>
   </div>
+</template> -->
 
   
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="card" >
-  <img class="card-img-top" :src="info.img">   <!-- info je u west gdje su sve slike navedene -->
+    <img class="card-img-top" :src="info.img">
   <div class="card-body">
     <p class="card-text">{{ info.naslov }}</p>
   </div>
@@ -12,14 +12,11 @@ export default {
   props: ['info'],
   name: 'RegijeCard',
   }
-
 </script>
 
 <style scoped>
 .card {
-  align-content: center;
-  text-align: center;
-  max-width: 500px;
+  width: 18rem;
   margin-bottom: 25px;
   margin-top: 17px;
   border-bottom: none;
@@ -30,19 +27,16 @@ export default {
   border-top: none;
   background-color: #1A1A1A;
 }
-
 .card-img-top{ 
   height: 150px;
   object-fit: cover;
   border-radius: 14%;   /* zaobljenost rubova*/
 }
-
 .card-body {
   text-align: center;
   margin-top: -5px;
   margin-bottom: 5px;
 }
-
 .card-text {
   height: 1px;
   margin-bottom: 10px;
@@ -51,5 +45,4 @@ export default {
   color: #D0D0D0;
   
 } 
-
 </style>

@@ -40,23 +40,56 @@ const routes = [
       import(/* webpackChunkName: "about" */ '../views/AddEvent.vue'),
   },
   {
-    path: '/west',
-    name: 'West',
+    path: '/zapadna',
+    name: 'Zapadna',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/West.vue'),
+      import(/* webpackChunkName: "about" */ '../views/Zapadna.vue'),
+  },
+  {
+    path: '/sredisnja',
+    name: 'Sredisnja',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Sredisnja.vue'),
+  },
+  {
+    path: '/istocna',
+    name: 'Istocna',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Istocna.vue'),
+  },
+  {
+    path: '/juzna',
+    name: 'Juzna',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Juzna.vue'),
+  },
+  {
+    path: '/gorska',
+    name: 'Gorska',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Gorska.vue'),
   },
   {
     path: '/regije',
     name: 'Regije',
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Regije.vue'),
-      meta: {
-        needsUser: true,
-      },
-      },
+    },
 
   {
     path: '/favoriti',
@@ -69,6 +102,12 @@ const routes = [
     name: 'Account',
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Account.vue'),
+  },
+  {
+    path: '/informacije',
+    name: 'Informacije',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Informacije.vue'),
   },
 ];
 

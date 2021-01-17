@@ -14,11 +14,21 @@
           |
           <router-link to="/AddEvent">Add event</router-link>
           |
-          <router-link to="/West">West</router-link>
+          <router-link to="/Zapadna">Zapadna</router-link>
+          |
+          <router-link to="/Istocna">Istocna</router-link>
+          |
+          <router-link to="/Sredisnja">Sredisnja</router-link>
+          |
+          <router-link to="/Gorska">Gorska</router-link>
+          |
+          <router-link to="/Juzna">Juzna</router-link>
           |
           <router-link to="/account">My account</router-link>
           |
           <router-link to="/favoriti">My favorites</router-link>
+          |
+          <router-link to="/informacije">Informacije</router-link>
         </div>
         <router-view />
       </div>

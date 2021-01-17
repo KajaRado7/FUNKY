@@ -1,15 +1,3 @@
-<!--<template>
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
-      <regije-card v-for="card in cards" :key="card" :info="card" />
-      <!-- kada stavimo : onda ovaj = prima js  ako stavim samo info prenjet ce se string 
-    </div>
-    <div class="col-1"></div>
-    <footer id="footer"></footer>
-  </div>
-</template> -->
-
 <template>
   <div class="container" style="max-width: 500px;">
     <div id="cards">
@@ -25,12 +13,12 @@ import RegijeCard from '@/components/RegijeCard.vue';
 let cards = [];
 
 cards = [
-  { img: require('@/assets/zagreb.png'), naslov: 'Središnja Hrvatska' },
-  { img: require('@/assets/dubrovnik.jpg'), naslov: 'Južna Hrvatska' },
-  { img: require('@/assets/amfiteatar.jpg'), naslov: 'Zapadna Hrvatska' },
-  { img: require('@/assets/suncokreti.jpg'), naslov: 'Istočna Hrvatska' },
-  { img: require('@/assets/plitvicka-jezera.jpg'), naslov: 'Gorska Hrvatska' },
-];
+  { img: require('@/assets/zagreb.png'), naslov: 'Središnja Hrvatska', route: '/Sredisnja'},
+  { img: require('@/assets/dubrovnik.jpg'), naslov: 'Južna Hrvatska', route: '/Juzna'},
+  { img: require('@/assets/amfiteatar.jpg'), naslov: 'Zapadna Hrvatska', route: '/Zapadna' },
+  { img: require('@/assets/suncokreti.jpg'), naslov: 'Istočna Hrvatska', route: '/Istocna' },
+  { img: require('@/assets/plitvicka-jezera.jpg'), naslov: 'Gorska Hrvatska', route: '/Gorska' },
+]; 
 
 export default {
   name: 'regije',
