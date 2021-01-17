@@ -3,14 +3,7 @@ import App from './App.vue';
 import router from './router';
 import Vuelidate from 'vuelidate';
 import Router from 'vue-router';
-
-import GoogleAuth from '@/config/google.js';
-const gauthOption = {
-  clientId: 'xxxxxxxxxxx.apps.googleusercontent.com',
-  scope: 'profile email',
-  prompt: 'select_account',
-};
-Vue.use(GoogleAuth, gauthOption);
+import GoogleSignInButton from 'vue-google-signin-button-directive'
 
 Vue.use(Vuelidate);
 
