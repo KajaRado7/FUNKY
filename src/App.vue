@@ -37,21 +37,18 @@
     <!----NavigationIconBasedMenu--------------------------------------------------->
     <div class="bottomNav">
       <div>
-        <router-link to="/regije" class="navItem">
+        <router-link to="/regije" class="navItem color ">
           <font-awesome-icon icon="map-marker-alt" size="2x" />
-          Regions
         </router-link>
       </div>
       <div>
-        <router-link to="/favoriti" class="navItem">
+        <router-link to="/favoriti" class="navItem color ">
           <font-awesome-icon icon="heart" size="2x" />
-          My favorites
         </router-link>
       </div>
       <div>
-        <router-link to="/account" class="navItem">
+        <router-link to="/account" class="navItem color ">
           <font-awesome-icon icon="user" size="2x" />
-          Account
         </router-link>
       </div>
     </div>
@@ -74,17 +71,17 @@ firebase.auth().onAuthStateChanged((user) => {
     // User is signed in.
     console.log('* User', user.email);
   }
-    if (!currentRoute.meta.needsUser) {
-      router.push({ name: 'Regije' });
-    } else {
-      // User is not signed in.
-      console.log('* No user');
-      store.currentUser = null;
+  if (!currentRoute.meta.needsUser) {
+    router.push({ name: 'Regije' });
+  } else {
+    // User is not signed in.
+    console.log('* No user');
+    store.currentUser = null;
 
-      if (currentRoute.meta.needsUser) {
-        router.push({ name: 'Login' });
-      }
+    if (currentRoute.meta.needsUser) {
+      router.push({ name: 'Login' });
     }
+  }
 });
 
 export default {
@@ -108,6 +105,11 @@ export default {
 </script>
 
 <style lang="scss">
+//promjena boje ikona na navigation menu ( u doradi)
+
+.color:active {
+  color: #f5b85c;
+}
 .bottomNav {
   justify-content: space-evenly;
   display: flex;
