@@ -26,8 +26,7 @@
         <br />
         <label>E-mail</label>
         <br />
-        <br />
-        <br /><p>{{userForm.email}}</p>
+        <br />{{userForm.email}}</p>
         <div class="hr">
         </div>
         <br />
@@ -99,11 +98,12 @@ export default {
       firebase.auth().onAuthStateChanged((userForm) => {
         if(userForm){
           this.userForm = userForm;
+
+    
         } else {
           this.userForm = null;
         }
       })
-
     },
     methods: {
       logout(){
