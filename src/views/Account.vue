@@ -88,7 +88,7 @@ export default {
     return{
       store,
       userForm: {
-        name: null,
+        name: '',
         email: null,
         password: null,
       }
@@ -98,6 +98,7 @@ export default {
       firebase.auth().onAuthStateChanged((userForm) => {
         if(userForm){
           this.userForm = userForm;
+          this.userForm.name = userForm.name;
 
     
         } else {

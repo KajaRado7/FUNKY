@@ -70,6 +70,8 @@ firebase.auth().onAuthStateChanged((userForm) => {
   if (userForm) {
     // User is signed in.
     console.log('* User', userForm.email);
+    console.log('Name', userForm.name);
+    console.log('Password', userForm.password);
   }
   if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Regije' });
