@@ -67,11 +67,11 @@ firebase.auth().onAuthStateChanged((userForm) => {
   const currentRoute = router.currentRoute;
 
   console.log('PROVJERA STANJA LOGINA!');
-  if (userForm) {
+  if (user) {
     // User is signed in.
-    console.log('* User', userForm.email);
-    console.log('Name', userForm.name);
-    console.log('Password', userForm.password);
+    console.log('* User', user.email);
+    console.log('Name', user.name);
+    console.log('Password', user.password);
   }
   if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Regije' });

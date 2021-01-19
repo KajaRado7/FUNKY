@@ -18,7 +18,7 @@
         <label>Full name</label>
         <br />
         <br />
-        <br /><p>{{userForm.name}}</p>
+        <br /><p>{{userForm.displayName}}</p>
         <div class="hr">
         </div>
         <br />
@@ -87,11 +87,7 @@ export default {
   data(){
     return{
       store,
-      userForm: {
-        name: '',
-        email: null,
-        password: null,
-      }
+      userForm: null,
     }
   },
     created(){
