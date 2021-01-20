@@ -22,11 +22,17 @@
         <p>{{ userForm.name }}</p>
         <div class="hr"></div>
         <br />
+        <p>{{ userForm.displayName }}</p>
+        <div class="hr"></div>
+        <br />
         <br />
         <br />
         <label>E-mail</label>
         <br />
         <br />
+        <br />
+        <p>{{ userForm.email }}</p>
+        <div class="hr"></div>
         <br />
         <p>{{ userForm.email }}</p>
         <div class="hr"></div>
@@ -106,6 +112,26 @@ export default {
         this.userForm = null;
       }
     });
+  },
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          userForm: null;
+        });
+    },
+    created() {
+      firebase.auth().onAuthStateChanged((userForm) => {
+        if (userForm) {
+          this.userForm = userForm;
+          this.userForm.name = userForm.name;
+        } else {
+          this.userForm = null;
+        }
+      });
+    },
   },
   methods: {
     logout() {

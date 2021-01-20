@@ -3,9 +3,10 @@
     <div
       class="container"
       style="max-width: 500px; 
-                                    text-align: left; 
-                                    color: white"
+             text-align: left; 
+             color: white"
     >
+    <form @submit.prevent="addNewEvent">
       <br />
       <br />
       <div
@@ -61,6 +62,7 @@
         </label>
         <input
           type="text"
+          v-model="eventName"
           class="form-control"
           id="eventName"
           placeholder="e.g. Deep Vibez"
@@ -74,6 +76,7 @@
         </label>
         <input
           type="date"
+          v-model="date"
           class="form-control"
           id="date"
           placeholder="e.g. 12.03.2021."
@@ -87,6 +90,7 @@
         </label>
         <input
           type="time"
+          v-model="time"
           class="form-control"
           id="time"
           placeholder="e.g. 10 p.m - 4 a.m."
@@ -115,6 +119,7 @@
         </label>
         <input
           type="text"
+          v-model="address"
           class="form-control"
           id="address"
           placeholder="e.g. Preradovićeva 1, 52100 Pula"
@@ -128,6 +133,7 @@
         </label>
         <input
           type="text"
+          v-model="eventEntry"
           class="form-control"
           id="eventEntry"
           placeholder="e.g. 10 kn"
@@ -144,6 +150,7 @@
             <br />
             <input
               class="form-check-input"
+              v-model="concert"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck1"
@@ -159,6 +166,7 @@
             <input
               class="form-check-input"
               type="checkbox"
+              v-model="games"
               name="exampleCheckBoxes"
               id="exampleCheck2"
               value="option2"
@@ -170,6 +178,7 @@
           <label class="form-check-label" for="exampleCheck3">
             <input
               class="form-check-input"
+              v-model="bookClub"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck3"
@@ -182,6 +191,7 @@
           <label class="form-check-label" for="exampleCheck4">
             <input
               class="form-check-input"
+              v-model="quiz"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck4"
@@ -194,6 +204,7 @@
           <label class="form-check-label" for="exampleCheck5">
             <input
               class="form-check-input"
+              v-model="outdoor"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck5"
@@ -206,6 +217,7 @@
           <label class="form-check-label" for="exampleCheck6">
             <input
               class="form-check-input"
+              v-model="indoor"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck6"
@@ -218,6 +230,7 @@
           <label class="form-check-label" for="exampleCheck7">
             <input
               class="form-check-input"
+              v-model="other"
               type="checkbox"
               checked="checked"
               name="exampleCheckBoxes"
@@ -238,6 +251,7 @@
         </label>
         <input
           type="number"
+          v-model="capacity"
           class="form-control"
           id="capacity"
           placeholder="e.g. 30"
@@ -246,12 +260,16 @@
       <br />
       <div class="form-group">
         <label for="note">Note:</label>
-        <textarea class="form-control" id="note" rows="4"></textarea>
+        <textarea class="form-control" 
+                  v-model="note"
+                  id="note" 
+                  rows="4"></textarea>
       </div>
       <br />
-      <button type="button" class="btn_publish">
+      <button type="button" class="btn_publish" @click="addNewEvent()">
         <b>Publish</b>
       </button>
+      </form>
     </div>
     <footer id="footer"></footer>
   </div>
@@ -259,6 +277,8 @@
 
 <script>
 import { firebase } from '@/firebase';
+import store from '@/store';
+import { db } from '@/firebase';
 
 export default {
   name: 'Upload',
@@ -267,6 +287,20 @@ export default {
       imageData: null,
       picture: null,
       uploadValue: 0,
+      eventName: '',
+      date: '',
+      time: '',
+      address: '',
+      eventEntry: '',
+      concert: '',
+      games: '',
+      bookClub: '',
+      quiz: '',
+      outdoor: '',
+      indoor: '',
+      other: '',
+      capacity: '',
+      note: ''
     };
   },
   methods: {
@@ -299,6 +333,37 @@ export default {
         }
       );
     },
+        addNewEvent(){
+          console.log("ok")
+
+          const imageData = this.newImageData;
+          const picture = this.newPicture;
+          const uploadValue = this.newUploadValue;
+          const eventName = this.newEventName;
+          const date = this.newDate;
+          const time = this.newTime;
+          const address = this.newAddress;
+          const eventEntry = this.newEventEntry;
+          const concert = this.newConcert;
+          const games = this.newGames;
+          const bookClub = this.newBookClub;
+          const quiz = this.newQuiz;
+          const outdoor = this.newOutdoor;
+          const indoor = this.newIndoor;
+          const other = this.newOther;
+          const capacity = this.newCapacity;
+          const note = this.newNote;
+
+          db.collection("posts").add({
+            email: store.currentUser,
+            posted_at: Date.now(), 
+          }).then((doc) => {
+              console.log("Spremljeno", doc)
+          })
+            .catch((e) => {
+              console.error(e);
+            });
+        },
   },
 };
 </script>

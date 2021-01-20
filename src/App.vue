@@ -65,13 +65,15 @@ import store from '@/store';
 import { firebase } from '@/firebase';
 import router from '@/router';
 
-firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged((userForm) => {
   const currentRoute = router.currentRoute;
 
   console.log('PROVJERA STANJA LOGINA!');
   if (user) {
     // User is signed in.
     console.log('* User', user.email);
+    console.log('Name', user.name);
+    console.log('Password', user.password);
   }
   if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Regije' });

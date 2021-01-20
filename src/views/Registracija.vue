@@ -150,6 +150,7 @@
 import {firebase} from '@/firebase';
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
 
+
 export default {
   name: 'signup',
   data() {
@@ -201,14 +202,17 @@ export default {
       .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
       .then((res) => {
         res.userForm.updateProfile({
-          name: this.userForm.name
-        })
+          displayName: this.userForm.name
+              })
+      
+      
      
       .then(function(){
         console.log('Uspješna registracija.');
         
+      });
       })
-      })
+      
       .catch(function(error){
         console.error('Došlo je do greške',error);
       });
