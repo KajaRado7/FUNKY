@@ -1,5 +1,4 @@
 <template>
-
   <div class="box">
     <p class="account">Create your account</p>
     <router-link to="/Registracija">
@@ -10,47 +9,60 @@
     </router-link>
     <br />
     <br />
-    <g-signin-button
-    :params="googleSignInParams"
-    @success="onSignInSuccess"
-    @error="onSignInError">
-    Sign in with Google
-  </g-signin-button>
+    <button @click= "loginWithGoogle()" type= "button">
+      Sign in with Google
+    </button>
     <br />
     <br />
     <p>Already have an account ?</p>
     <router-link to="/Login" class="login-link"><b>Login</b></router-link>
+ 
   </div>
 </template>
 
 <script>
+import {firebase} from "@/firebase";
+import store from "@/store";
 export default {
-  data () {
+  data() {
     return {
       /**
        * The Auth2 parameters, as seen on
        * https://developers.google.com/identity/sign-in/web/reference#gapiauth2initparams.
        * As the very least, a valid client_id must present.
-       * @type {Object} 
+       * @type {Object}
        */
       googleSignInParams: {
-        client_id: '336328634543-unbk0scnqr5bkel2ve7pdut8k5to0ul9.apps.googleusercontent.com'
-      } 
-
-    }
+        client_id:
+          "336328634543-unbk0scnqr5bkel2ve7pdut8k5to0ul9.apps.googleusercontent.com"
+      }
+    };
   },
   methods: {
-    onSignInSuccess (googleUser) {
-      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
-      // See https://developers.google.com/identity/sign-in/web/reference#users
-      const profile = googleUser.getBasicProfile() // etc etc
+    loginWithGoogle() {
+      console.log("Login with google");
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(result => {
+          store.currentUser = result.additionalUserInfo.profile.email;
+          //this.$router.replace({ name: "Home" });
+          //store.token = result.credential.accessToken; // mozda cu ga kasnije za nesto koristiti. za test neka ostane
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          // var errorCode = error.code;
+          this.errorMessage = error.message;
+          // // The email of the user's account used.
+          // var email = error.email;
+          // // The firebase.auth.AuthCredential type that was used.
+          // var credential = error.credential;
+          // ...
+        });
     },
-    onSignInError (error) {
-      // `error` contains any error occurred.
-      console.log('OH NOES', error)
-    }
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
