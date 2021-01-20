@@ -29,12 +29,14 @@
           <router-link to="/favoriti">My favorites</router-link>
           |
           <router-link to="/informacije">Informacije</router-link>
+          |
+          <router-link to="/filter">Filter</router-link>
         </div>
         <router-view />
       </div>
     </div>
 
-    <!----NavigationIconBasedMenu--------------------------------------------------->
+    <!----NavigationIconBasedBottomMenu--------------------------------------------------->
     <div class="bottomNav">
       <div>
         <router-link to="/regije" class="navItem color ">
@@ -52,7 +54,7 @@
         </router-link>
       </div>
     </div>
-    <!----NavigationIconBasedMenu--------------------------------------------------->
+    <!----NavigationIconBasedBottomMenu--------------------------------------------------->
 
     <div class="col-1"></div>
   </div>
@@ -105,11 +107,11 @@ export default {
 </script>
 
 <style lang="scss">
-//promjena boje ikona na navigation menu ( u doradi)
-
-.color:active {
+//promjena boje router-linkova
+.color:focus {
   color: #f5b85c;
 }
+
 .bottomNav {
   justify-content: space-evenly;
   display: flex;

@@ -26,12 +26,19 @@
         </div>
         <br />
         <div class="box">
-           <div>
-            <input type="file" @change="previewImage" accept="image/*" style="background-color: #F5B85C;" id="actual-btn" hidden />
+          <div>
+            <input
+              type="file"
+              @change="previewImage"
+              accept="image/*"
+              style="background-color: #F5B85C;"
+              id="actual-btn"
+              hidden
+            />
             <label class="choose" for="actual-btn">Choose Image</label>
           </div>
           <div>
-            <br/>
+            <br />
             <p>
               Progress: {{ uploadValue.toFixed() + '%' }}
               <progress id="progress" :value="uploadValue" max="100"></progress>
@@ -40,7 +47,9 @@
           <div v-if="imageData != null">
             <img class="preview" :src="picture" />
             <br />
-            <button @click="onUpload" style="background-color: #F5B85C">Upload</button>
+            <button @click="onUpload" style="background-color: #F5B85C">
+              Upload
+            </button>
           </div>
         </div>
       </div>
@@ -82,6 +91,21 @@
           id="time"
           placeholder="e.g. 10 p.m - 4 a.m."
         />
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="region">
+          Region
+          <span class="text-danger ml-1">*</span>
+        </label>
+        <select name="region" id="region-select">
+          <option disabled selected>--Please choose a region--</option>
+          <option value="sredisnja">Središnja</option>
+          <option value="juzna">Južna</option>
+          <option value="zapadna">Zapadna</option>
+          <option value="istocna">Istočna</option>
+          <option value="gorska">Gorska</option>
+        </select>
       </div>
       <br />
       <div class="form-group">
@@ -260,7 +284,7 @@ export default {
         .put(this.imageData);
       storageRef.on(
         `state_changed`,
-         snapshot => {
+        (snapshot) => {
           this.uploadValue =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         },
@@ -280,9 +304,19 @@ export default {
 </script>
 
 <style scoped>
+/*select i input field iste duljine*/
+.form-control,
+select {
+  width: 100%;
+}
+
+#region-select {
+  padding: 8px 12px;
+  border-radius: 4px;
+}
 #footer {
   width: 100%;
-  height: 100px;
+  height: 80px;
 }
 img.preview {
   width: 200px;
@@ -313,7 +347,6 @@ img.preview {
   grid-auto-rows: minmax(30px, auto);
 }
 .box {
-  max-width: 500px;
   text-align: center;
   color: white;
   width: fixed;
@@ -328,11 +361,9 @@ img.preview {
   margin-top: 5%;
   resize: both;
   overflow: auto;
-
-  
 }
 .choose {
-  background-color:  #f5b85c;
+  background-color: #f5b85c;
   color: black;
   padding: 0.5rem;
   font-family: sans-serif;
@@ -340,5 +371,4 @@ img.preview {
   cursor: pointer;
   margin-top: 1rem;
 }
-
 </style>

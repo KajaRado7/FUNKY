@@ -18,25 +18,27 @@
         <label>Full name</label>
         <br />
         <br />
-        <br /><p>{{userForm.name}}</p>
-        <div class="hr">
-        </div>
+        <br />
+        <p>{{ userForm.name }}</p>
+        <div class="hr"></div>
         <br />
         <br />
         <br />
         <label>E-mail</label>
         <br />
         <br />
-        <br /><p>{{userForm.email}}</p>
-        <div class="hr">
-        </div>
+        <br />
+        <p>{{ userForm.email }}</p>
+        <div class="hr"></div>
         <br />
         <br />
         <br />
         <label>Password</label>
         <br />
         <br />
-        <br /><p>{{userForm.password}}</p>        <div class="hr"></div>
+        <br />
+        <p>{{ userForm.password }}</p>
+        <div class="hr"></div>
         <br />
         <br />
         <br />
@@ -57,7 +59,7 @@
             Edit Profile
             <small></small>
           </button>
-         
+
           <button
             type="button"
             class="btn btn-outline-secondary text-uppercase"
@@ -76,48 +78,55 @@
         </div>
       </div>
     </div>
+    <footer id="footer"></footer>
   </div>
 </template>
 
 <script>
-import {firebase} from '@/firebase';
+import { firebase } from '@/firebase';
 import store from '@/store';
 import router from '@/router';
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       store,
       userForm: {
         name: null,
         email: null,
         password: null,
-      }
-    }
+      },
+    };
   },
-    created(){
-      firebase.auth().onAuthStateChanged((userForm) => {
-        if(userForm){
-          this.userForm = userForm;
-        } else {
-          this.userForm = null;
-        }
-      })
-
-    },
-    methods: {
-      logout(){
-        firebase.auth().signOut().then(() => {
+  created() {
+    firebase.auth().onAuthStateChanged((userForm) => {
+      if (userForm) {
+        this.userForm = userForm;
+      } else {
+        this.userForm = null;
+      }
+    });
+  },
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
           firebase.auth().onAuthStateChanged(() => {
             this.$router.push({ name: 'Login' });
-          })
-        })
-      }
-    }
-  };
+          });
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
+#footer {
+  width: 100%;
+  height: 55px;
+}
 .hr {
   display: block;
   overflow: hidden;
