@@ -1,6 +1,6 @@
 <template>
   <div class="card" >
-    <img class="card-img-top" :src="info.img">
+    <a :href="info.route"><img class="card-img-top" :src="info.img" ></a>
   <div class="card-body">
     <p class="card-text">{{ info.naslov }}</p>
   </div>
