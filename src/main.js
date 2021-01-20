@@ -3,7 +3,8 @@ import App from './App.vue';
 import router from './router';
 import Vuelidate from 'vuelidate';
 import Router from 'vue-router';
-import GoogleSignInButton from 'vue-google-signin-button-directive';
+import GSignInButton from 'vue-google-signin-button';
+Vue.use(GSignInButton)
 
 Vue.use(Vuelidate);
 

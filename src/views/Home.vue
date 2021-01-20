@@ -1,4 +1,5 @@
 <template>
+
   <div class="box">
     <p class="account">Create your account</p>
     <router-link to="/Registracija">
@@ -9,7 +10,12 @@
     </router-link>
     <br />
     <br />
-    <button v-google-signin-button="clientId" class="google-signin-button"> Continue with Google</button>
+    <g-signin-button
+    :params="googleSignInParams"
+    @success="onSignInSuccess"
+    @error="onSignInError">
+    Sign in with Google
+  </g-signin-button>
     <br />
     <br />
     <p>Already have an account ?</p>
@@ -19,16 +25,29 @@
 
 <script>
 export default {
-  data: () => ({
-    clientId: '336328634543-unbk0scnqr5bkel2ve7pdut8k5to0ul9.apps.googleusercontent.com'
-  }),
-  methods: {
-    OnGoogleAuthSuccess (idToken) {
-      console.log(idToken)
+  data () {
+    return {
+      /**
+       * The Auth2 parameters, as seen on
+       * https://developers.google.com/identity/sign-in/web/reference#gapiauth2initparams.
+       * As the very least, a valid client_id must present.
+       * @type {Object} 
+       */
+      googleSignInParams: {
+        client_id: '336328634543-unbk0scnqr5bkel2ve7pdut8k5to0ul9.apps.googleusercontent.com'
+      } 
 
+    }
+  },
+  methods: {
+    onSignInSuccess (googleUser) {
+      // `googleUser` is the GoogleUser object that represents the just-signed-in user.
+      // See https://developers.google.com/identity/sign-in/web/reference#users
+      const profile = googleUser.getBasicProfile() // etc etc
     },
-    OnGoogleAuthFail (error) {
-      console.log(error)
+    onSignInError (error) {
+      // `error` contains any error occurred.
+      console.log('OH NOES', error)
     }
   }
 }
@@ -81,16 +100,13 @@ p {
   display: inline-block;
   text-decoration: none;
 }
-.google-signin-button {
-  width: fixed;
-  background-color: lightgrey;
-  border: none;
-  border-radius: 15px;
-  color: black;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
+.g-signin-button {
+  /* This is where you control how the button looks. Be creative! */
   display: inline-block;
-  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background-color: #3c82f7;
+  color: #fff;
+  box-shadow: 0 3px 0 #0f69ff;
 }
 </style>
