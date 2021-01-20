@@ -26,7 +26,7 @@
         <br />
         <label>E-mail</label>
         <br />
-        <br />{{userForm.email}}</p>
+        <br /><p>{{userForm.email}}</p>
         <div class="hr">
         </div>
         <br />
