@@ -48,6 +48,6 @@ export default {
 <style scoped>
 #footer {
   width: 100%;
-  height: 100px;
+  height: 80px;
 }
 </style>

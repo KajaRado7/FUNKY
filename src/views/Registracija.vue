@@ -200,11 +200,17 @@ export default {
       firebase
       .auth()
       .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
+      .then((res) => {
+        res.userForm.updateProfile({
+          displayName: this.userForm.name
+              })
+      
       
      
       .then(function(){
         console.log('Uspješna registracija.');
         
+      });
       })
       
       .catch(function(error){

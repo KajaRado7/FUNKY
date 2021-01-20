@@ -29,7 +29,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Login.vue'),
   },
- 
+
   {
     path: '/addevent',
     name: 'AddEvent',
@@ -89,7 +89,7 @@ const routes = [
     name: 'Regije',
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Regije.vue'),
-    },
+  },
 
   {
     path: '/favoriti',
@@ -109,6 +109,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Informacije.vue'),
   },
+  {
+    path: '/filter',
+    name: 'Filter',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Filter.vue'),
+  },
 ];
 
 const router = new VueRouter({
@@ -127,6 +133,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-
 
 export default router;

@@ -15,4 +15,9 @@
 </template>
 
 <script></script>
-<style scoped></style>
+<style scoped>
+#footer {
+  width: 100%;
+  height: 80px;
+}
+</style>
