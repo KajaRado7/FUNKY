@@ -22,26 +22,14 @@
         <p>{{ userForm.name }}</p>
         <div class="hr"></div>
         <br />
-        <p>{{ userForm.displayName }}</p>
-        <div class="hr"></div>
-        <br />
         <br />
         <br />
         <label>E-mail</label>
         <br />
-<<<<<<< HEAD
-        <br /><p>{{userForm.email}}</p>
-        <div class="hr">
-        </div>
-=======
         <br />
         <br />
         <p>{{ userForm.email }}</p>
         <div class="hr"></div>
-        <br />
-        <p>{{ userForm.email }}</p>
-        <div class="hr"></div>
->>>>>>> bd425ae25a650ab907df83fe1554ddf0775166d3
         <br />
         <br />
         <br />

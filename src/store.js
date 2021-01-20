@@ -2,7 +2,8 @@
 
 export default {
     searchTerm: '',
-    currentUser: null
+    currentUser: null,
+    displayName: null,
 
 };
 
