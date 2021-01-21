@@ -61,32 +61,6 @@
         </div>
       </div>
       <br />
-
-      <div class="form-group form-check">
-        <input
-          type="checkbox"
-          v-model="userForm.accept"
-          @change="$v.userForm.accept.$touch()"
-          id="accept"
-          class="form-check-input"
-        />
-        <label
-          class="form-check-label"
-          :class="{ 'is-invalid': isSubmitted && $v.userForm.accept.$error }"
-          for="accept"
-        >
-          Accept terms &nbsp; conditions
-        </label>
-
-        <div
-          v-if="isSubmitted && $v.userForm.accept.$error"
-          class="invalid-feedback"
-        >
-          <span v-if="!$v.userForm.accept.required">
-            Accept terms and conditions
-          </span>
-        </div>
-      </div>
       <br />
 
       <div class="form_group">
@@ -102,6 +76,8 @@
 import {firebase} from '@/firebase';
 import router from '@/router';
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
+import { db } from '@/firebase';
+import store from '@/store';
 
 export default {
   name: 'login',
@@ -110,7 +86,6 @@ export default {
       userForm: {
         email: '',
         password: '',
-        accept: '',
       },
       isSubmitted: false,
     };
@@ -125,11 +100,6 @@ export default {
         required,
         minLength: minLength(5),
       },
-      accept: {
-        required(val) {
-          return val;
-        },
-      },
     },
   },
   methods: {
@@ -142,7 +112,6 @@ export default {
         return;
       }
       }
-      console.log('login...' + this.userForm.email);
 
       firebase
       .auth()

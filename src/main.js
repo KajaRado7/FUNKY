@@ -4,6 +4,9 @@ import router from './router';
 import Vuelidate from 'vuelidate';
 import Router from 'vue-router';
 import GSignInButton from 'vue-google-signin-button';
+import Croppa from "vue-croppa";
+import 'vue-croppa/dist/vue-croppa.css';
+
 Vue.use(GSignInButton);
 
 Vue.use(Vuelidate);
@@ -44,6 +47,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 //FontAwesome--------------------------------------------------------------------------
 
 Vue.config.productionTip = false;
+Vue.use(Croppa)
 
 new Vue({
   router,

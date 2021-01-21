@@ -26,33 +26,7 @@
           </label>
         </div>
         <br />
-        <div class="box">
-          <div>
-            <input
-              type="file"
-              @change="previewImage"
-              accept="image/*"
-              style="background-color: #F5B85C;"
-              id="actual-btn"
-              hidden
-            />
-            <label class="choose" for="actual-btn">Choose Image</label>
-          </div>
-          <div>
-            <br />
-            <p>
-              Progress: {{ uploadValue.toFixed() + '%' }}
-              <progress id="progress" :value="uploadValue" max="100"></progress>
-            </p>
-          </div>
-          <div v-if="imageData != null">
-            <img class="preview" :src="picture" />
-            <br />
-            <button @click="onUpload" style="background-color: #F5B85C">
-              Upload
-            </button>
-          </div>
-        </div>
+        <croppa :width="450" :height="300" placeholder="Upload image" v-model="imageReference"></croppa>
       </div>
       <br />
       <div class="form-group">
@@ -278,15 +252,13 @@
 <script>
 import { firebase } from '@/firebase';
 import store from '@/store';
-import { db } from '@/firebase';
+import { db, storage } from '@/firebase';
 
 export default {
   name: 'Upload',
   data() {
     return {
-      imageData: null,
-      picture: null,
-      uploadValue: 0,
+      imageReference: null,
       eventName: '',
       date: '',
       time: '',
@@ -304,68 +276,63 @@ export default {
     };
   },
   methods: {
-    previewImage(event) {
-      this.uploadValue = 0;
-      this.picture = null;
-      this.imageData = event.target.files[0];
-    },
-
-    onUpload() {
-      this.picture = null;
-      const storageRef = firebase
-        .storage()
-        .ref(`${this.imageData.name}`)
-        .put(this.imageData);
-      storageRef.on(
-        `state_changed`,
-        (snapshot) => {
-          this.uploadValue =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        },
-        (error) => {
-          console.log(error.message);
-        },
-        () => {
-          this.uploadValue = 100;
-          storageRef.snapshot.ref.getDownloadURL().then((url) => {
-            this.picture = url;
-          });
-        }
-      );
-    },
         addNewEvent(){
-          console.log("ok")
+        this.imageReference.generateBlob(blobData => {
+           if (blobData != null) {
 
-          const imageData = this.newImageData;
-          const picture = this.newPicture;
-          const uploadValue = this.newUploadValue;
-          const eventName = this.newEventName;
-          const date = this.newDate;
-          const time = this.newTime;
-          const address = this.newAddress;
-          const eventEntry = this.newEventEntry;
-          const concert = this.newConcert;
-          const games = this.newGames;
-          const bookClub = this.newBookClub;
-          const quiz = this.newQuiz;
-          const outdoor = this.newOutdoor;
-          const indoor = this.newIndoor;
-          const other = this.newOther;
-          const capacity = this.newCapacity;
-          const note = this.newNote;
+             let imageName = 'posts/' + store.currentUser + "/" + Date.now() + ".png";
 
-          db.collection("posts").add({
-            email: store.currentUser,
-            posted_at: Date.now(), 
-          }).then((doc) => {
-              console.log("Spremljeno", doc)
-          })
-            .catch((e) => {
-              console.error(e);
-            });
+             storage
+            .ref(imageName)
+            .put(blobData)
+            .then(result => {
+              result.ref.getDownloadURL()
+              .then(url => { 
+                const imageData = this.newImageData;
+                const eventName = this.newEventName;
+                const date = this.newDate;
+                const time = this.newTime;
+                const address = this.newAddress;
+                const eventEntry = this.newEventEntry;
+                const concert = this.newConcert;
+                const games = this.newGames;
+                const bookClub = this.newBookClub;
+                const quiz = this.newQuiz;
+                const outdoor = this.newOutdoor;
+                const indoor = this.newIndoor;
+                const other = this.newOther;
+                const capacity = this.newCapacity;
+                const note = this.newNote;
+
+                db.collection("posts").add({
+                  email: store.currentUser,
+                  posted_at: Date.now(),
+                  url: url,
+                })
+                .then(doc => {
+                      console.log("Document: ", doc);
+                      this.imageData = null;
+                      this.imageReference = null;
+                      //this.$router.push({name: "posts"})
+                    })
+                    .catch((e) => {
+                          console.error('Error adding document ', e);
+                  });
+              })
+              .catch(e=> {
+                  console.error(e)
+                })
+            })
+            .catch(e => {
+              console.error(e)
+            })
+           }
+         });
+          
         },
-  },
-};
+     }
+  };
+
 </script>
 
 <style scoped>

@@ -46,22 +46,6 @@
         <div class="col-lg-12 col-md-12 text-center">
           <button
             type="button"
-            class="btn btn-outline-primary btn-block text-uppercase mb-3"
-            onclick="showEditProfileForm()"
-            style="max-width: 500px; 
-										    text-align: center; 
-												background-color: #F5B85C; 
-												border: none; 
-												border-radius: 15px; 
-                        padding: 16px 32px;
-												color: black"
-          >
-            Edit Profile
-            <small></small>
-          </button>
-
-          <button
-            type="button"
             class="btn btn-outline-secondary text-uppercase"
             @click="logout()"
             style="max-width: 500px; 

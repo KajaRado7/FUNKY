@@ -221,7 +221,7 @@ export default {
         console.error('Došlo je do greške',error);
       });
       console.log('Nastavak');
-      this.$router.push({ name: "Login" });
+      this.$router.push({ name: "Regije" });
     },
   },
 };
