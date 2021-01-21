@@ -91,14 +91,11 @@ export default {
   data() {
     return {
       store,
-      userForm: {
-        name: null,
-        email: null,
-        password: null,
-      },
+      userForm: '',
     };
   },
   created() {
+    
     firebase.auth().onAuthStateChanged((userForm) => {
       if (userForm) {
         this.userForm = userForm;
@@ -107,26 +104,8 @@ export default {
       }
     });
   },
-  methods: {
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          userForm: null;
-        });
-    },
-    created() {
-      firebase.auth().onAuthStateChanged((userForm) => {
-        if (userForm) {
-          this.userForm = userForm;
-          this.userForm.name = userForm.name;
-        } else {
-          this.userForm = null;
-        }
-      });
-    },
-  },
+
+
   methods: {
     logout() {
       firebase
@@ -137,9 +116,10 @@ export default {
             this.$router.push({ name: 'Login' });
           });
         });
-    },
-  },
-};
+    }
+  }
+    };
+
 </script>
 
 <style scoped>

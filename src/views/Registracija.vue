@@ -149,6 +149,7 @@
 <script>
 import {firebase} from '@/firebase';
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
+import { db } from '@/firebase';
 
 
 export default {
@@ -192,35 +193,30 @@ export default {
   methods: {
     handleSubmit() {
       this.isSubmitted = true;
-
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
       }
+
       firebase
       .auth()
       .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
-      .then((res) => {
-        res.userForm.updateProfile({
-          displayName: this.userForm.name
-              })
-      
-      
-     
-      .then(function(){
-        console.log('Uspješna registracija.');
-        
-      });
+      .then(() => {
+        db.collection("users").add({
+          name: userForm.name,
+          email: userForm.email,
+          password: userForm.password
+        });
       })
-      
+      .then((doc) => {
+              console.log("Spremljeno", doc)
+          })
       .catch(function(error){
         console.error('Došlo je do greške',error);
       });
       console.log('Nastavak');
       this.$router.push({ name: "Login" });
     },
-    
-
   },
 };
 </script>
