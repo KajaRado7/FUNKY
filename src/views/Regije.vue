@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="max-width: 500px;">
     <div id="cards">
-      <regije-card v-for="card in cards" :key="card" :info="card" />
+      <regije-card v-for="card in cards" :key="card.naslov" :info="card" />
     </div>
     <footer id="footer"></footer>
   </div>
@@ -24,7 +24,7 @@ export default {
   name: 'regije',
   data: function() {
     return {
-      cards: cards,
+      cards: cards, //prvi cards je kljuc, a drugi varijabla od gore tj ova lista
     };
   },
   components: {
