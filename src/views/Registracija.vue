@@ -150,6 +150,7 @@
 import {firebase} from '@/firebase';
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
 import { db } from '@/firebase';
+import store from '@/store';
 
 
 export default {
@@ -197,20 +198,25 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
+      db.collection("users").add({
+          name: this.userForm.name,
+          email: this.userForm.email,
+          password: this.userForm.password
+        })
+        .then((doc) => {
+              console.log("Spremljeno", doc)
+          })
+        .catch(function(error){
+        console.error('Došlo je do greške',error);
+      });
+      store.displayName = this.userForm.name;
+      store.currentUser = this.userForm.email;
+      store.password = this.userForm.password;
 
       firebase
       .auth()
       .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
-      .then(() => {
-        db.collection("users").add({
-          name: userForm.name,
-          email: userForm.email,
-          password: userForm.password
-        });
-      })
-      .then((doc) => {
-              console.log("Spremljeno", doc)
-          })
+
       .catch(function(error){
         console.error('Došlo je do greške',error);
       });
