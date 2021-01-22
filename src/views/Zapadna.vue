@@ -1,6 +1,8 @@
 <template>
   <div class="container" style="max-width: 500px;">
-    <dogadaji-card v-for="card in cards" :key="card.naslov" :info="card" />
+    <div id="cards">
+      <dogadaji-card v-for="card in cards" :key="card.naslov" :info="card" />
+    </div>
     <!-- kada stavimo : onda ovaj = prima js  ako stavim samo info prenjet ce se string -->
     <footer id="footer"></footer>
   </div>
@@ -46,5 +48,9 @@ export default {
 #footer {
   width: 100%;
   height: 80px;
+}
+#cards {
+  max-width: 500px;
+  align-content: center;
 }
 </style>

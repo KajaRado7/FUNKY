@@ -37,7 +37,7 @@
     </div>
 
     <!----NavigationIconBasedBottomMenu--------------------------------------------------->
-    <div class="bottomNav">
+    <nav class="navbar2 fixed-bottom navbar-light ">
       <div>
         <router-link to="/regije" class="navItem color ">
           <font-awesome-icon icon="map-marker-alt" size="2x" />
@@ -53,7 +53,7 @@
           <font-awesome-icon icon="user" size="2x" />
         </router-link>
       </div>
-    </div>
+    </nav>
     <!----NavigationIconBasedBottomMenu--------------------------------------------------->
 
     <div class="col-1"></div>
@@ -73,7 +73,6 @@ firebase.auth().onAuthStateChanged((userForm) => {
     // User is signed in.
     console.log('* User', userForm.email);
     store.currentUser = userForm.email;
-    
   }
   if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Regije' });
@@ -114,7 +113,7 @@ export default {
   color: #f5b85c;
 }
 
-.bottomNav {
+.navbar2 {
   justify-content: space-evenly;
   display: flex;
 
