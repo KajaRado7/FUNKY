@@ -4,8 +4,7 @@
     <div class="col-10">
       <div id="app">
         <div id="nav">
-          <router-link to="/">Home</router-link>
-          |
+          <!--  <router-link to="/">Home</router-link>
           <router-link to="/Registracija">Registracija</router-link>
           |
           <router-link to="/Login">Log in</router-link>
@@ -30,7 +29,7 @@
           |
           <router-link to="/informacije">Informacije</router-link>
           |
-          <router-link to="/filter">Filter</router-link>
+          <router-link to="/filter">Filter</router-link> --->
         </div>
         <router-view />
       </div>
@@ -75,7 +74,7 @@ firebase.auth().onAuthStateChanged((userForm) => {
     store.currentUser = userForm.email;
   }
   if (!currentRoute.meta.needsUser) {
-    router.push({ name: 'Regije' });
+    router.push({ name: 'Home' });
   } else {
     // User is not signed in.
     console.log('* No user');
