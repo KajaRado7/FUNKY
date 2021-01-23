@@ -119,9 +119,10 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          firebase.auth().onAuthStateChanged(() => {
+            this.store.currentUser = null
+            
             this.$router.push({ name: 'Login' });
-          });
+          
         });
     }
   }
