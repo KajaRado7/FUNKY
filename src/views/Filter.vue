@@ -41,22 +41,22 @@
         </div>
       </div>
       <!--Other i Filter---->
-      <div class="btn">
+      <div class="btnOther">
         <button class="otherBtn" @click="setFilters('Other')">
           <span>Other</span>
         </button>
       </div>
-      <div class="btn">
+      <div class="btnFilter">
         <button class="filterBtn" @click="filter"><b>Filter</b></button>
       </div>
-      <!--Other i Filter---->
+      <!-------------------->
 
       <!--Rezultat---->
       <div class="result" style="margin-top: 2rem;">
         <b>Test :</b>
         {{ filteredUsers }}
       </div>
-      <!--Rezultat---->
+      <!-------------->
     </div>
     <footer id="footer"></footer>
   </div>
@@ -132,6 +132,31 @@ export default {
 </script>
 
 <style scoped>
+.otherBtn {
+  width: 280px;
+  padding: 8px;
+  grid-template-columns: 1fr;
+  display: grid;
+}
+.btnOther {
+  padding: 17px;
+}
+.testing {
+  margin-top: 5px;
+}
+.filterBtn {
+  background-color: #f5b85c;
+  border: none;
+  border-radius: 15px;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  display: block;
+  margin: auto;
+  text-decoration: none;
+}
+
 #footer {
   width: 100%;
   height: 80px;

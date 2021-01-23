@@ -1,5 +1,8 @@
 <template>
   <div class="row">
+    <nav class="navbar1 navbar-light">
+      <span class="title mb-0 h4"></span>
+    </nav>
     <div class="col-1"></div>
     <div class="col-10">
       <div id="app">
@@ -29,7 +32,7 @@
           |
           <router-link to="/informacije">Informacije</router-link>
           |
-          <router-link to="/filter">Filter</router-link> --->
+          <router-link to="/filter">Filter</router-link>--->
         </div>
         <router-view />
       </div>
@@ -107,6 +110,14 @@ export default {
 </script>
 
 <style lang="scss">
+.navbar1 {
+  height: 50px;
+  background-color: #f5b85c;
+  color: black;
+  margin-top: 100px;
+  justify-content: center;
+  text-align: center;
+}
 //promjena boje router-linkova
 .color:focus {
   color: #f5b85c;
