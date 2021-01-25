@@ -55,6 +55,7 @@
 import store from '@/store.js';
 
 export default {
+  name: 'Filter',
   data() {
     return {
       store,

@@ -28,6 +28,7 @@
 import { firebase } from '@/firebase';
 import store from '@/store';
 export default {
+  name: 'Home',
   data() {
     return {
       /**

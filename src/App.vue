@@ -65,6 +65,7 @@
 <script>
 import store from '@/store';
 import { firebase } from '@/firebase';
+import { db } from '@/firebase';
 import router from '@/router';
 
 firebase.auth().onAuthStateChanged((userForm) => {
@@ -72,13 +73,49 @@ firebase.auth().onAuthStateChanged((userForm) => {
 
   console.log('PROVJERA STANJA LOGINA!');
   if (userForm) {
+    self.authenticated = true;
+
+     db.collection('users')
+      .where(
+        'Name',
+        '==',
+        store.displayName,
+        'Email',
+        '==',
+        store.currentUser,
+        'Password',
+        '==',
+        store.password
+      )
+      .get()
+      .then(function(querySnapshot) {
+       /* let userForm = {};
+        store.displayName = {};
+        store.currentUser = {};
+        store.password = {};*/
+        
+        querySnapshot.forEach(function(doc) {
+          const data = doc.data();
+          userForm = {
+            email: data.email,
+            name: data.name,
+            password: data.password,
+          };
+          store.displayName = userForm;
+          console.log('Current name: ', store.displayName);
+          store.currentUser = userForm.email;
+          console.log('Current email: ', store.currentUser);
+          store.password = userForm;
+          console.log('Current password', store.password);
+        });
+      });
     // User is signed in.
     console.log('* User', userForm.email);
     store.currentUser = userForm.email;
   }
-  if (!currentRoute.meta.needsUser) {
-    router.push({ name: 'Home' });
-  } else {
+ /* if (!currentRoute.meta.needsUser) {
+    router.push({ name: 'Home' });*/
+    else {
     // User is not signed in.
     console.log('* No user');
     store.currentUser = null;

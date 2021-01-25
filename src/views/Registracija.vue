@@ -154,7 +154,7 @@ import store from '@/store';
 
 
 export default {
-  name: 'signup',
+  name: 'Registracija',
   data() {
     return {
       userForm: {
@@ -216,6 +216,11 @@ export default {
       firebase
       .auth()
       .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
+      .then(() => {
+					firebase
+						.auth()
+						.currentUser.updateProfile({ displayName: this.userForm.name });
+				})
 
       .catch(function(error){
         console.error('Došlo je do greške',error);

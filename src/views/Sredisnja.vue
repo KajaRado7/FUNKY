@@ -25,7 +25,7 @@ cards = [
 ];
 
 export default {
-  name: 'sredisnja',
+  name: 'Sredisnja',
   data: function() {
     return {
       cards: cards,

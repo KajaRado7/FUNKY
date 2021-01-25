@@ -127,7 +127,7 @@ export default {
         .then(() => {
           this.store.currentUser = null;
 
-          this.$router.push({ name: 'Login' });
+          this.$router.push({ name: 'Home' });
         });
     },
   },

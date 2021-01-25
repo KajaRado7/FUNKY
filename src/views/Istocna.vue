@@ -27,7 +27,7 @@ cards = [
 ];
 
 export default {
-  name: 'istocna',
+  name: 'Istocna',
   data: function() {
     return {
       cards: cards,

@@ -75,12 +75,12 @@
 <script>
 import {firebase} from '@/firebase';
 import router from '@/router';
-import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
+import { required, email, minLength } from 'vuelidate/lib/validators';
 import { db } from '@/firebase';
 import store from '@/store';
 
 export default {
-  name: 'login',
+  name: 'Login',
   data() {
     return {
       userForm: {
@@ -112,7 +112,7 @@ export default {
         return;
       }
       }
-
+      console.log("login..." + this.userForm.email);
       firebase
       .auth()
       .signInWithEmailAndPassword(this.userForm.email,this.userForm.password)

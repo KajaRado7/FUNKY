@@ -32,7 +32,7 @@ cards = [
 ];
 
 export default {
-  name: 'west',
+  name: 'Zapadna',
   data: function() {
     return {
       cards: cards,

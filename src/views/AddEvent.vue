@@ -278,7 +278,7 @@ import { db, storage } from '@/firebase';
 import { required } from 'vuelidate/lib/validators';
 
 export default {
-  name: 'Upload',
+  name: 'AddEvent',
   data() {
     return {
       imageReference: null,

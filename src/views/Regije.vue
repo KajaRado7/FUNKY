@@ -41,7 +41,7 @@ cards = [
 ];
 
 export default {
-  name: 'regije',
+  name: 'Regije',
   data: function() {
     return {
       cards: cards, //prvi cards je kljuc, a drugi varijabla od gore tj ova lista
