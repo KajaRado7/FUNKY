@@ -110,14 +110,14 @@ firebase.auth().onAuthStateChanged((userForm) => {
         });
       });
     // User is signed in.
-    console.log('* User', userForm.email);
+    console.log('*** User', userForm.email);
     store.currentUser = userForm.email;
   }
  /* if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Home' });*/
     else {
     // User is not signed in.
-    console.log('* No user');
+    console.log('*** No user');
     store.currentUser = null;
 
     if (currentRoute.meta.needsUser) {
@@ -144,6 +144,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <style lang="scss">

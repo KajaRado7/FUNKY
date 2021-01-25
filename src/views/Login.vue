@@ -25,14 +25,11 @@
         />
         <div
           v-if="isSubmitted && $v.userForm.email.$error"
-          class="invalid-feedback"
-        >
-          <span v-if="!$v.userForm.email.required">
+          class="invalid-feedback"  >   
+         <span v-if="!$v.userForm.email.required">
             Email field is required
           </span>
-          <span v-if="!$v.userForm.email.email">
-            Please provide valid email
-          </span>
+
         </div>
       </div>
       <br />
@@ -42,21 +39,17 @@
         <input
           type="password"
           v-model="userForm.password"
-          id="password"
+          id="password1"
           placeholder="Password"
-          name="password"
+          name="password1"
           class="form-control"
           :class="{ 'is-invalid': isSubmitted && $v.userForm.password.$error }"
         />
         <div
           v-if="isSubmitted && $v.userForm.password.$error"
-          class="invalid-feedback"
-        >
+          class="invalid-feedback" >
           <span v-if="!$v.userForm.password.required">
             Password field is required
-          </span>
-          <span v-if="!$v.userForm.password.minLength">
-            Password should be at least 5 characters long
           </span>
         </div>
       </div>
@@ -64,9 +57,17 @@
       <br />
 
       <div class="form_group">
-        <button @click="handleSubmit()" class="btn_login">
+        <button type="button" @click="handleSubmit()" class="btn_login">
           <b>Login</b>
         </button>
+        <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       </div>
     </form>
   </div>
@@ -75,7 +76,7 @@
 <script>
 import {firebase} from '@/firebase';
 import router from '@/router';
-import { required, email, minLength } from 'vuelidate/lib/validators';
+import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
 import { db } from '@/firebase';
 import store from '@/store';
 
@@ -98,32 +99,39 @@ export default {
       },
       password: {
         required,
-        minLength: minLength(5),
+        sameAsPassword:  sameAs('password'),
       },
     },
   },
   methods: {
     handleSubmit() {
-      {
-        this.isSubmitted = true;
-
+      let that=this;
+      this.isSubmitted = true;
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
-      }
       }
       console.log("login..." + this.userForm.email);
       firebase
       .auth()
       .signInWithEmailAndPassword(this.userForm.email,this.userForm.password)
       .then(function(result) {
-        console.log('Uspješna prijava.', result);
-        
+        console.log('Uspješna prijava.', result); 
+        that.$router.replace({ name: 'Regije'});  
       })
-      .catch(function(e){
-        console.error('Došlo je do greške', e);
-      });
-      this.$router.replace({ name: 'Regije'});
+    .catch(function(error) {
+     // Handle Errors here.
+     var errorCode = error.code;
+     var errorMessage = error.message;
+     if (errorCode === 'auth/wrong-password') {
+     alert('Wrong password.');
+    } else {
+       alert(errorMessage);
+}
+console.log(error);
+});
+
+
     },
   },
 };
