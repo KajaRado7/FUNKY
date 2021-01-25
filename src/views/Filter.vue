@@ -2,78 +2,65 @@
   <div class="container" style="max-width: 500px;">
     <div class="testing">
       <div class="buttonContainer">
-        <div class="btn ">
-          <button class="squareBtn" @click="setFilters('Music')">
-            <font-awesome-icon icon="music" size="4x" color="white" />
-            <span>Music</span>
-          </button>
-        </div>
-        <div class="btn">
-          <button class="squareBtn" @click="setFilters('Games')">
-            <font-awesome-icon icon="dice" size="4x" color="white" />
-            <span>Games</span>
-          </button>
-        </div>
-        <div class="btn">
-          <button class="squareBtn" @click="setFilters('Book Club')">
-            <font-awesome-icon icon="book-open" size="4x" color="white" />
-            <span>Book club</span>
-          </button>
-        </div>
+        <button class="squareBtn" @click="setFilters('Music')">
+          <font-awesome-icon icon="music" size="4x" color="white" />
+          <span>Music</span>
+        </button>
 
-        <div class="btn ">
-          <button class="squareBtn" @click="setFilters('Quiz')">
-            <font-awesome-icon icon="spell-check" size="4x" color="white" />
-            <span>Quiz</span>
-          </button>
-        </div>
-        <div class="btn ">
-          <button class="squareBtn" @click="setFilters('Outdoor')">
-            <font-awesome-icon icon="cloud-sun" size="4x" color="white" />
-            <span>Outdoor</span>
-          </button>
-        </div>
-        <div class="btn ">
-          <button class="squareBtn" @click="setFilters('Indoor')">
-            <font-awesome-icon icon="home" size="4x" color="white" />
-            <span>Indoor</span>
-          </button>
-        </div>
+        <button class="squareBtn" @click="setFilters('Games')">
+          <font-awesome-icon icon="dice" size="4x" color="white" />
+          <span>Games</span>
+        </button>
+
+        <button class="squareBtn" @click="setFilters('Book Club')">
+          <font-awesome-icon icon="book-open" size="4x" color="white" />
+          <span>Book club</span>
+        </button>
+
+        <button class="squareBtn" @click="setFilters('Quiz')">
+          <font-awesome-icon icon="spell-check" size="4x" color="white" />
+          <span>Quiz</span>
+        </button>
+
+        <button class="squareBtn" @click="setFilters('Outdoor')">
+          <font-awesome-icon icon="cloud-sun" size="4x" color="white" />
+          <span>Outdoor</span>
+        </button>
+
+        <button class="squareBtn" @click="setFilters('Indoor')">
+          <font-awesome-icon icon="home" size="4x" color="white" />
+          <span>Indoor</span>
+        </button>
       </div>
-      <!--Other i Filter---->
-      <div class="btnOther">
+
+      <div class="bottomBtnContainer">
         <button class="otherBtn" @click="setFilters('Other')">
           <span>Other</span>
         </button>
-      </div>
-      <div class="btnFilter">
+
         <button class="filterBtn" @click="filter"><b>Filter</b></button>
       </div>
-      <!-------------------->
 
-      <!--Rezultat---->
-      <div class="result" style="margin-top: 2rem;">
-        <b>Test :</b>
+      <div class="result" style="margin-top: 1rem;">
+        <b>Test:</b>
         {{ filteredUsers }}
       </div>
-      <!-------------->
     </div>
+
     <footer id="footer"></footer>
   </div>
 </template>
 
 <script>
 import store from '@/store.js';
-import { firebase } from '@/firebase';
-import router from '@/router';
-
-// basic filter bez cards-a (test verzija)
 
 export default {
-  name: 'App',
   data() {
     return {
       store,
+      filters: [],
+      filteredUsers: '',
+
       users: [
         {
           event: 'Music event',
@@ -109,8 +96,6 @@ export default {
           category: 'Music Outdoor',
         },
       ],
-      filters: [],
-      filteredUsers: '',
     };
   },
   methods: {
@@ -121,6 +106,7 @@ export default {
     },
     filter() {
       if (!this.filters.length) return;
+
       this.filteredUsers = this.users.filter((user) =>
         this.filters.includes(user.category)
       );
@@ -128,35 +114,12 @@ export default {
       this.filters = [];
     },
   },
+  name: 'App',
 };
 </script>
 
 <style scoped>
-.otherBtn {
-  width: 280px;
-  padding: 8px;
-  grid-template-columns: 1fr;
-  display: grid;
-}
-.btnOther {
-  padding: 17px;
-}
-.testing {
-  margin-top: 5px;
-}
-.filterBtn {
-  background-color: #f5b85c;
-  border: none;
-  border-radius: 15px;
-  color: black;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
-  display: block;
-  margin: auto;
-  text-decoration: none;
-}
-
+/*izbrisati footer nakon testiranja*/
 #footer {
   width: 100%;
   height: 80px;
@@ -164,44 +127,56 @@ export default {
 .result {
   color: white;
 }
-button:focus {
-  background-color: #f5b85c;
-}
-.otherBtn {
-  width: 280px;
-}
-
-.filterBtn {
-  background-color: #f5b85c;
-  border: none;
-  border-radius: 15px;
-  color: black;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
-  display: block;
-  margin: auto;
-  text-decoration: none;
-}
-.squareBtn {
-  padding: 10px;
-}
 
 button {
   border-radius: 8px;
   border: 3px solid lightgrey;
-  size: 40px;
-  background-color: #1a1a1a;
+  background: #1a1a1a;
 }
-
+button:focus {
+  background: #f5b85c;
+}
 span {
   font-size: 14px;
   color: white;
+  padding-top: 5px;
 }
 
-.buttonContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px 2em;
+.buttonContainer,
+.bottomBtnContainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+
+.squareBtn {
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.5rem;
+  margin: 4.7%;
+}
+
+.otherBtn {
+  width: 100%;
+  margin: 4%;
+}
+
+.filterBtn {
+  color: black;
+  font-size: 16px;
+  margin-top: 9%;
+  padding: 16px 32px;
+
+  border: none;
+  border-radius: 15px;
+
+  background-color: #f5b85c;
 }
 </style>

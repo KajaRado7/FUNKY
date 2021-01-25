@@ -4,7 +4,7 @@ import router from './router';
 import Vuelidate from 'vuelidate';
 import Router from 'vue-router';
 import GSignInButton from 'vue-google-signin-button';
-import Croppa from "vue-croppa";
+import Croppa from 'vue-croppa';
 import 'vue-croppa/dist/vue-croppa.css';
 
 Vue.use(GSignInButton);
@@ -14,6 +14,7 @@ Vue.use(Vuelidate);
 //FontAwesome---------------------------------------------------------------
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faVuejs } from '@fortawesome/free-brands-svg-icons';
 
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -21,6 +22,7 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faFrown } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
@@ -28,6 +30,7 @@ import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import { faSpellCheck } from '@fortawesome/free-solid-svg-icons';
 import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 library.add(faMapMarkerAlt); // <font-awesome-icon icon="map-marker-alt" />
 library.add(faUser); // <font-awesome-icon icon="user" />
@@ -35,6 +38,7 @@ library.add(faPlusCircle); // <font-awesome-icon icon="plus-circle" />
 library.add(faHeart); // <font-awesome-icon icon="heart" />
 library.add(faArrowLeft); // <font-awesome-icon icon="arrow-left" />
 library.add(faFrown); // <font-awesome-icon icon="frown" /> --> tuzan smajl
+library.add(faEnvelope); // <font-awesome-icon icon="envelope" />
 
 library.add(faMusic); // <font-awesome-icon icon="music" />
 library.add(faDice); // <font-awesome-icon icon="dice" />
@@ -42,12 +46,13 @@ library.add(faBookOpen); // <font-awesome-icon icon="book-open" />
 library.add(faSpellCheck); // <font-awesome-icon icon="spell-check" />
 library.add(faCloudSun); // <font-awesome-icon icon="cloud-sun" />
 library.add(faHome); // <font-awesome-icon icon="home" />
+library.add(faGoogle); // <font-awesome-icon :icon="['fab', 'google']" /> -->'fab'= brands,'fas'= solid
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 //FontAwesome--------------------------------------------------------------------------
 
 Vue.config.productionTip = false;
-Vue.use(Croppa)
+Vue.use(Croppa);
 
 new Vue({
   router,
