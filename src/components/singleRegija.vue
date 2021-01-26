@@ -1,7 +1,9 @@
 <template>
+<div class="container" style="max-width: 500px;">
     <div id="single-regija">
         <h1></h1>
         <article><article>
+    </div>
     </div>
 </template>
 

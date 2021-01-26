@@ -1,5 +1,8 @@
 <template>
   <div class="row">
+    <div class="FunkyLogo">
+      <img class="Funky" src="@/assets/Funky-AI.png" />
+    </div>
     <nav class="navbar1 navbar-light">
       <span class="title mb-0 h4"></span>
     </nav>
@@ -75,7 +78,7 @@ firebase.auth().onAuthStateChanged((userForm) => {
   if (userForm) {
     self.authenticated = true;
 
-     db.collection('users')
+    db.collection('users')
       .where(
         'Name',
         '==',
@@ -89,11 +92,11 @@ firebase.auth().onAuthStateChanged((userForm) => {
       )
       .get()
       .then(function(querySnapshot) {
-       /* let userForm = {};
+        /* let userForm = {};
         store.displayName = {};
         store.currentUser = {};
         store.password = {};*/
-        
+
         querySnapshot.forEach(function(doc) {
           const data = doc.data();
           userForm = {
@@ -112,10 +115,9 @@ firebase.auth().onAuthStateChanged((userForm) => {
     // User is signed in.
     console.log('*** User', userForm.email);
     store.currentUser = userForm.email;
-  }
- /* if (!currentRoute.meta.needsUser) {
+  } else {
+    /* if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Home' });*/
-    else {
     // User is not signed in.
     console.log('*** No user');
     store.currentUser = null;
@@ -144,15 +146,21 @@ export default {
     },
   },
 };
-
 </script>
 
 <style lang="scss">
+.Funky {
+  max-width: 55%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+}
 .navbar1 {
   height: 50px;
   background-color: #f5b85c;
   color: black;
-  margin-top: 100px;
+
   justify-content: center;
   text-align: center;
 }

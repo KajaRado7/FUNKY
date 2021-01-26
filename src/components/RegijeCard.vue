@@ -1,9 +1,11 @@
 <template>
-  <div class="card" >
-    <a :href="info.route"><img class="card-img-top" :src="info.img" ></a>
-  <div class="card-body">
-    <p class="card-text">{{ info.naslov }}</p>
-  </div>
+  <div class="container" style="max-width: 500px;">
+    <div class="card">
+      <a :href="info.route"><img class="card-img-top" :src="info.img" /></a>
+      <div class="card-body">
+        <p class="card-text">{{ info.naslov }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -11,7 +13,7 @@
 export default {
   props: ['info'],
   name: 'RegijeCard',
-  }
+};
 </script>
 
 <style scoped>
@@ -25,12 +27,12 @@ export default {
   border-left: none;
   border-right: none;
   border-top: none;
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
 }
-.card-img-top{ 
+.card-img-top {
   height: 150px;
   object-fit: cover;
-  border-radius: 14%;   /* zaobljenost rubova*/
+  border-radius: 14%; /* zaobljenost rubova*/
 }
 .card-body {
   text-align: center;
@@ -42,7 +44,6 @@ export default {
   margin-bottom: 10px;
   font-size: 18px;
   margin-left: -10px;
-  color: #D0D0D0;
-  
-} 
+  color: #d0d0d0;
+}
 </style>

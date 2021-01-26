@@ -1,20 +1,22 @@
 <template>
-  <div class="card">
-    <img class="card-img-top" :src="info.img" />
-    <!-- info je u west gdje su sve slike navedene -->
-    <div class="card-body">
-      <p class="card-text">{{ info.naslov }}</p>
-      <div class="actions" id="heart  ">
-        <i
-          class="far fa-heart"
-          v-if="!info.heart"
-          @click="info.heart = !info.heart"
-        ></i>
-        <i
-          class="fas fa-heart red"
-          v-if="info.heart"
-          @click="info.heart = !info.heart"
-        ></i>
+  <div class="container" style="max-width: 500px;">
+    <div class="card">
+      <img class="card-img-top" :src="info.img" />
+      <!-- info je u west gdje su sve slike navedene -->
+      <div class="card-body">
+        <p class="card-text">{{ info.naslov }}</p>
+        <div class="actions" id="heart  ">
+          <i
+            class="far fa-heart"
+            v-if="!info.heart"
+            @click="info.heart = !info.heart"
+          ></i>
+          <i
+            class="fas fa-heart red"
+            v-if="info.heart"
+            @click="info.heart = !info.heart"
+          ></i>
+        </div>
       </div>
     </div>
   </div>
@@ -36,7 +38,7 @@ export default {
 
 <style scoped>
 .card {
-  width:18rem;
+  width: 18rem;
   margin-bottom: 25px;
   margin-top: 17px;
   border-bottom: 2px solid #f5b85c;
