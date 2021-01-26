@@ -137,7 +137,7 @@
       <br />
 
       <div class="form_group">
-        <button class="btn_register" @click="handleSubmit()">
+        <button type="button" class="btn_register" @click="handleSubmit()">
           <b>Register</b>
         </button>
       </div>

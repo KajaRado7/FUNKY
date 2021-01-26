@@ -75,10 +75,8 @@
 
 <script>
 import {firebase} from '@/firebase';
-import router from '@/router';
-import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
-import { db } from '@/firebase';
-import store from '@/store';
+import { required, email, sameAs } from 'vuelidate/lib/validators';
+
 
 export default {
   name: 'Login',

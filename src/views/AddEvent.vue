@@ -133,6 +133,7 @@
         <div v-if="submitted && !$v.eventEntry.required" class="invalid-feedback">Event entry must be filled</div>
       </div>
       <br />
+      
       <div class="form-group">
         <label for="categories">
           Categories:
@@ -143,7 +144,7 @@
             <br />
             <input
               class="form-check-input"
-              v-model="concert"
+              v-model="model.check"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck1"
@@ -159,7 +160,7 @@
             <input
               class="form-check-input"
               type="checkbox"
-              v-model="games"
+              v-model="model.check"
               name="exampleCheckBoxes"
               id="exampleCheck2"
               value="option2"
@@ -171,7 +172,7 @@
           <label class="form-check-label" for="exampleCheck3">
             <input
               class="form-check-input"
-              v-model="bookClub"
+              v-model="model.check"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck3"
@@ -184,7 +185,7 @@
           <label class="form-check-label" for="exampleCheck4">
             <input
               class="form-check-input"
-              v-model="quiz"
+              v-model="model.check"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck4"
@@ -197,7 +198,7 @@
           <label class="form-check-label" for="exampleCheck5">
             <input
               class="form-check-input"
-              v-model="outdoor"
+              v-model="model.check"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck5"
@@ -210,7 +211,7 @@
           <label class="form-check-label" for="exampleCheck6">
             <input
               class="form-check-input"
-              v-model="indoor"
+              v-model="model.check"
               type="checkbox"
               name="exampleCheckBoxes"
               id="exampleCheck6"
@@ -220,21 +221,33 @@
             <span class="checkmark"></span>
           </label>
 
-          <label class="form-check-label" for="exampleCheck7">
+          <label class="form-check-label" for="exampleCheck7" :class="{ 'is-invalid': submitted && $v.model.check.$error }">
             <input
               class="form-check-input"
-              v-model="other"
+              v-model="model.check"
               type="checkbox"
               checked="checked"
               name="exampleCheckBoxes"
               id="exampleCheck7"
               value="option7"
+              @change="$v.model.check.$touch()"
             />
             Other
             <span class="checkmark"></span>
           </label>
+        <br/>
+        <div 
+          v-if="submitted && $v.model.check.$error"
+          class="invalid-feedback"
+        >
+        <span v-if="!$v.model.check.required" style="white-space: nowrap;" >
+            Choose at least one categorie!
+          </span>
+          
         </div>
       </div>
+      </div>
+      
 
       <br />
       <div class="form-group">
@@ -252,7 +265,7 @@
           :class="{ 'is-invalid': submitted && $v.capacity.$error }"
         />
         <div v-if="submitted && !$v.capacity.required" class="invalid-feedback">Capacity must be filled</div>
-      </div>
+        </div>
       <br />
       <div class="form-group">
         <label for="note">Note:</label>
@@ -281,6 +294,9 @@ export default {
   name: 'AddEvent',
   data() {
     return {
+      model: {
+        check: [],
+      },
       imageReference: null,
       eventName: '',
       date: '',
@@ -288,13 +304,6 @@ export default {
       regions: '',
       address: '',
       eventEntry: '',
-      concert: '',
-      games: '',
-      bookClub: '',
-      quiz: '',
-      outdoor: '',
-      indoor: '',
-      other: '',
       capacity: '',
       note: '',
       submitted: false
@@ -307,19 +316,28 @@ export default {
       regions: { required },
       eventEntry: { required },
       address: { required },
-      categories: { required },
-      capacity: { required }
+      capacity: { required },
+      imageReference: { required },
+      model: {
+          check: { required },
+      },
 
   },
   methods: {
         addNewEvent(){
-          this.submitted = true;
+        
+            this.submitted = true;
 
                 // stop here if form is invalid
                 this.$v.$touch();
                 if (this.$v.$invalid) {
-                    return;
+              
+                
+                if (!this.imageReference.hasImage()) {
+                console.log('No image to upload')
                 }
+                return;
+      }
         this.imageReference.generateBlob(blobData => {
            if (blobData != null) {
 

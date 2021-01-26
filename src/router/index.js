@@ -123,7 +123,7 @@ const router = new VueRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-  console.log('Stara rute', from.name, '->', to.name, 'korisnik', store.currentUser);
+  console.log('Stara ruta', from.name, '->', to.name, 'korisnik', store.currentUser);
 
   const noUser = store.currentUser === null;
 
