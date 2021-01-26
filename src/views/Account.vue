@@ -76,7 +76,7 @@ export default {
       userForm: '',
     };
   },
-  created() {
+    mounted() {
     db.collection('users')
       .where(
         'Name',
