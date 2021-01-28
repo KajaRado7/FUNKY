@@ -123,6 +123,7 @@ export default {
         .auth()
         .signOut()
         .then(() => {
+          this.store.displayName = null;
           this.store.currentUser = null;
 
           this.$router.push({ name: 'Home' });

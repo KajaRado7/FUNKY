@@ -27,7 +27,7 @@
           v-if="isSubmitted && !$v.userForm.name.required"
           class="invalid-feedback"
         >
-          Name field is required
+          Name field is required.
         </div>
       </div>
       <br />
@@ -48,10 +48,10 @@
           class="invalid-feedback"
         >
           <span v-if="!$v.userForm.email.required">
-            Email field is required
+            Email field is required.
           </span>
           <span v-if="!$v.userForm.email.email">
-            Please provide valid email
+            Please provide valid email.
           </span>
         </div>
       </div>
@@ -73,10 +73,10 @@
           class="invalid-feedback"
         >
           <span v-if="!$v.userForm.password.required">
-            Password field is required
+            Password field is required.
           </span>
           <span v-if="!$v.userForm.password.minLength">
-            Password should be at least 5 characters long
+            Password should be at least 5 characters long.
           </span>
         </div>
       </div>
@@ -100,10 +100,10 @@
           class="invalid-feedback"
         >
           <span v-if="!$v.userForm.confirmPassword.required">
-            Confirm Password field is required
+            Confirm Password field is required.
           </span>
           <span v-else-if="!$v.userForm.confirmPassword.sameAsPassword">
-            Passwords should be matched
+            Passwords should be matched.
           </span>
         </div>
       </div>
@@ -122,7 +122,7 @@
           :class="{ 'is-invalid': isSubmitted && $v.userForm.accept.$error }"
           for="accept"
         >
-          Accept terms &nbsp; conditions
+          Accept terms &nbsp; conditions!
         </label>
 
         <div
@@ -130,7 +130,7 @@
           class="invalid-feedback"
         >
           <span v-if="!$v.userForm.accept.required">
-            Accept terms and conditions
+            Accept terms and conditions!
           </span>
         </div>
       </div>
@@ -193,6 +193,7 @@ export default {
   },
   methods: {
     handleSubmit() {
+      let that=this;
       this.isSubmitted = true;
       this.$v.$touch();
       if (this.$v.$invalid) {
@@ -216,17 +217,18 @@ export default {
       firebase
       .auth()
       .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
-      .then(() => {
+      .then(function()   {
+              that.$router.replace({name: "Regije" });  
+        })
+      /*.then(() => {
 					firebase
 						.auth()
 						.currentUser.updateProfile({ displayName: this.userForm.name });
-				})
+				})*/
 
       .catch(function(error){
         console.error('Došlo je do greške',error);
       });
-      console.log('Nastavak');
-      this.$router.push({ name: "Regije" });
     },
   },
 };

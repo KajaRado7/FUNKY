@@ -109,7 +109,7 @@ p {
   background: rgba(47, 46, 46, 0.77);
   font-size: 16px;
   margin: auto;
-  margin-top: 15%;
+  margin-top: 0%;
 }
 .btn_email {
   width: fixed;

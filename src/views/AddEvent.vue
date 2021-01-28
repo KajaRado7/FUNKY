@@ -30,6 +30,7 @@
                 :height="300" 
                 placeholder="Upload image" 
                 v-model="imageReference"></croppa>
+                <div class="text-danger">{{this.image}}</div>
       </div>
       <br />
       <div class="form-group">
@@ -46,7 +47,7 @@
           placeholder="e.g. Deep Vibez"
           :class="{ 'is-invalid': submitted && $v.eventName.$error }"
         />
-        <div v-if="submitted && !$v.eventName.required" class="invalid-feedback">Event name must be filled</div>
+        <div v-if="submitted && !$v.eventName.required" class="invalid-feedback">Event name must be filled!</div>
       </div>
       <br />
       <div class="form-group">
@@ -63,7 +64,7 @@
           placeholder="e.g. 12.03.2021."
           :class="{ 'is-invalid': submitted && $v.date.$error }"
         />
-         <div v-if="submitted && !$v.date.required" class="invalid-feedback">Date must be filled</div>
+         <div v-if="submitted && !$v.date.required" class="invalid-feedback">Date must be filled!</div>
       </div>
       <br />
       <div class="form-group">
@@ -80,7 +81,7 @@
           placeholder="e.g. 10 p.m - 4 a.m."
           :class="{ 'is-invalid': submitted && $v.time.$error }"
         />
-        <div v-if="submitted && !$v.time.required" class="invalid-feedback">Time must be filled</div>
+        <div v-if="submitted && !$v.time.required" class="invalid-feedback">Time must be filled!</div>
       </div>
       <br />
       <div class="form-group">
@@ -96,7 +97,7 @@
           <option value="istocna">Istočna</option>
           <option value="gorska">Gorska</option>
         </select>
-        <div v-if="submitted && !$v.regions.required" class="invalid-feedback">Region must be choosen</div>
+        <div v-if="submitted && !$v.regions.required" class="invalid-feedback">Region must be chosen!</div>
       </div>
       <br />
       <div class="form-group">
@@ -113,7 +114,7 @@
           placeholder="e.g. Preradovićeva 1, 52100 Pula"
           :class="{ 'is-invalid': submitted && $v.address.$error }"
         />
-        <div v-if="submitted && !$v.regions.required" class="invalid-feedback">Address must be filled</div>
+        <div v-if="submitted && !$v.regions.required" class="invalid-feedback">Address must be filled!</div>
       </div>
       <br />
       <div class="form-group">
@@ -130,7 +131,7 @@
           placeholder="e.g. 10 kn"
           :class="{ 'is-invalid': submitted && $v.eventEntry.$error }"
         />
-        <div v-if="submitted && !$v.eventEntry.required" class="invalid-feedback">Event entry must be filled</div>
+        <div v-if="submitted && !$v.eventEntry.required" class="invalid-feedback">Event entry must be filled!</div>
       </div>
       <br />
       
@@ -241,7 +242,7 @@
           class="invalid-feedback"
         >
         <span v-if="!$v.model.check.required" style="white-space: nowrap;" >
-            Choose at least one categorie!
+            Please select at least one category!
           </span>
           
         </div>
@@ -264,7 +265,7 @@
           placeholder="e.g. 30"
           :class="{ 'is-invalid': submitted && $v.capacity.$error }"
         />
-        <div v-if="submitted && !$v.capacity.required" class="invalid-feedback">Capacity must be filled</div>
+        <div v-if="submitted && !$v.capacity.required" class="invalid-feedback">Capacity must be filled!</div>
         </div>
       <br />
       <div class="form-group">
@@ -306,6 +307,7 @@ export default {
       eventEntry: '',
       capacity: '',
       note: '',
+      image: null,
       submitted: false
     };
   },
@@ -334,6 +336,7 @@ export default {
               
                 
                 if (!this.imageReference.hasImage()) {
+                 this.image = 'No image to upload!';
                 console.log('No image to upload')
                 }
                 return;
