@@ -14,18 +14,14 @@ const routes = [
   {
     path: '/registracija',
     name: 'Registracija',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Registracija.vue'),
   },
   {
     path: '/login',
     name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Login.vue'),
   },
@@ -33,54 +29,42 @@ const routes = [
   {
     path: '/addevent',
     name: 'AddEvent',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/AddEvent.vue'),
   },
   {
     path: '/zapadna',
     name: 'Zapadna',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Zapadna.vue'),
   },
   {
     path: '/sredisnja',
     name: 'Sredisnja',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Sredisnja.vue'),
   },
   {
     path: '/istocna',
     name: 'Istocna',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Istocna.vue'),
   },
   {
     path: '/juzna',
     name: 'Juzna',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Juzna.vue'),
   },
   {
     path: '/gorska',
     name: 'Gorska',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Gorska.vue'),
   },
@@ -115,6 +99,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Filter.vue'),
   },
+  {
+    path: '/filtered',
+    name: 'Filtered',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/Filtered.vue'),
+  },
 ];
 
 const router = new VueRouter({
@@ -123,7 +113,14 @@ const router = new VueRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-  console.log('Stara ruta', from.name, '->', to.name, 'korisnik', store.currentUser);
+  console.log(
+    'Stara ruta',
+    from.name,
+    '->',
+    to.name,
+    'korisnik',
+    store.currentUser
+  );
 
   const noUser = store.currentUser === null;
 

@@ -50,7 +50,7 @@ export default {
   height: 80px;
 }
 #cards {
-  max-width: 500px;
+  max-width: 100%;
   align-content: center;
 }
 </style>

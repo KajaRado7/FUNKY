@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="max-width: 500px; text-align: left;">
+  <div class="container" style="max-width: 500px;">
     <div id="cards">
       <regije-card v-for="card in cards" :key="card.naslov" :info="card" />
     </div>
@@ -60,7 +60,7 @@ export default {
 }
 
 #cards {
-  max-width: 500px;
+  width: 100%;
   align-content: center;
 }
 </style>

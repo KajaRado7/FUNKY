@@ -3,7 +3,7 @@
     <div class="FunkyLogo">
       <img class="Funky" src="@/assets/Funky-AI.png" />
     </div>
-    <nav class="navbar1 navbar-light">
+    <nav class="navbar1 ">
       <span class="title mb-0 h4"></span>
     </nav>
     <div class="col-1"></div>
@@ -35,8 +35,11 @@
           |
           <router-link to="/informacije">Informacije</router-link>
           |
-          <router-link to="/filter">Filter</router-link>--->
-          <router-link to="/AddEvent">Add event</router-link>
+          <router-link to="/filter">Filter</router-link>
+          |
+          <router-link to="/filtered">Filtered</router-link>
+          |
+          <router-link to="/AddEvent">Add event</router-link>--->
         </div>
         <router-view />
       </div>
@@ -88,7 +91,7 @@ firebase.auth().onAuthStateChanged((userForm) => {
     console.log('*** No user');
     store.currentUser = null;
 
-   /* if (currentRoute.meta.needsUser) {
+    /* if (currentRoute.meta.needsUser) {
       router.push({ name: 'Login' });
     }*/
   }
@@ -122,27 +125,25 @@ export default {
   margin-right: auto;
   margin-top: 5px;
 }
-.navbar1 {
-  height: 50px;
-  background-color: #f5b85c;
-  color: black;
 
-  justify-content: center;
-  text-align: center;
-}
 //promjena boje router-linkova
 .color:focus {
   color: #f5b85c;
 }
+.navbar1 {
+  width: 100%;
+  height: 50px;
+  background-color: #f5b85c;
 
+  justify-content: center;
+  text-align: center;
+}
 .navbar2 {
   justify-content: space-evenly;
   display: flex;
 
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
 
   background-color: rgba(0, 0, 0, 0.25);
 }

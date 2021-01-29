@@ -1,11 +1,10 @@
 <template>
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col-10">
+  <div class="container" style="max-width: 500px;">
+    <div is="cards">
+      <!---<dogadaji-card v-for="card in cards" :key="card.naslov" :info="card" />-->
       <h2>Sorry,there are no events available yet ...</h2>
       <font-awesome-icon icon="frown" color=" #f5b85c" size="2x" />
     </div>
-    <div class="col-1"></div>
     <footer id="footer"></footer>
   </div>
 </template>

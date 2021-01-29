@@ -1,6 +1,6 @@
 <template>
   <div class="container" style="max-width: 500px;">
-    <div class="card">
+    <div id="cards">
       <a :href="info.route"><img class="card-img-top" :src="info.img" /></a>
       <div class="card-body">
         <p class="card-text">{{ info.naslov }}</p>
@@ -17,8 +17,7 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  width: 18rem;
+#cards {
   margin-bottom: 25px;
   margin-top: 17px;
   border-bottom: none;
