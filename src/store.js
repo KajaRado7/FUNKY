@@ -5,6 +5,7 @@ export default {
     currentUser: null,
     displayName: null,
     password: null,
+    korinik: '',
 
 };
 

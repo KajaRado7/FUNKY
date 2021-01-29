@@ -194,15 +194,20 @@ export default {
   methods: {
     handleSubmit() {
       let that=this;
-      this.isSubmitted = true;
-      this.$v.$touch();
-      if (this.$v.$invalid) {
+      that.isSubmitted = true;
+      that.$v.$touch();
+      if (that.$v.$invalid) {
         return;
       }
-      db.collection("users").add({
-          name: this.userForm.name,
-          email: this.userForm.email,
-          password: this.userForm.password
+
+      firebase
+      .auth()
+      .createUserWithEmailAndPassword(that.userForm.email,that.userForm.password)
+      .then(function()   { 
+        db.collection("users").add({
+          name: that.userForm.name,
+          email: that.userForm.email,
+          password: that.userForm.password
         })
         .then((doc) => {
               console.log("Spremljeno", doc)
@@ -210,14 +215,10 @@ export default {
         .catch(function(error){
         console.error('Došlo je do greške',error);
       });
-      store.displayName = this.userForm.name;
-      store.currentUser = this.userForm.email;
-      store.password = this.userForm.password;
-
-      firebase
-      .auth()
-      .createUserWithEmailAndPassword(this.userForm.email,this.userForm.password)
-      .then(function()   {
+      store.displayName = that.userForm.name;
+      store.currentUser = that.userForm.email;
+      store.password = that.userForm.password;
+          
               that.$router.replace({name: "Regije" });  
         })
       /*.then(() => {

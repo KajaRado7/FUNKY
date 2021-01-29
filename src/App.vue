@@ -75,15 +75,60 @@ import { firebase } from '@/firebase';
 import { db } from '@/firebase';
 import router from '@/router';
 
-firebase.auth().onAuthStateChanged((userForm) => {
+export default {
+  name: 'App',
+  data() {
+    return {
+      store,
+    };
+  },
+
+   methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.push({ name: 'Login' });
+        });
+    },
+  },
+mounted(){
+firebase.auth().onAuthStateChanged((user) => {
   const currentRoute = router.currentRoute;
 
   console.log('PROVJERA STANJA LOGINA!');
-  if (userForm) {
+  if (user) {
     self.authenticated = true;
     // User is signed in.
-    console.log('*** User', userForm.email);
-    store.currentUser = userForm.email;
+    console.log('*** User', user.email);
+    store.currentUser = user.email;
+
+     db.collection('users')
+      .where(
+        'Name',
+        '==',
+        store.displayName,
+        'Email',
+        '==',
+        store.currentUser
+      )
+      .get()
+      .then(function(querySnapshot) {
+         let korisnik = {};
+        querySnapshot.forEach(function(doc) {
+          const data = doc.data();
+          korisnik = {
+            email: data.email,
+            name: data.name,
+          };
+          store.displayName = korisnik;
+          console.log('Current name: ', store.displayName);
+          store.currentUser = korisnik;
+          console.log('Current email: ', store.currentUser);
+        });
+      });
+
   } else {
     /* if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Home' });*/
@@ -95,25 +140,8 @@ firebase.auth().onAuthStateChanged((userForm) => {
       router.push({ name: 'Login' });
     }*/
   }
-});
-
-export default {
-  name: 'app',
-  data() {
-    return {
-      store,
-    };
-  },
-  methods: {
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.push({ name: 'Login' });
-        });
-    },
-  },
+})
+}
 };
 </script>
 

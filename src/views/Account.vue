@@ -30,15 +30,6 @@
       <br />
       <br />
 
-      <label>Password</label>
-      <br />
-      <br />
-
-      <p class="userInfo">{{ store.password }}</p>
-      <div class="hr"></div>
-      <br />
-      <br />
-
       <div class="col-lg-12 col-md-12 text-center">
         <button
           type="button"
@@ -64,57 +55,12 @@
 <script>
 import { firebase } from '@/firebase';
 import store from '@/store';
-import router from '@/router';
-import { db } from '@/firebase';
 
 export default {
   data() {
     return {
       store,
-      userForm: '',
     };
-  },
-  mounted() {
-    db.collection('users')
-      .where(
-        'Name',
-        '==',
-        store.displayName,
-        'Email',
-        '==',
-        store.currentUser,
-        'Password',
-        '==',
-        store.password
-      )
-      .get()
-      .then(function(querySnapshot) {
-        /*let userForm = {};
-     /*store.displayName = {};
-      store.currentUser = {};
-      store.password = {};*/
-        querySnapshot.forEach(function(doc) {
-          const data = doc.data();
-          userForm = {
-            email: data.email,
-            name: data.name,
-            password: data.password,
-          };
-          store.displayName = userForm;
-          console.log('Current name: ', store.displayName);
-          store.currentUser = userForm;
-          console.log('Current email: ', store.currentUser);
-          store.password = userForm;
-          console.log('Current password', store.password);
-        });
-      });
-    firebase.auth().onAuthStateChanged((userForm) => {
-      if (userForm) {
-        this.userForm = userForm;
-      } else {
-        this.userForm = null;
-      }
-    });
   },
 
   methods: {
