@@ -338,6 +338,7 @@ export default {
   name: 'AddEvent',
   data() {
     return {
+      store,
       model: {
         check: [],
       },
@@ -392,44 +393,58 @@ export default {
               result.ref
                 .getDownloadURL()
                 .then((url) => {
-                  const imageData = this.newImageData;
-                  const eventName = this.newEventName;
-                  const date = this.newDate;
-                  const time = this.newTime;
-                  const address = this.newAddress;
-                  const eventEntry = this.newEventEntry;
-                  const concert = this.newConcert;
-                  const games = this.newGames;
-                  const bookClub = this.newBookClub;
-                  const quiz = this.newQuiz;
-                  const outdoor = this.newOutdoor;
-                  const indoor = this.newIndoor;
-                  const other = this.newOther;
-                  const capacity = this.newCapacity;
-                  const note = this.newNote;
+                 // const newImage = this.imageReference;
+                  const newEventName = this.eventName;
+                  const newDate = this.date;
+                  const newTime = this.time;
+                  const newAddress = this.address;
+                  const newRegion = this.regions;
+                  const newEventEntry = this.eventEntry;
+                  const check = this.model.check;
+                  const newCapacity = this.capacity;
+                  const newNote = this.note;
 
                   db.collection('posts')
                     .add({
                       email: store.currentUser,
                       posted_at: Date.now(),
                       url: url,
+                     // image: newImage,
+                      name: newEventName,
+                      date: newDate,
+                      time: newTime,
+                      address: newAddress,
+                      region: newRegion,
+                      entry: newEventEntry,
+                      model: check,
+                      capacity: newCapacity,
+                      note: newNote,
                     })
                     .then((doc) => {
                       console.log('Document: ', doc);
-                      this.imageData = null;
-                      this.imageReference = null;
+                      //this.imageReference = null;
+                      this.eventName = null;
+                      this.date = null,
+                      this.time = null;
+                      this.address = null;
+                      this.eventEntry = null;
+                      this.regions = null;
+                      this.model.check = null;
+                      this.capacity = null;
+                      this.note = null;
                       //this.$router.push({name: "posts"})
+                      this.submitted = false;
                     })
-                    .catch((e) => {
-                      console.error('Error adding document ', e);
+                    .catch((error) => {
+                      console.error('Error adding document ', error);
                     });
                 })
-                .catch((e) => {
-                  console.error(e);
-                });
+                /*.catch((error) => {
+                  console.error(error);
+                });*/
             })
-            .catch((e) => {
-              console.error(e);
+            .catch((error) => {
+              console.error(error);
             });
         }
       });

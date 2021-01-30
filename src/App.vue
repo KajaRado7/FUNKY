@@ -40,6 +40,7 @@
           <router-link to="/filtered">Filtered</router-link>
           |
           <router-link to="/AddEvent">Add event</router-link>--->
+          
         </div>
         <router-view />
       </div>
@@ -82,8 +83,11 @@ export default {
       store,
     };
   },
+  mounted(){
+    this.created();
+  },
 
-   methods: {
+  methods: {
     logout() {
       firebase
         .auth()
@@ -92,8 +96,8 @@ export default {
           this.$router.push({ name: 'Login' });
         });
     },
-  },
-mounted(){
+
+created(){
 firebase.auth().onAuthStateChanged((user) => {
   const currentRoute = router.currentRoute;
 
@@ -142,6 +146,7 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 })
 }
+  }
 };
 </script>
 
