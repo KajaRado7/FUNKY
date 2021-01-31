@@ -10,8 +10,9 @@
 
 <script>
 import DogadajiCard from '@/components/DogadajiCard.vue';
+import { db } from '@/firebase';
 
-let cards = [];
+/*let cards = [];
 
 cards = [
   {
@@ -29,18 +30,43 @@ cards = [
     naslov: 'Svirka lokalnog benda Rasskol',
     heart: false,
   },
-];
+];*/
 
 export default {
   name: 'Zapadna',
   data: function() {
     return {
-      cards: cards,
+      cards: [],
     };
   },
   components: {
     DogadajiCard,
   },
+  mounted(){    
+    this.getPosts();
+  },
+  methods: {
+   getPosts(){
+        console.log("firebase doghvat..");
+
+        db.collection('posts')
+          .get()
+          .then((query) => {
+            query.forEach(doc => {
+              const data = doc.data();
+
+              if(data.region == 'zapadna'){
+              this.cards.push({
+                id: doc.id,
+                img: data.url,
+                naslov: data.name,
+                heart: false,
+              })
+              }
+            });
+        });
+    }
+  }
 };
 </script>
 

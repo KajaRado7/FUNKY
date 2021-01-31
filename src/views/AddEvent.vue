@@ -107,11 +107,11 @@
             :class="{ 'is-invalid': submitted && $v.regions.$error }"
           >
             <option disabled selected>--Please choose a region--</option>
-            <option value="sredisnja">Središnja</option>
-            <option value="juzna">Južna</option>
-            <option value="zapadna">Zapadna</option>
-            <option value="istocna">Istočna</option>
-            <option value="gorska">Gorska</option>
+            <option value="sredisnja">Central Croatia</option>
+            <option value="juzna">South Croatia</option>
+            <option value="zapadna">West Croatia</option>
+            <option value="istocna">East Croatia</option>
+            <option value="gorska">Mountain Croatia</option>
           </select>
           <div
             v-if="submitted && !$v.regions.required"
@@ -183,7 +183,7 @@
                 value="option1"
                 checked
               />
-              Concert
+              Music
               <span class="checkmark"></span>
             </label>
 
@@ -210,7 +210,7 @@
                 id="exampleCheck3"
                 value="option3"
               />
-              Book club
+              Literature
               <span class="checkmark"></span>
             </label>
 
@@ -223,7 +223,7 @@
                 id="exampleCheck4"
                 value="option4"
               />
-              Quiz
+              Art
               <span class="checkmark"></span>
             </label>
 

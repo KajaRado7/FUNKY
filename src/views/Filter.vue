@@ -14,12 +14,7 @@
 
         <button class="squareBtn" @click="setFilters('Book Club')">
           <font-awesome-icon icon="book-open" size="4x" color="white" />
-          <span>Book club</span>
-        </button>
-
-        <button class="squareBtn" @click="setFilters('Quiz')">
-          <font-awesome-icon icon="spell-check" size="4x" color="white" />
-          <span>Quiz</span>
+          <span>Literature</span>
         </button>
 
         <button class="squareBtn" @click="setFilters('Outdoor')">
@@ -72,12 +67,12 @@ export default {
           category: 'Games',
         },
         {
-          event: 'Book club event',
-          category: 'Book Club',
+          event: 'Literature',
+          category: 'Literature',
         },
         {
-          event: 'Quiz event',
-          category: 'Quiz',
+          event: 'Art',
+          category: 'Art',
         },
         {
           event: 'Outdoor event',

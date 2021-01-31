@@ -11,8 +11,9 @@
 
 <script>
 import DogadajiCard from '@/components/DogadajiCard.vue';
+import { db } from '@/firebase';
 
-let cards = [];
+/*let cards = [];
 
 cards = [
   {
@@ -25,18 +26,43 @@ cards = [
     naslov: 'Natjecanje amaterskih kazališta',
     heart: false,
   },
-];
+]; */
 
 export default {
   name: 'Sredisnja',
   data: function() {
     return {
-      cards: cards,
+      cards: [],
     };
   },
   components: {
     DogadajiCard,
   },
+  mounted(){    
+    this.getPosts();
+  },
+  methods: {
+   getPosts(){
+        console.log("firebase doghvat..");
+
+        db.collection('posts')
+          .get()
+          .then((query) => {
+            query.forEach(doc => {
+              const data = doc.data();
+
+              if(data.region == 'sredisnja'){
+              this.cards.push({
+                id: doc.id,
+                img: data.url,
+                naslov: data.name,
+                heart: false,
+              })
+              }
+            });
+        });
+    }
+  }
 };
 </script>
 <style scoped>

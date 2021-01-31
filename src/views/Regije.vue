@@ -15,27 +15,27 @@ let cards = [];
 cards = [
   {
     img: require('@/assets/zagreb.png'),
-    naslov: 'Središnja Hrvatska',
+    naslov: 'Central Croatia',
     route: '/Sredisnja',
   },
   {
     img: require('@/assets/dubrovnik.jpg'),
-    naslov: 'Južna Hrvatska',
+    naslov: 'South Croatia',
     route: '/Juzna',
   },
   {
     img: require('@/assets/amfiteatar.jpg'),
-    naslov: 'Zapadna Hrvatska',
+    naslov: 'West Croatia',
     route: '/Zapadna',
   },
   {
     img: require('@/assets/suncokreti.jpg'),
-    naslov: 'Istočna Hrvatska',
+    naslov: 'East Croatia',
     route: '/Istocna',
   },
   {
     img: require('@/assets/plitvicka-jezera.jpg'),
-    naslov: 'Gorska Hrvatska',
+    naslov: 'Mountain Croatia',
     route: '/Gorska',
   },
 ];
