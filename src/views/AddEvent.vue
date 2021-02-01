@@ -27,6 +27,7 @@
           </div>
           <br />
           <croppa
+          class="imageZone"
             :width="260"
             :height="150"
             placeholder="Upload image"
@@ -104,16 +105,17 @@
           <br />
           <select
             name="region"
+            class="select"
             id="region-select"
             v-model="regions"
             :class="{ 'is-invalid': submitted && $v.regions.$error }"
           >
             <option disabled selected>--Please choose a region--</option>
-            <option value="sredisnja">Central Croatia</option>
-            <option value="juzna">Dalmatia</option>
-            <option value="zapadna">Istria</option>
-            <option value="istocna">Slavonia</option>
-            <option value="gorska">Mountain Croatia</option>
+            <option value="sredisnja" class="backRegion">Central Croatia</option>
+            <option value="juzna" class="backRegion">Dalmatia</option>
+            <option value="zapadna" class="backRegion">Istria</option>
+            <option value="istocna" class="backRegion">Slavonia</option>
+            <option value="gorska" class="backRegion">Mountain Croatia</option>
           </select>
           <div
             v-if="submitted && !$v.regions.required"
@@ -197,7 +199,7 @@
             <span class="text-danger ml-1">*</span>
           </label>
           <div class="wrapper" name="categories">
-            <label class="form-check-label" for="exampleCheck1">
+            <label class="checkbox" for="exampleCheck1">
               <br />
               <input
                 class="form-check-input"
@@ -212,7 +214,7 @@
               <span class="checkmark"></span>
             </label>
 
-            <label class="form-check-label" for="exampleCheck2">
+            <label class="checkbox" for="exampleCheck2">
               <br />
               <input
                 class="form-check-input"
@@ -226,7 +228,7 @@
               <span class="checkmark"></span>
             </label>
 
-            <label class="form-check-label" for="exampleCheck3">
+            <label class="checkbox" for="exampleCheck3">
               <input
                 class="form-check-input"
                 v-model="model.check"
@@ -239,7 +241,7 @@
               <span class="checkmark"></span>
             </label>
 
-            <label class="form-check-label" for="exampleCheck4">
+            <label class="checkbox" for="exampleCheck4">
               <input
                 class="form-check-input"
                 v-model="model.check"
@@ -252,7 +254,7 @@
               <span class="checkmark"></span>
             </label>
 
-            <label class="form-check-label" for="exampleCheck5">
+            <label class="checkbox" for="exampleCheck5">
               <input
                 class="form-check-input"
                 v-model="model.check"
@@ -265,7 +267,7 @@
               <span class="checkmark"></span>
             </label>
 
-            <label class="form-check-label" for="exampleCheck6">
+            <label class="checkbox" for="exampleCheck6">
               <input
                 class="form-check-input"
                 v-model="model.check"
@@ -279,7 +281,7 @@
             </label>
 
             <label
-              class="form-check-label"
+              class="checkbox"
               for="exampleCheck7"
               :class="{ 'is-invalid': submitted && $v.model.check.$error }"
             >
@@ -311,8 +313,6 @@
             </div>
           </div>
         </div>
-
-        <br />
         <div class="form-group">
           <label for="capacity">
             Capacity
@@ -334,6 +334,7 @@
             Capacity must be filled!
           </div>
         </div>
+        <br/>
 
         <div class="form-group">
           <label for="note">Note:</label>
@@ -490,7 +491,7 @@ select {
 
 #region-select {
   padding: 8px 12px;
-  border: 2px solid;
+  border: 2px solid #f5b85c;
   border-radius: 4px;
   background-color: #1a1a1a;
   color: white;
@@ -523,8 +524,8 @@ img.preview {
 .wrapper {
   display: grid;
   width: 100%;
-  grid-template-columns: 100px 1fr;
-  gap: 10px;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
   grid-auto-rows: minmax(30px, auto);
 }
 .box {
@@ -560,4 +561,25 @@ img.preview {
   cursor: pointer;
   margin-top: 1rem;
 }
+.imageZone{
+  background: #1a1a1a;
+  border: 3px dashed #f5b85c;
+}
+.imageZone:hover {
+  border: 4px solid #f5b85c;
+}
+.checkbox > input:checked {
+    border: 1px solid  #f5b85c;
+    background-color:  #f5b85c;
+    box-shadow: inset 0px 0px 0px 4px #f5b85c;
+}
+.checkbox > input{
+  border: 2px solid #f5b85c;
+  background-color:  #1a1a1a;
+  box-shadow: none;
+}
+/* za maknut plavo kod selecta??
+option:hover{
+  background-color: #f5b85c;
+}*/
 </style>

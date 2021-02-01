@@ -40,6 +40,7 @@
           <router-link to="/filtered">Filtered</router-link>
           |
           <router-link to="/AddEvent">Add event</router-link>--->
+          <router-link to="/AddEvent">Add event</router-link>
 
           <form id="seach" class="navbar-form form-inline ml-auto">
             <input
