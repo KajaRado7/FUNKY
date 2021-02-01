@@ -18,6 +18,7 @@ export default {
 
 <style scoped>
 #cards {
+  width: 100%;
   margin-bottom: 25px;
   margin-top: 17px;
   border-bottom: none;
@@ -27,6 +28,7 @@ export default {
   border-right: none;
   border-top: none;
   background-color: #1a1a1a;
+  align-items: center;
 }
 .card-img-top {
   height: 150px;

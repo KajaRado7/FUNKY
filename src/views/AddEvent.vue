@@ -19,7 +19,7 @@
         <br />
         <br />
         <div class="mainDiv">
-          <div style="text-align: left">
+          <div style="text-align: left;">
             <label for="addEventPicture">
               Add event picture
               <span class="text-danger ml-1">*</span>
@@ -108,9 +108,9 @@
           >
             <option disabled selected>--Please choose a region--</option>
             <option value="sredisnja">Central Croatia</option>
-            <option value="juzna">South Croatia</option>
-            <option value="zapadna">West Croatia</option>
-            <option value="istocna">East Croatia</option>
+            <option value="juzna">Dalmatia</option>
+            <option value="zapadna">Istria</option>
+            <option value="istocna">Slavonia</option>
             <option value="gorska">Mountain Croatia</option>
           </select>
           <div
@@ -118,6 +118,29 @@
             class="invalid-feedback"
           >
             Region must be chosen!
+          </div>
+        </div>
+        <br />
+        <!-- DEJANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
+        <div class="form-group">
+          <label for="city">
+            City                                
+            <span class="text-danger ml-1">*</span>       
+          </label>
+          <input
+            type="text"
+            name="city"
+            v-model="city"
+            class="form-control"
+            id="city"
+            placeholder="e.g. Pula"
+            :class="{ 'is-invalid': submitted && $v.address.$error }"
+          />
+          <div
+            v-if="submitted && !$v.regions.required"
+            class="invalid-feedback"
+          >
+            City must be filled!
           </div>
         </div>
         <br />
@@ -132,7 +155,7 @@
             v-model="address"
             class="form-control"
             id="address"
-            placeholder="e.g. Preradovićeva 1, 52100 Pula"
+            placeholder="e.g. Preradovićeva 1"
             :class="{ 'is-invalid': submitted && $v.address.$error }"
           />
           <div
@@ -347,6 +370,7 @@ export default {
       date: '',
       time: '',
       regions: '',
+      city: '',
       address: '',
       eventEntry: '',
       capacity: '',
@@ -361,6 +385,7 @@ export default {
     date: { required },
     regions: { required },
     eventEntry: { required },
+    city: { required },
     address: { required },
     capacity: { required },
     imageReference: { required },
@@ -397,6 +422,7 @@ export default {
                   const newEventName = this.eventName;
                   const newDate = this.date;
                   const newTime = this.time;
+                  const newCity = this.city;
                   const newAddress = this.address;
                   const newRegion = this.regions;
                   const newEventEntry = this.eventEntry;
@@ -413,6 +439,7 @@ export default {
                       name: newEventName,
                       date: newDate,
                       time: newTime,
+                      city: newCity,
                       address: newAddress,
                       region: newRegion,
                       entry: newEventEntry,
@@ -426,6 +453,7 @@ export default {
                       this.eventName = null;
                       this.date = null,
                       this.time = null;
+                      this.city = null;
                       this.address = null;
                       this.eventEntry = null;
                       this.regions = null;
@@ -498,7 +526,7 @@ img.preview {
 }
 .box {
   text-align: center;
-  color: white;
+  color: white; 
   width: fixed;
   height: 200px;
   padding: 20px 20px;
@@ -512,6 +540,13 @@ img.preview {
   resize: both;
   overflow: auto;
 }
+.form-control:focus, .form-control:active {
+    background: #1a1a1a;
+    color: white;
+    box-shadow: none;
+    border-bottom: 2px solid #f5b85c;
+}
+
 .choose {
   background-color: #f5b85c;
   color: black;

@@ -5,6 +5,7 @@
     </div>
     <nav class="navbar1 ">
       <span class="title mb-0 h4"></span>
+      
     </nav>
     <div class="col-1"></div>
     <div class="col-10">
@@ -41,6 +42,9 @@
           |
           <router-link to="/AddEvent">Add event</router-link>--->
           <router-link to="/AddEvent">Add event</router-link>
+          <form id="seach" class="navbar-form form-inline ml-auto">
+      <input v-model="store.searchText" class="form-control mr-sm-2" type="search" placeholder="Search City" aria-label="Search" />
+    </form>
         </div>
         <router-view />
       </div>
@@ -81,12 +85,12 @@ export default {
   data() {
     return {
       store,
+      
     };
   },
   mounted(){
     this.created();
   },
-
   methods: {
     logout() {
       firebase
@@ -229,5 +233,19 @@ firebase.auth().onAuthStateChanged((user) => {
 }
 body {
   background-color: #1a1a1a;
+}
+//------------------------------------
+.form-control {
+  margin-bottom: 60px;
+  margin-top: 10px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid #f5b85c;
+  background-color: #1a1a1a;
+  color: #d0d0d0;
+  outline: none;
+  box-shadow: none;
+  
 }
 </style>

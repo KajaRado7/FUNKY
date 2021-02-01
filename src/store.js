@@ -1,7 +1,5 @@
-
-
 export default {
-    searchTerm: '',
+    searchText: '',
     currentUser: null,
     displayName: null,
     password: null,

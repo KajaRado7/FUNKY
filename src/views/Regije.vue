@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="max-width: 500px;">
     <div id="cards">
-      <regije-card v-for="card in cards" :key="card.naslov" :info="card" />
+      <regije-card v-for="card in filteredCards" :key="card.naslov" :info="card" />
     </div>
     <footer id="footer"></footer>
   </div>
@@ -9,6 +9,7 @@
 
 <script>
 import RegijeCard from '@/components/RegijeCard.vue';
+import store from "@/store";
 
 let cards = [];
 
@@ -20,17 +21,17 @@ cards = [
   },
   {
     img: require('@/assets/dubrovnik.jpg'),
-    naslov: 'South Croatia',
+    naslov: 'Dalmatia',
     route: '/Juzna',
   },
   {
     img: require('@/assets/amfiteatar.jpg'),
-    naslov: 'West Croatia',
+    naslov: 'Istria',
     route: '/Zapadna',
   },
   {
     img: require('@/assets/suncokreti.jpg'),
-    naslov: 'East Croatia',
+    naslov: 'Slavonia',
     route: '/Istocna',
   },
   {
@@ -45,7 +46,22 @@ export default {
   data: function() {
     return {
       cards: cards, //prvi cards je kljuc, a drugi varijabla od gore tj ova lista
+      store,
     };
+  },
+  computed: {
+    filteredCards(){
+      // logika koja filtrira kartice
+      let termin = this.store.searchText.toLowerCase();
+      let newCards = [];
+      
+      for (let card of this.cards) {
+        if (card.naslov.toLowerCase().indexOf(termin) >= 0) {
+          newCards.push(card);
+        }
+      }
+      return newCards;
+    },
   },
   components: {
     RegijeCard,
@@ -60,7 +76,23 @@ export default {
 }
 
 #cards {
+  border-radius: 15px;
   width: 100%;
-  align-content: center;
+  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 }
+.form-control {
+  margin-bottom: 60px;
+  margin-top: 10px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid #f5b85c;
+  background-color: #1a1a1a;
+  color: #d0d0d0;
+  outline: none;
+  box-shadow: none;
+}
+
 </style>
