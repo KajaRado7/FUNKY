@@ -5,7 +5,6 @@
     </div>
     <nav class="navbar1 ">
       <span class="title mb-0 h4"></span>
-      
     </nav>
     <div class="col-1"></div>
     <div class="col-10">
@@ -41,10 +40,16 @@
           <router-link to="/filtered">Filtered</router-link>
           |
           <router-link to="/AddEvent">Add event</router-link>--->
-          <router-link to="/AddEvent">Add event</router-link>
+
           <form id="seach" class="navbar-form form-inline ml-auto">
-      <input v-model="store.searchText" class="form-control mr-sm-2" type="search" placeholder="Search City" aria-label="Search" />
-    </form>
+            <input
+              v-model="store.searchText"
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search City"
+              aria-label="Search"
+            />
+          </form>
         </div>
         <router-view />
       </div>
@@ -85,10 +90,9 @@ export default {
   data() {
     return {
       store,
-      
     };
   },
-  mounted(){
+  mounted() {
     this.created();
   },
   methods: {
@@ -101,56 +105,55 @@ export default {
         });
     },
 
-created(){
-firebase.auth().onAuthStateChanged((user) => {
-  const currentRoute = router.currentRoute;
+    created() {
+      firebase.auth().onAuthStateChanged((user) => {
+        const currentRoute = router.currentRoute;
 
-  console.log('PROVJERA STANJA LOGINA!');
-  if (user) {
-    self.authenticated = true;
-    // User is signed in.
-    console.log('*** User', user.email);
-    store.currentUser = user.email;
+        console.log('PROVJERA STANJA LOGINA!');
+        if (user) {
+          self.authenticated = true;
+          // User is signed in.
+          console.log('*** User', user.email);
+          store.currentUser = user.email;
 
-     db.collection('users')
-      .where(
-        'Name',
-        '==',
-        store.displayName,
-        'Email',
-        '==',
-        store.currentUser
-      )
-      .get()
-      .then(function(querySnapshot) {
-         let korisnik = {};
-        querySnapshot.forEach(function(doc) {
-          const data = doc.data();
-          korisnik = {
-            email: data.email,
-            name: data.name,
-          };
-          store.displayName = korisnik;
-          console.log('Current name: ', store.displayName);
-          store.currentUser = korisnik;
-          console.log('Current email: ', store.currentUser);
-        });
-      });
-
-  } else {
-    /* if (!currentRoute.meta.needsUser) {
+          db.collection('users')
+            .where(
+              'Name',
+              '==',
+              store.displayName,
+              'Email',
+              '==',
+              store.currentUser
+            )
+            .get()
+            .then(function(querySnapshot) {
+              let korisnik = {};
+              querySnapshot.forEach(function(doc) {
+                const data = doc.data();
+                korisnik = {
+                  email: data.email,
+                  name: data.name,
+                };
+                store.displayName = korisnik;
+                console.log('Current name: ', store.displayName);
+                store.currentUser = korisnik;
+                console.log('Current email: ', store.currentUser);
+              });
+            });
+        } else {
+          /* if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Home' });*/
-    // User is not signed in.
-    console.log('*** No user');
-    store.currentUser = null;
+          // User is not signed in.
+          console.log('*** No user');
+          store.currentUser = null;
 
-    /* if (currentRoute.meta.needsUser) {
+          /* if (currentRoute.meta.needsUser) {
       router.push({ name: 'Login' });
     }*/
-  }
-})
-}
-  }
+        }
+      });
+    },
+  },
 };
 </script>
 
@@ -246,6 +249,5 @@ body {
   color: #d0d0d0;
   outline: none;
   box-shadow: none;
-  
 }
 </style>

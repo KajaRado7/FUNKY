@@ -12,9 +12,14 @@
           <span>Games</span>
         </button>
 
-        <button class="squareBtn" @click="setFilters('Book Club')">
+        <button class="squareBtn" @click="setFilters('Literature')">
           <font-awesome-icon icon="book-open" size="4x" color="white" />
           <span>Literature</span>
+        </button>
+
+        <button class="squareBtn" @click="setFilters('Art')">
+          <font-awesome-icon icon="theater-masks" size="4x" color="white" />
+          <span>Art</span>
         </button>
 
         <button class="squareBtn" @click="setFilters('Outdoor')">
@@ -162,6 +167,7 @@ span {
 .otherBtn {
   width: 100%;
   margin: 4%;
+  height: 50px;
 }
 
 .filterBtn {

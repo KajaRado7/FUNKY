@@ -52,7 +52,7 @@ export default {
         .signInWithPopup(provider)
         .then((result) => {
           store.currentUser = result.additionalUserInfo.profile.email;
-          this.$router.replace({ name: "Regije" });
+          this.$router.replace({ name: 'Regije' });
           //store.token = result.credential.accessToken; // mozda cu ga kasnije za nesto koristiti. za test neka ostane
         })
         .catch(function(error) {

@@ -27,7 +27,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
 import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
-import { faSpellCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTheaterMasks } from '@fortawesome/free-solid-svg-icons';
 import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
@@ -43,7 +43,7 @@ library.add(faEnvelope); // <font-awesome-icon icon="envelope" />
 library.add(faMusic); // <font-awesome-icon icon="music" />
 library.add(faDice); // <font-awesome-icon icon="dice" />
 library.add(faBookOpen); // <font-awesome-icon icon="book-open" />
-library.add(faSpellCheck); // <font-awesome-icon icon="spell-check" />
+library.add(faTheaterMasks); // <font-awesome-icon icon="theater-masks" />
 library.add(faCloudSun); // <font-awesome-icon icon="cloud-sun" />
 library.add(faHome); // <font-awesome-icon icon="home" />
 library.add(faGoogle); // <font-awesome-icon :icon="['fab', 'google']" /> -->'fab'= brands,'fas'= solid

@@ -56,7 +56,7 @@
             Event name must be filled!
           </div>
         </div>
-        <br />
+
         <div class="form-group">
           <label for="date">
             Date
@@ -75,7 +75,7 @@
             Date must be filled!
           </div>
         </div>
-        <br />
+
         <div class="form-group">
           <label for="time">
             Time
@@ -94,12 +94,14 @@
             Time must be filled!
           </div>
         </div>
-        <br />
+
         <div class="form-group">
           <label for="region">
             Region
             <span class="text-danger ml-1">*</span>
           </label>
+          <br />
+          <br />
           <select
             name="region"
             id="region-select"
@@ -121,11 +123,12 @@
           </div>
         </div>
         <br />
+        <br />
         <!-- DEJANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
         <div class="form-group">
           <label for="city">
-            City                                
-            <span class="text-danger ml-1">*</span>       
+            City
+            <span class="text-danger ml-1">*</span>
           </label>
           <input
             type="text"
@@ -143,7 +146,7 @@
             City must be filled!
           </div>
         </div>
-        <br />
+
         <div class="form-group">
           <label for="address">
             Address
@@ -165,7 +168,7 @@
             Address must be filled!
           </div>
         </div>
-        <br />
+
         <div class="form-group">
           <label for="eventEntry">
             Event entry
@@ -187,7 +190,6 @@
             Event entry must be filled!
           </div>
         </div>
-        <br />
 
         <div class="form-group">
           <label for="categories">
@@ -295,6 +297,7 @@
               <span class="checkmark"></span>
             </label>
             <br />
+            <br />
             <div
               v-if="submitted && $v.model.check.$error"
               class="invalid-feedback"
@@ -331,7 +334,7 @@
             Capacity must be filled!
           </div>
         </div>
-        <br />
+
         <div class="form-group">
           <label for="note">Note:</label>
           <textarea
@@ -415,59 +418,56 @@ export default {
             .ref(imageName)
             .put(blobData)
             .then((result) => {
-              result.ref
-                .getDownloadURL()
-                .then((url) => {
-                 // const newImage = this.imageReference;
-                  const newEventName = this.eventName;
-                  const newDate = this.date;
-                  const newTime = this.time;
-                  const newCity = this.city;
-                  const newAddress = this.address;
-                  const newRegion = this.regions;
-                  const newEventEntry = this.eventEntry;
-                  const check = this.model.check;
-                  const newCapacity = this.capacity;
-                  const newNote = this.note;
+              result.ref.getDownloadURL().then((url) => {
+                // const newImage = this.imageReference;
+                const newEventName = this.eventName;
+                const newDate = this.date;
+                const newTime = this.time;
+                const newCity = this.city;
+                const newAddress = this.address;
+                const newRegion = this.regions;
+                const newEventEntry = this.eventEntry;
+                const check = this.model.check;
+                const newCapacity = this.capacity;
+                const newNote = this.note;
 
-                  db.collection('posts')
-                    .add({
-                      email: store.currentUser,
-                      posted_at: Date.now(),
-                      url: url,
-                     // image: newImage,
-                      name: newEventName,
-                      date: newDate,
-                      time: newTime,
-                      city: newCity,
-                      address: newAddress,
-                      region: newRegion,
-                      entry: newEventEntry,
-                      model: check,
-                      capacity: newCapacity,
-                      note: newNote,
-                    })
-                    .then((doc) => {
-                      console.log('Document: ', doc);
-                      //this.imageReference = null;
-                      this.eventName = null;
-                      this.date = null,
-                      this.time = null;
-                      this.city = null;
-                      this.address = null;
-                      this.eventEntry = null;
-                      this.regions = null;
-                      this.model.check = null;
-                      this.capacity = null;
-                      this.note = null;
-                      //this.$router.push({name: "posts"})
-                      this.submitted = false;
-                    })
-                    .catch((error) => {
-                      console.error('Error adding document ', error);
-                    });
-                })
-                /*.catch((error) => {
+                db.collection('posts')
+                  .add({
+                    email: store.currentUser,
+                    posted_at: Date.now(),
+                    url: url,
+                    // image: newImage,
+                    name: newEventName,
+                    date: newDate,
+                    time: newTime,
+                    city: newCity,
+                    address: newAddress,
+                    region: newRegion,
+                    entry: newEventEntry,
+                    model: check,
+                    capacity: newCapacity,
+                    note: newNote,
+                  })
+                  .then((doc) => {
+                    console.log('Document: ', doc);
+                    //this.imageReference = null;
+                    this.eventName = null;
+                    (this.date = null), (this.time = null);
+                    this.city = null;
+                    this.address = null;
+                    this.eventEntry = null;
+                    this.regions = null;
+                    this.model.check = null;
+                    this.capacity = null;
+                    this.note = null;
+                    //this.$router.push({name: "posts"})
+                    this.submitted = false;
+                  })
+                  .catch((error) => {
+                    console.error('Error adding document ', error);
+                  });
+              });
+              /*.catch((error) => {
                   console.error(error);
                 });*/
             })
@@ -490,7 +490,10 @@ select {
 
 #region-select {
   padding: 8px 12px;
+  border: 2px solid;
   border-radius: 4px;
+  background-color: #1a1a1a;
+  color: white;
 }
 #footer {
   width: 100%;
@@ -526,7 +529,7 @@ img.preview {
 }
 .box {
   text-align: center;
-  color: white; 
+  color: white;
   width: fixed;
   height: 200px;
   padding: 20px 20px;
@@ -540,11 +543,12 @@ img.preview {
   resize: both;
   overflow: auto;
 }
-.form-control:focus, .form-control:active {
-    background: #1a1a1a;
-    color: white;
-    box-shadow: none;
-    border-bottom: 2px solid #f5b85c;
+.form-control:focus,
+.form-control:active {
+  background: #1a1a1a;
+  color: white;
+  box-shadow: none;
+  border-bottom: 2px solid #f5b85c;
 }
 
 .choose {
