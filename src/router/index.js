@@ -105,12 +105,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Filtered.vue'),
   },
-  {
-    path: '/informacije',
-    name: 'Informacije',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Informacije.vue'),
-  },
+ 
 ];
 
 const router = new VueRouter({

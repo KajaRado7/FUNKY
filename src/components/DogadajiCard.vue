@@ -1,5 +1,5 @@
 <template>
-  <div class="container" style="max-width: 500px;">
+  
     <div class="card">
       <img class="card-img-top" :src="info.img" />
       <!-- info je u west gdje su sve slike navedene -->
@@ -19,8 +19,7 @@
         </div>
       </div>
     </div>
-  </div>
-</template>
+ </template>
 
 <script>
 export default {

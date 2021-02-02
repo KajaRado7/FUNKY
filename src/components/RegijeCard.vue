@@ -1,12 +1,11 @@
 <template>
-  <div class="container" style="max-width: 500px;">
-    <div id="cards">
+  <div id="cards">
       <a :href="info.route"><img class="card-img-top" :src="info.img" /></a>
       <div class="card-body">
         <p class="card-text">{{ info.naslov }}</p>
       </div>
     </div>
-  </div>
+
 </template>
 
 <script>

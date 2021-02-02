@@ -43,7 +43,7 @@ export default {
   },
   methods: {
    getPosts(){
-        console.log("firebase doghvat..");
+        console.log("firebase dohvat..");
 
         db.collection('posts')
           .get()

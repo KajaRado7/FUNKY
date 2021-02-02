@@ -1,5 +1,14 @@
 <template>
-  <div class="container" style="max-width: 500px;">
+  <div class="container" >
+    <form id="search" class="navbar-form form-inline ml-auto">
+            <input
+              v-model="store.searchText"
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search City"
+              aria-label="Search"
+            />
+          </form>
     <div id="cards">
       <regije-card v-for="card in filteredCards" :key="card.naslov" :info="card" />
     </div>
@@ -45,7 +54,7 @@ export default {
   name: 'Regije',
   data: function() {
     return {
-      cards: cards, //prvi cards je kljuc, a drugi varijabla od gore tj ova lista
+      cards, //prvi cards je kljuc, a drugi varijabla od gore tj ova lista
       store,
     };
   },

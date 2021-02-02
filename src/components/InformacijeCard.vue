@@ -1,18 +1,84 @@
 <template>
-  <div class="container" style="max-width: 500px;">
+  
     <div id="cards">
-      <a :href="info.route"><img class="card-img-top" :src="info.img" /></a>
+      <img class="card-img-top" :src="info.image" />
       <div class="card-body">
-        <p class="card-text">{{ info.naslov }}</p>
-      </div>
+               
+        <div class="form-group">
+          <label for="eventName">
+            Event name
+            <span class="text-danger ml-1">{{info.eventName }}</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+            <label for="date">
+              Date
+            <span class="text-danger ml-1">{{ info.date }}</span>
+            </label>
+          <br />
+        </div>
+        <div class="form-group">
+          <label for="time">
+            Time
+            <span class="text-danger ml-1">{{ info.time }}</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+            <label for="region">
+            Region
+            <span class="text-danger ml-1">{{ info.region }}</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="city">
+            City
+            <span class="text-danger ml-1">{{ info.city }}</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="address">
+            Address
+            <span class="text-danger ml-1">{{ info.adress }}</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="eventEntry">
+            Event entry
+            <span class="text-danger ml-1">{{ info.eventEntry }}</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="categories">
+            Categories:
+            <span class="text-danger ml-1">{{ info.categories }}</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="capacity">
+            Capacity
+            <span class="text-danger ml-1">{{ info.capacity }}</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="note">Note:</label>
+          {{ info.note }}
+        </div>
     </div>
-  </div>
+    </div>
+  
+
 </template>
 
 <script>
 export default {
     props: ['info'],
-    name: 'InformacijeCard'
+    name: 'InformacijeCard',
+     
 };
 </script>
 
