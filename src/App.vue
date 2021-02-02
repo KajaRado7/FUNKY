@@ -33,16 +33,13 @@
           |
           <router-link to="/favoriti">My favorites</router-link>
           |
-          <router-link to="/informacije">Informacije</router-link>
+          <router-link to="/Informacije">Informacije</router-link>
           |
           <router-link to="/filter">Filter</router-link>
           |
           <router-link to="/filtered">Filtered</router-link>
-          |
-          <router-link to="/AddEvent">Add event</router-link>--->
+          |--->
           <router-link to="/AddEvent">Add event</router-link>
-          <router-link to="/Informacije">info</router-link>
-
         </div>
         <router-view />
       </div>
@@ -231,6 +228,4 @@ body {
   background-color: #1a1a1a;
 }
 //------------------------------------
-
-
 </style>
