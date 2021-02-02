@@ -10,6 +10,7 @@
 
 <script>
 import DogadajiCard from '@/components/DogadajiCard.vue';
+import { db } from '@/firebase';
 
 /*let cards = [];
 

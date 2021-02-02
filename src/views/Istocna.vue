@@ -10,6 +10,7 @@
 
 <script>
 import DogadajiCard from '@/components/DogadajiCard.vue';
+import { db } from '@/firebase';
 
 /*let cards = [];
 
@@ -46,7 +47,7 @@ export default {
             query.forEach(doc => {
               const data = doc.data();
 
-              if(data.region == 'juzna'){
+              if(data.region == 'istocna'){
               this.cards.push({
                 id: doc.id,
                 img: data.url,

@@ -57,6 +57,8 @@
             Event name must be filled!
           </div>
         </div>
+        <br/>
+        <br/>
 
         <div class="form-group">
           <label for="date">
@@ -76,6 +78,8 @@
             Date must be filled!
           </div>
         </div>
+        <br/>
+        <br/>
 
         <div class="form-group">
           <label for="time">
@@ -95,6 +99,8 @@
             Time must be filled!
           </div>
         </div>
+        <br/>
+        <br/>
 
         <div class="form-group">
           <label for="region">
@@ -103,6 +109,7 @@
           </label>
           <br />
           <br />
+          <div class="chooseRegion">
           <select
             name="region"
             class="select"
@@ -111,12 +118,13 @@
             :class="{ 'is-invalid': submitted && $v.regions.$error }"
           >
             <option disabled selected>--Please choose a region--</option>
-            <option value="sredisnja" class="backRegion">Central Croatia</option>
-            <option value="juzna" class="backRegion">Dalmatia</option>
-            <option value="zapadna" class="backRegion">Istria</option>
-            <option value="istocna" class="backRegion">Slavonia</option>
-            <option value="gorska" class="backRegion">Mountain Croatia</option>
+            <option value="sredisnja" >Central Croatia</option>
+            <option value="juzna" >Dalmatia</option>
+            <option value="zapadna">Istria</option>
+            <option value="istocna" >Slavonia</option>
+            <option value="gorska">Mountain Croatia</option>
           </select>
+          </div>
           <div
             v-if="submitted && !$v.regions.required"
             class="invalid-feedback"
@@ -148,6 +156,8 @@
             City must be filled!
           </div>
         </div>
+        <br/>
+        <br/>
 
         <div class="form-group">
           <label for="address">
@@ -170,6 +180,8 @@
             Address must be filled!
           </div>
         </div>
+        <br/>
+        <br/>
 
         <div class="form-group">
           <label for="eventEntry">
@@ -192,6 +204,8 @@
             Event entry must be filled!
           </div>
         </div>
+        <br/>
+        <br/>
 
         <div class="form-group">
           <label for="categories">
@@ -207,7 +221,7 @@
                 type="checkbox"
                 name="exampleCheckBoxes"
                 id="exampleCheck1"
-                value="option1"
+                value="Music"
                 checked
               />
               Music
@@ -222,7 +236,7 @@
                 v-model="model.check"
                 name="exampleCheckBoxes"
                 id="exampleCheck2"
-                value="option2"
+                value="Games"
               />
               Games
               <span class="checkmark"></span>
@@ -235,7 +249,7 @@
                 type="checkbox"
                 name="exampleCheckBoxes"
                 id="exampleCheck3"
-                value="option3"
+                value="Literature"
               />
               Literature
               <span class="checkmark"></span>
@@ -248,7 +262,7 @@
                 type="checkbox"
                 name="exampleCheckBoxes"
                 id="exampleCheck4"
-                value="option4"
+                value="Art"
               />
               Art
               <span class="checkmark"></span>
@@ -261,7 +275,7 @@
                 type="checkbox"
                 name="exampleCheckBoxes"
                 id="exampleCheck5"
-                value="option5"
+                value="Outdoor"
               />
               Outdoor
               <span class="checkmark"></span>
@@ -274,7 +288,7 @@
                 type="checkbox"
                 name="exampleCheckBoxes"
                 id="exampleCheck6"
-                value="option6"
+                value="Indoor"
               />
               Indoor
               <span class="checkmark"></span>
@@ -292,14 +306,13 @@
                 checked="checked"
                 name="exampleCheckBoxes"
                 id="exampleCheck7"
-                value="option7"
+                value="Other"
                 @change="$v.model.check.$touch()"
               />
               Other
               <span class="checkmark"></span>
             </label>
-            <br />
-            <br />
+            <br/>
             <div
               v-if="submitted && $v.model.check.$error"
               class="invalid-feedback"
@@ -313,6 +326,9 @@
             </div>
           </div>
         </div>
+        <br/>
+        <br/>
+
         <div class="form-group">
           <label for="capacity">
             Capacity
@@ -334,6 +350,7 @@
             Capacity must be filled!
           </div>
         </div>
+        <br/>
         <br/>
 
         <div class="form-group">
@@ -488,7 +505,6 @@ export default {
 select {
   width: 100%;
 }
-
 #region-select {
   padding: 8px 12px;
   border: 2px solid #f5b85c;
@@ -545,7 +561,7 @@ img.preview {
   overflow: auto;
 }
 .form-control {
-  margin-bottom: 60px;
+  margin-bottom: 8px;
   margin-top: 10px;
   border-left: none;
   border-right: none;
@@ -590,8 +606,4 @@ img.preview {
   background-color:  #1a1a1a;
   box-shadow: none;
 }
-/* za maknut plavo kod selecta??
-option:hover{
-  background-color: #f5b85c;
-}*/
 </style>
