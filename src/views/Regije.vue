@@ -70,8 +70,37 @@ export default {
         }
       }
       return newCards;
-    },
+    }, 
   },
+  methods: {
+    /*getFiltered(){
+      db.collection('posts')
+      .get()
+      .then((query) => {
+        query.forEach((doc) => {
+          const data = doc.data();
+          let termin = this.store.searchText.toLowerCase();
+
+          if (data.city.toLowerCase().indexOf(termin) >= 0) {
+            this.cards.push({
+                id: doc.id,
+                adress: data.adress,
+                capacity: data.capacity,
+                city: data.city,
+                date: data.date,
+                eventEntry: data.entry,
+                categories: data.model,
+                eventName: data.name,
+                note: data.note,
+                region: data.region,
+                time: data.time,
+                image: data.url,                
+              })
+          }
+        });
+      });
+    }*/
+  }, 
   components: {
     RegijeCard,
   },

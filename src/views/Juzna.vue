@@ -33,7 +33,7 @@ export default {
   name: 'Juzna',
   data: function() {
     return {
-      cards: cards,
+      cards: [],
     };
   },
   components: {
@@ -59,6 +59,8 @@ export default {
                 naslov: data.name,
                 heart: false,
               })
+              }else {
+                console.log("Sorry,there are no events available yet ... ")
               }
             });
         });

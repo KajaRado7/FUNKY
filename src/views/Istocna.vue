@@ -31,15 +31,18 @@ export default {
   name: 'Istocna',
   data: function() {
     return {
-      cards: cards,
+      cards: [],
     };
   },
   components: {
     DogadajiCard,
   },
+  mounted(){    
+    this.getPosts();
+  },
   methods: {
    getPosts(){
-        console.log("firebase doghvat..");
+        console.log("firebase dohvat..");
 
         db.collection('posts')
           .get()
@@ -54,7 +57,10 @@ export default {
                 naslov: data.name,
                 heart: false,
               })
+              } else {
+                console.log("Sorry,there are no events available yet ... ")
               }
+
             });
         });
     }

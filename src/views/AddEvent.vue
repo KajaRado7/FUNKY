@@ -41,8 +41,11 @@
             Event name
             <span class="text-danger ml-1">*</span>
           </label>
-          <input
-            type="text"
+
+          <!-- DEJANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
+          <input 
+            type="text" 
+            maxlength="27"
             name="eName"
             v-model="eventName"
             class="form-control"
@@ -357,6 +360,7 @@
           <label for="note">Note:</label>
           <textarea
             class="form-control"
+            maxlength="120"
             v-model="note"
             id="note"
             rows="4"

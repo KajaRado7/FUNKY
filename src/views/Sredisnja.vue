@@ -58,6 +58,8 @@ export default {
                 naslov: data.name,
                 heart: false,
               })
+              }else {
+                console.log("Sorry,there are no events available yet ... ")
               }
             });
         });
