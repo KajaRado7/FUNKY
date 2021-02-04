@@ -193,6 +193,8 @@ export default {
   },
   methods: {
     handleSubmit() {
+      
+      let id= this.userForm.email;
       let that=this;
       that.isSubmitted = true;
       that.$v.$touch();
@@ -204,13 +206,13 @@ export default {
       .auth()
       .createUserWithEmailAndPassword(that.userForm.email,that.userForm.password)
       .then(function()   { 
-        db.collection("users").add({
+        db.collection("users").doc(id).set({
           name: that.userForm.name,
           email: that.userForm.email,
           password: that.userForm.password
         })
         .then((doc) => {
-              console.log("Spremljeno", doc)
+              console.log("Spremljeno", doc.id)
           })
         .catch(function(error){
         console.error('Došlo je do greške',error);

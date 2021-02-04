@@ -96,6 +96,7 @@ export default {
     },
 
     created() {
+      const self = this;
       firebase.auth().onAuthStateChanged((user) => {
         const currentRoute = router.currentRoute;
 
@@ -107,16 +108,9 @@ export default {
           store.currentUser = user.email;
 
           db.collection('users')
-            .where(
-              'Name',
-              '==',
-              store.displayName,
-              'Email',
-              '==',
-              store.currentUser
-            )
+            .doc(self.store.currentUser)
             .get()
-            .then(function(querySnapshot) {
+           /* .then(function(querySnapshot) {
               let korisnik = {};
               querySnapshot.forEach(function(doc) {
                 const data = doc.data();
@@ -129,6 +123,17 @@ export default {
                 store.currentUser = korisnik;
                 console.log('Current email: ', store.currentUser);
               });
+            });*/
+           .then(doc => {
+              if(doc.exists) {              
+              console.log("Document data:", doc.data());
+              
+              store.displayName = doc.data().name;
+              store.currentUser = doc.data().email;
+              
+              } else {
+                console.log("No such document!");
+              }
             });
         } else {
           /* if (!currentRoute.meta.needsUser) {
