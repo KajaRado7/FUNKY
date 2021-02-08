@@ -419,7 +419,15 @@ export default {
     },
   },
   methods: {
-    addNewEvent() {
+    getEvent(){
+        //Promise based,omotač
+        return new Promise((resolveFn, errorFn) => {
+          this.imageReference.generateBlob((data) => {
+            resolveFn(data);
+          });
+        });
+      },
+    async addNewEvent() {
       this.submitted = true;
 
       // stop here if form is invalid
@@ -431,16 +439,14 @@ export default {
         }
         return;
       }
-      this.imageReference.generateBlob((blobData) => {
-        if (blobData != null) {
-          let imageName =
-            'posts/' + store.currentUser + '/' + Date.now() + '.png';
-
-          storage
-            .ref(imageName)
-            .put(blobData)
-            .then((result) => {
-              result.ref.getDownloadURL().then((url) => {
+     // this.imageReference.generateBlob((blobData) => {
+      //if (blobData != null) {
+       try {
+       let blobData = await this.getEvent()
+       let imageName ='posts/' + store.currentUser + '/' + Date.now() + '.png';
+       let result = await storage.ref(imageName).put(blobData);
+       let url = await result.ref.getDownloadURL();
+          console.log('Javni link', url);
                 // const newImage = this.imageReference;
                 const newEventName = this.eventName;
                 const newDate = this.date;
@@ -453,8 +459,7 @@ export default {
                 const newCapacity = this.capacity;
                 const newNote = this.note;
 
-                db.collection('posts')
-                  .add({
+       let doc = await db.collection('posts').add({
                     email: store.currentUser,
                     posted_at: Date.now(),
                     url: url,
@@ -470,7 +475,6 @@ export default {
                     capacity: newCapacity,
                     note: newNote,
                   })
-                  .then((doc) => {
                     console.log('Document: ', doc);
                     //this.imageReference = null;
                     this.eventName = null;
@@ -484,21 +488,11 @@ export default {
                     this.note = null;
                     //this.$router.push({name: "posts"})
                     this.submitted = false;
-                  })
-                  .catch((error) => {
-                    console.error('Error adding document ', error);
-                  });
-              });
-              /*.catch((error) => {
-                  console.error(error);
-                });*/
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        }
-      });
-    },
+                    this.image = false;
+    } catch (e){
+      console.e('greška', e);
+    }
+    }
   },
 };
 </script>
