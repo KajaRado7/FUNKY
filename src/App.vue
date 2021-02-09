@@ -3,9 +3,9 @@
     <div class="FunkyLogo">
       <img class="Funky" src="@/assets/Funky-AI.png" />
     </div>
-    <!--<nav class="navbar1 ">
+    <nav class="navbar1 ">
       <span class="title mb-0 h4"></span>
-    </nav> -->
+    </nav>
     <div class="col-1"></div>
     <div class="col-10">
       <div id="app">
@@ -38,8 +38,8 @@
           <router-link to="/filter">Filter</router-link>
           |
           <router-link to="/filtered">Filtered</router-link>
-          |--->
-          <router-link to="/AddEvent">Add event</router-link>
+          |
+          <router-link to="/AddEvent">Add event</router-link>--->
         </div>
         <router-view />
       </div>
@@ -110,7 +110,7 @@ export default {
           db.collection('users')
             .doc(self.store.currentUser)
             .get()
-           /* .then(function(querySnapshot) {
+            /* .then(function(querySnapshot) {
               let korisnik = {};
               querySnapshot.forEach(function(doc) {
                 const data = doc.data();
@@ -124,15 +124,14 @@ export default {
                 console.log('Current email: ', store.currentUser);
               });
             });*/
-           .then(doc => {
-              if(doc.exists) {              
-              console.log("Document data:", doc.data());
-              
-              store.displayName = doc.data().name;
-              store.currentUser = doc.data().email;
-              
+            .then((doc) => {
+              if (doc.exists) {
+                console.log('Document data:', doc.data());
+
+                store.displayName = doc.data().name;
+                store.currentUser = doc.data().email;
               } else {
-                console.log("No such document!");
+                console.log('No such document!');
               }
             });
         } else {

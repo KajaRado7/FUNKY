@@ -1,11 +1,10 @@
 <template>
   <div id="cards">
-      <a :href="info.route"><img class="card-img-top" :src="info.img" /></a>
-      <div class="card-body">
-        <p class="card-text">{{ info.naslov }}</p>
-      </div>
+    <a :href="info.route"><img class="card-img-top" :src="info.img" /></a>
+    <div class="card-body">
+      <p class="card-text">{{ info.naslov }}</p>
     </div>
-
+  </div>
 </template>
 
 <script>
@@ -32,7 +31,8 @@ export default {
 .card-img-top {
   height: 150px;
   object-fit: cover;
-  border-radius: 14%; /* zaobljenost rubova*/
+  border-radius: 14%;
+  /* zaobljenost rubova*/
 }
 .card-body {
   text-align: center;

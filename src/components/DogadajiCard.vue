@@ -1,25 +1,24 @@
 <template>
-  
-    <div class="card">
-      <img class="card-img-top" :src="info.img" />
-      <!-- info je u west gdje su sve slike navedene -->
-      <div class="card-body">
-        <p class="card-text">{{ info.naslov }}</p>
-        <div class="actions" id="heart  ">
-          <i
-            class="far fa-heart"
-            v-if="!info.heart"
-            @click="info.heart = !info.heart"
-          ></i>
-          <i
-            class="fas fa-heart red"
-            v-if="info.heart"
-            @click="info.heart = !info.heart"
-          ></i>
-        </div>
+  <div class="card">
+    <img class="card-img-top" :src="info.img" />
+    <!-- info je u west gdje su sve slike navedene -->
+    <div class="card-body">
+      <p class="card-text">{{ info.naslov }}</p>
+      <div class="actions" id="heart  ">
+        <i
+          class="far fa-heart"
+          v-if="!info.heart"
+          @click="info.heart = !info.heart"
+        ></i>
+        <i
+          class="fas fa-heart red"
+          v-if="info.heart"
+          @click="info.heart = !info.heart"
+        ></i>
       </div>
     </div>
- </template>
+  </div>
+</template>
 
 <script>
 export default {

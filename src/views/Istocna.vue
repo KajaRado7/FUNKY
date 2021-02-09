@@ -37,34 +37,33 @@ export default {
   components: {
     DogadajiCard,
   },
-  mounted(){    
+  mounted() {
     this.getPosts();
   },
   methods: {
-   getPosts(){
-        console.log("firebase dohvat..");
+    getPosts() {
+      console.log('firebase dohvat..');
 
-        db.collection('posts')
-          .get()
-          .then((query) => {
-            query.forEach(doc => {
-              const data = doc.data();
+      db.collection('posts')
+        .get()
+        .then((query) => {
+          query.forEach((doc) => {
+            const data = doc.data();
 
-              if(data.region == 'istocna'){
+            if (data.region == 'istocna') {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
                 heart: false,
-              })
-              } else {
-                console.log("Sorry,there are no events available yet ... ")
-              }
-
-            });
+              });
+            } else {
+              console.log('Sorry,there are no events available yet ... ');
+            }
+          });
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

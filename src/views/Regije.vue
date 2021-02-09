@@ -1,16 +1,20 @@
 <template>
-  <div class="container" >
+  <div class="container">
     <form id="search" class="navbar-form form-inline ml-auto">
-            <input
-              v-model="store.searchText"
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search City"
-              aria-label="Search"
-            />
-          </form>
+      <input
+        v-model="store.searchText"
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search City"
+        aria-label="Search"
+      />
+    </form>
     <div id="cards">
-      <regije-card v-for="card in filteredCards" :key="card.naslov" :info="card" />
+      <regije-card
+        v-for="card in filteredCards"
+        :key="card.naslov"
+        :info="card"
+      />
     </div>
     <footer id="footer"></footer>
   </div>
@@ -18,7 +22,7 @@
 
 <script>
 import RegijeCard from '@/components/RegijeCard.vue';
-import store from "@/store";
+import store from '@/store';
 
 let cards = [];
 
@@ -59,18 +63,18 @@ export default {
     };
   },
   computed: {
-    filteredCards(){
+    filteredCards() {
       // logika koja filtrira kartice
       let termin = this.store.searchText.toLowerCase();
       let newCards = [];
-      
+
       for (let card of this.cards) {
         if (card.naslov.toLowerCase().indexOf(termin) >= 0) {
           newCards.push(card);
         }
       }
       return newCards;
-    }, 
+    },
   },
   methods: {
     /*getFiltered(){
@@ -100,7 +104,7 @@ export default {
         });
       });
     }*/
-  }, 
+  },
   components: {
     RegijeCard,
   },
@@ -132,5 +136,4 @@ export default {
   outline: none;
   box-shadow: none;
 }
-
 </style>
