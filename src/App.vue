@@ -46,7 +46,7 @@
     </div>
 
     <!----NavigationIconBasedBottomMenu--------------------------------------------------->
-    <nav class="navbar2 fixed-bottom navbar-light ">
+    <nav class="navbar2 fixed-bottom navbar-light " v-if="store.currentUser">
       <div>
         <router-link to="/regije" class="navItem color ">
           <font-awesome-icon icon="map-marker-alt" size="2x" />
@@ -110,20 +110,6 @@ export default {
           db.collection('users')
             .doc(self.store.currentUser)
             .get()
-            /* .then(function(querySnapshot) {
-              let korisnik = {};
-              querySnapshot.forEach(function(doc) {
-                const data = doc.data();
-                korisnik = {
-                  email: data.email,
-                  name: data.name,
-                };
-                store.displayName = korisnik;
-                console.log('Current name: ', store.displayName);
-                store.currentUser = korisnik;
-                console.log('Current email: ', store.currentUser);
-              });
-            });*/
             .then((doc) => {
               if (doc.exists) {
                 console.log('Document data:', doc.data());

@@ -127,12 +127,12 @@
             <option value="istocna" >Slavonia</option>
             <option value="gorska">Mountain Croatia</option>
           </select>
-          </div>
           <div
             v-if="submitted && !$v.regions.required"
             class="invalid-feedback"
           >
             Region must be chosen!
+          </div>
           </div>
         </div>
         <br />
@@ -150,10 +150,10 @@
             class="form-control"
             id="city"
             placeholder="e.g. Pula"
-            :class="{ 'is-invalid': submitted && $v.address.$error }"
+            :class="{ 'is-invalid': submitted && $v.city.$error }"
           />
           <div
-            v-if="submitted && !$v.regions.required"
+            v-if="submitted && !$v.city.required"
             class="invalid-feedback"
           >
             City must be filled!
@@ -177,7 +177,7 @@
             :class="{ 'is-invalid': submitted && $v.address.$error }"
           />
           <div
-            v-if="submitted && !$v.regions.required"
+            v-if="submitted && !$v.address.required"
             class="invalid-feedback"
           >
             Address must be filled!
@@ -439,6 +439,7 @@ export default {
         }
         return;
       }
+      else {
      // this.imageReference.generateBlob((blobData) => {
       //if (blobData != null) {
        try {
@@ -488,9 +489,9 @@ export default {
                     this.note = null;
                     //this.$router.push({name: "posts"})
                     this.submitted = false;
-                    this.image = false;
     } catch (e){
       console.e('greška', e);
+    }
     }
     }
   },
