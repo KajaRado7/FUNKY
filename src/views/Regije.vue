@@ -10,11 +10,7 @@
       />
     </form>
     <div id="cards">
-      <regije-card
-        v-for="card in cards"
-        :key="card.naslov"
-        :info="card"
-      />
+      <regije-card v-for="card in cards" :key="card.naslov" :info="card" />
     </div>
     <footer id="footer"></footer>
   </div>
@@ -70,17 +66,15 @@ export default {
       let termin = this.store.searchText.toLowerCase();
       let newCards = [];
 
-      
-        if (data.city.toLowerCase().indexOf(termin) >= 0) {
-          newCards.push(DogadajiCard);
-        }
-      
+      if (data.city.toLowerCase().indexOf(termin) >= 0) {
+        newCards.push(DogadajiCard);
+      }
+
       return newCards;
     },
-    
   },
   methods: {
-   /*getFiltered(){
+    /*getFiltered(){
       db.collection('posts')
       .get()
       .then((query) => {
