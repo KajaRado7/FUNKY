@@ -13,6 +13,9 @@
 
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
+         <div v-if="errorMessage" class="alert alert-danger" role="alert">
+						The email address is already in use by another account.
+						</div>
         <label for="name">Full name</label>
         <input
           type="text"
@@ -165,6 +168,7 @@ export default {
         accept: '',
       },
       isSubmitted: false,
+      errorMessage: '',
     };
   },
   validations: {
@@ -229,8 +233,9 @@ export default {
 						.currentUser.updateProfile({ displayName: this.userForm.name });
 				})*/
 
-      .catch(function(error){
-        console.error('Došlo je do greške',error);
+      .catch(error => {
+        console.error(error);
+        this.errorMessage = error.message;
       });
     },
   },

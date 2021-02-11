@@ -33,7 +33,7 @@
             placeholder="Upload image"
             v-model="imageReference"
           ></croppa>
-          <div class="text-danger">{{ this.image }}</div>
+        <div class="text-danger">{{ this.image }}</div>
         </div>
         <br />
         <div class="form-group">
@@ -413,7 +413,6 @@ export default {
     city: { required },
     address: { required },
     capacity: { required },
-    imageReference: { required },
     model: {
       check: { required },
     },
@@ -429,8 +428,6 @@ export default {
       },
     async addNewEvent() {
       this.submitted = true;
-
-      // stop here if form is invalid
       this.$v.$touch();
       if (this.$v.$invalid) {
         if (!this.imageReference.hasImage()) {
@@ -439,16 +436,13 @@ export default {
         }
         return;
       }
-      else {
-     // this.imageReference.generateBlob((blobData) => {
-      //if (blobData != null) {
+
        try {
        let blobData = await this.getEvent()
        let imageName ='posts/' + store.currentUser + '/' + Date.now() + '.png';
        let result = await storage.ref(imageName).put(blobData);
        let url = await result.ref.getDownloadURL();
           console.log('Javni link', url);
-                // const newImage = this.imageReference;
                 const newEventName = this.eventName;
                 const newDate = this.date;
                 const newTime = this.time;
@@ -464,7 +458,6 @@ export default {
                     email: store.currentUser,
                     posted_at: Date.now(),
                     url: url,
-                    // image: newImage,
                     name: newEventName,
                     date: newDate,
                     time: newTime,
@@ -477,21 +470,19 @@ export default {
                     note: newNote,
                   })
                     console.log('Document: ', doc);
-                    //this.imageReference = null;
-                    this.eventName = null;
-                    (this.date = null), (this.time = null);
-                    this.city = null;
-                    this.address = null;
-                    this.eventEntry = null;
-                    this.regions = null;
-                    this.model.check = null;
-                    this.capacity = null;
-                    this.note = null;
-                    //this.$router.push({name: "posts"})
+                    this.imageReference.remove();
+                    this.eventName = '';
+                    (this.date = ''), (this.time = '');
+                    this.city = '';
+                    this.address = '';
+                    this.eventEntry = '';
+                    this.regions = '';
+                    this.model.check = '';
+                    this.capacity = '';
+                    this.note = '';
                     this.submitted = false;
     } catch (e){
       console.e('greška', e);
-    }
     }
     }
   },

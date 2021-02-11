@@ -13,6 +13,9 @@
 
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
+       <div v-if="errorMessage" class="alert alert-danger" role="alert">
+						Invalid email or password
+						</div>
         <label for="email">Email</label>
         <input
           type="email"
@@ -86,6 +89,7 @@ export default {
         email: '',
         password: '',
       },
+      errorMessage: "",
       isSubmitted: false,
     };
   },
@@ -117,18 +121,19 @@ export default {
         console.log('Uspješna prijava.', result); 
         that.$router.replace({ name: 'Regije'});  
       })
-    .catch(function(error) {
+    .catch(error => {
      // Handle Errors here.
-     var errorCode = error.code;
+     /*var errorCode = error.code;
      var errorMessage = error.message;
      if (errorCode === 'auth/wrong-password') {
      alert('Wrong password.');
     } else {
        alert(errorMessage);
-}
-console.log(error);
-});
+}*/
+console.error(error);
+this.errorMessage = error.message;
 
+});
 
     },
   },
