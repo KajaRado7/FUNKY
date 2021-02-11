@@ -41,11 +41,15 @@ export default {
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
-                heart: false,
+                heart: false,                
               })
-              } else {
+              /*if(data.region == !gorska){
                 console.log("Sorry,there are no events available yet ... ")
+              } */
+              }else if(data.region == !'gorska'){
+               ("Sorry,there are no events available yet ... ");
               }
+
 
             });
         });

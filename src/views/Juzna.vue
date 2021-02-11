@@ -59,8 +59,9 @@ export default {
                 naslov: data.name,
                 heart: false,
               })
-              }else {
+              if('sredisnja' == null){
                 console.log("Sorry,there are no events available yet ... ")
+              }
               }
             });
         });

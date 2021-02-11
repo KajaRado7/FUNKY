@@ -11,7 +11,7 @@
     </form>
     <div id="cards">
       <regije-card
-        v-for="card in filteredCards"
+        v-for="card in cards"
         :key="card.naslov"
         :info="card"
       />
@@ -22,7 +22,9 @@
 
 <script>
 import RegijeCard from '@/components/RegijeCard.vue';
+import DogadajiCard from '@/components/DogadajiCard.vue';
 import store from '@/store';
+import { db } from '@/firebase';
 
 let cards = [];
 
@@ -68,16 +70,17 @@ export default {
       let termin = this.store.searchText.toLowerCase();
       let newCards = [];
 
-      for (let card of this.cards) {
-        if (card.naslov.toLowerCase().indexOf(termin) >= 0) {
-          newCards.push(card);
+      
+        if (data.city.toLowerCase().indexOf(termin) >= 0) {
+          newCards.push(DogadajiCard);
         }
-      }
+      
       return newCards;
     },
+    
   },
   methods: {
-    /*getFiltered(){
+   /*getFiltered(){
       db.collection('posts')
       .get()
       .then((query) => {
@@ -86,19 +89,11 @@ export default {
           let termin = this.store.searchText.toLowerCase();
 
           if (data.city.toLowerCase().indexOf(termin) >= 0) {
-            this.cards.push({
+            this.DogadajiCards.push({
                 id: doc.id,
-                adress: data.adress,
-                capacity: data.capacity,
-                city: data.city,
-                date: data.date,
-                eventEntry: data.entry,
-                categories: data.model,
-                eventName: data.name,
-                note: data.note,
-                region: data.region,
-                time: data.time,
-                image: data.url,                
+                img: data.url,
+                naslov: data.name,
+                heart: false,                
               })
           }
         });
