@@ -97,19 +97,18 @@ p {
   color: #f5b85c;
 }
 .box {
-  max-width: 500px;
+  max-width: 350px;
   text-align: center;
   color: white;
   width: fixed;
   height: 340px;
-  padding: 20px 20px;
+  padding: 20px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 8px;
   background: rgba(47, 46, 46, 0.77);
   font-size: 16px;
   margin: auto;
-  margin-top: 0%;
 }
 .btn_email {
   width: fixed;

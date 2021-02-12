@@ -1,6 +1,6 @@
 <!--U doradi------------------------------------------------------------------->
 <template>
-  <div class="container" style="max-width: 500px;">
+  <div>
     <div class="buttonContainer">
       <!--Music-->
       <div class="Button1">
@@ -125,9 +125,8 @@
           <div class="choices other"><span class="otherText">Other</span></div>
         </label>
       </div>
-
-      <button class="filterBtn" @click="filter"><b>Filter</b></button>
     </div>
+    <button class="filterBtn" @click="filter"><b>Filter</b></button>
 
     <div class="result" style="margin-top: 1rem;">
       <b>Test:</b>
@@ -211,7 +210,7 @@ export default {
   width: 40%;
 }
 .Button2 {
-  width: 100%;
+  width: 80%;
 }
 .choices.other {
   height: 50px;
@@ -248,6 +247,9 @@ input:checked + label > .choices {
 }
 .result {
   color: white;
+}
+label {
+  display: block;
 }
 
 span {

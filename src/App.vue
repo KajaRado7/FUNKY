@@ -6,8 +6,8 @@
     <nav class="navbar1 ">
       <span class="title mb-0 h4"></span>
     </nav>
-    <div class="col-1"></div>
-    <div class="col-10">
+    <div class="col-md-1 col-sm-0"></div>
+    <div class="col-md-10 col-sm-12">
       <div id="app">
         <div id="nav">
           <!--  <router-link to="/">Home</router-link>
@@ -34,12 +34,12 @@
           <router-link to="/favoriti">My favorites</router-link>
           |
           <router-link to="/Informacije">Informacije</router-link>
-          |
+          |--->
           <router-link to="/filter">Filter</router-link>
           |
           <router-link to="/filtered">Filtered</router-link>
           |
-          <router-link to="/AddEvent">Add event</router-link>--->
+          <router-link to="/AddEvent">Add event</router-link>
         </div>
         <router-view />
       </div>
@@ -65,7 +65,7 @@
     </nav>
     <!----NavigationIconBasedBottomMenu--------------------------------------------------->
 
-    <div class="col-1"></div>
+    <div class="col-md-1 col-sm-0"></div>
   </div>
 </template>
 
@@ -143,7 +143,7 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 
 //promjena boje router-linkova
