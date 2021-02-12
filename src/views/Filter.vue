@@ -1,112 +1,137 @@
 <!--U doradi------------------------------------------------------------------->
 <template>
   <div class="container" style="max-width: 500px;">
-    <div class="testing">
-      <div class="buttonContainer">
-        <!--Music-->
-        <div class="Button1">
-          <input
-            type="checkbox"
-            value="Music"
-            name="events"
-            @click="setFilters('Music')"
-          />
-          <font-awesome-icon icon="music" size="4x" color="white" />
-          <label for="Music">
-            <div class="choices">Music</div>
-          </label>
-        </div>
-        <!--Games-->
-        <div class="Button1">
-          <input
-            type="checkbox"
-            value="Games"
-            name="events"
-            @click="setFilters('Games')"
-          />
-          <font-awesome-icon icon="dice" size="4x" color="white" />
-          <label for="Games">
-            <div class="choices">Games</div>
-          </label>
-        </div>
-        <!--Literature-->
-        <div class="Button1">
-          <input
-            type="checkbox"
-            value="Literature"
-            name="events"
-            @click="setFilters('Literature')"
-          />
-          <font-awesome-icon icon="book-open" size="4x" color="white" />
-          <label for="Literature">
-            <div class="choices">Literature</div>
-          </label>
-        </div>
-        <!--Art-->
-        <div class="Button1">
-          <input
-            type="checkbox"
-            value="Art"
-            name="events"
-            @click="setFilters('Art')"
-          />
-          <font-awesome-icon icon="theater-masks" size="4x" color="white" />
-          <label for="Art">
-            <div class="choices">Art</div>
-          </label>
-        </div>
-        <!--Outdoor-->
-        <div class="Button1">
-          <input
-            type="checkbox"
-            value="Outdoor"
-            name="events"
-            @click="setFilters('Outdoor')"
-          />
-          <font-awesome-icon icon="cloud-sun" size="4x" color="white" />
-          <label for="Outdoor">
-            <div class="choices">Outdoor</div>
-          </label>
-        </div>
-        <!--Indoor-->
-        <div class="Button1">
-          <input
-            type="checkbox"
-            value="Indoor"
-            name="events"
-            @click="setFilters('Indoor')"
-          />
+    <div class="buttonContainer">
+      <!--Music-->
+      <div class="Button1">
+        <input
+          type="checkbox"
+          value="Music"
+          name="events"
+          id="Music"
+          @click="setFilters('Music')"
+        />
 
-          <label for="Indoor">
-            <div class="choices">
-              <font-awesome-icon icon="home" size="4x" color="white" />
-              Indoor
-            </div>
-          </label>
-        </div>
+        <label for="Music">
+          <div class="choices">
+            <font-awesome-icon icon="music" size="4x" color="white" />
+            <span>Music</span>
+          </div>
+        </label>
       </div>
 
-      <div class="bottomBtnContainer">
-        <!--Other-->
-        <div class="Button2">
-          <input
-            type="checkbox"
-            value="Other"
-            name="events"
-            @click="setFilters('Other')"
-          />
-          <label for="Other">
-            <div class="choices">Other</div>
-          </label>
-        </div>
+      <!--Games-->
+      <div class="Button1">
+        <input
+          type="checkbox"
+          value="Games"
+          name="events"
+          id="Games"
+          @click="setFilters('Games')"
+        />
 
-        <button class="filterBtn" @click="filter"><b>Filter</b></button>
+        <label for="Games">
+          <div class="choices">
+            <font-awesome-icon icon="dice" size="4x" color="white" />
+            <span>Games</span>
+          </div>
+        </label>
       </div>
 
-      <div class="result" style="margin-top: 1rem;">
-        <b>Test:</b>
-        {{ filteredUsers }}
+      <!--Literature-->
+      <div class="Button1">
+        <input
+          type="checkbox"
+          value="Literature"
+          name="events"
+          id="Literature"
+          @click="setFilters('Literature')"
+        />
+
+        <label for="Literature">
+          <div class="choices">
+            <font-awesome-icon icon="book-open" size="4x" color="white" />
+            <span>Literature</span>
+          </div>
+        </label>
       </div>
+
+      <!--Art-->
+      <div class="Button1">
+        <input
+          type="checkbox"
+          value="Art"
+          name="events"
+          id="Art"
+          @click="setFilters('Art')"
+        />
+
+        <label for="Art">
+          <div class="choices">
+            <font-awesome-icon icon="theater-masks" size="4x" color="white" />
+            <span>Art</span>
+          </div>
+        </label>
+      </div>
+
+      <!--Outdoor-->
+      <div class="Button1">
+        <input
+          type="checkbox"
+          value="Outdoor"
+          name="events"
+          id="Outdoor"
+          @click="setFilters('Outdoor')"
+        />
+
+        <label for="Outdoor">
+          <div class="choices">
+            <font-awesome-icon icon="cloud-sun" size="4x" color="white" />
+            <span>Outdoor</span>
+          </div>
+        </label>
+      </div>
+
+      <!--Indoor-->
+      <div class="Button1">
+        <input
+          type="checkbox"
+          value="Indoor"
+          name="events"
+          id="Indoor"
+          @click="setFilters('Indoor')"
+        />
+
+        <label for="Indoor">
+          <div class="choices">
+            <font-awesome-icon icon="home" size="4x" color="white" />
+            <span>Indoor</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="bottomBtnContainer">
+      <!--Other-->
+      <div class="Button2">
+        <input
+          type="checkbox"
+          value="Other"
+          name="events"
+          id="Other"
+          @click="setFilters('Other')"
+        />
+        <label for="Other">
+          <div class="choices other"><span class="otherText">Other</span></div>
+        </label>
+      </div>
+
+      <button class="filterBtn" @click="filter"><b>Filter</b></button>
+    </div>
+
+    <div class="result" style="margin-top: 1rem;">
+      <b>Test:</b>
+      {{ filteredUsers }}
     </div>
 
     <footer id="footer"></footer>
@@ -184,35 +209,34 @@ export default {
 <style scoped>
 .Button1 {
   width: 40%;
+}
+.Button2 {
+  width: 100%;
+}
+.choices.other {
+  height: 50px;
+  border-radius: 8px;
+  border: 3px solid lightgrey;
+}
 
+.choices {
   display: flex;
   flex-direction: column;
 
   justify-content: center;
   align-items: center;
 
-  padding: 0.5rem;
-  margin: 4.7%;
-
-  border-radius: 8px;
-  border: 3px solid lightgrey;
-}
-.Button2 {
-  width: 100%;
-  margin: 4%;
-  height: 50px;
-
-  border-radius: 8px;
-  border: 3px solid lightgrey;
-}
-.choices {
   background-color: #1a1a1a;
+  padding: 15px 32px;
   font-size: 16px;
-  font-family: century gothic;
+  margin: 10px;
+
+  border-radius: 8px;
+  border: 3px solid lightgrey;
 }
-/*input {
+input {
   display: none;
-}*/
+}
 input:checked + label > .choices {
   background-color: #f5b85c !important;
 }
@@ -226,9 +250,9 @@ input:checked + label > .choices {
   color: white;
 }
 
-label {
+span {
   color: white;
-  padding-top: 5px;
+  padding: 5px 10px;
 }
 
 .buttonContainer,
@@ -242,7 +266,7 @@ label {
 .filterBtn {
   color: black;
   font-size: 16px;
-  margin-top: 9%;
+  margin-top: 5%;
   padding: 16px 32px;
 
   border: none;
