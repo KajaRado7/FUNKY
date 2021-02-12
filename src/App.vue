@@ -3,7 +3,7 @@
     <div class="FunkyLogo">
       <img class="Funky" src="@/assets/Funky-AI.png" />
     </div>
-    <nav class="navbar1 ">
+    <nav class="navbar1 " v-if="store.currentUser">
       <span class="title mb-0 h4"></span>
     </nav>
     <div class="col-md-1 col-sm-0"></div>
