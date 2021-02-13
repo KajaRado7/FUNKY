@@ -74,7 +74,7 @@ export default {
     },
   },
   methods: {
-    /*getFiltered(){
+    getFiltered(){
       db.collection('posts')
       .get()
       .then((query) => {
@@ -83,16 +83,16 @@ export default {
           let termin = this.store.searchText.toLowerCase();
 
           if (data.city.toLowerCase().indexOf(termin) >= 0) {
-            this.DogadajiCards.push({
+            this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
-                heart: false,                
+                heart: false,                  
               })
           }
         });
       });
-    }*/
+    }
   },
   components: {
     RegijeCard,

@@ -105,6 +105,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Filtered.vue'),
   },
+  
  
 ];
 

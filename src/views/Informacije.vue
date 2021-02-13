@@ -47,7 +47,8 @@ export default {
                 note: data.note,
                 region: data.region,
                 time: data.time,
-                image: data.url,                
+                image: data.url,  
+                               
               })
           });
           });
