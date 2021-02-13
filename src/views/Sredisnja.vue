@@ -1,11 +1,11 @@
 <template>
   <div class="container" style="max-width: 500px;">
-    <div is="cards">
+    <div id="cards">
       <dogadaji-card v-for="card in cards" :key="card.naslov" :info="card" />
       <!-- :key mora svugdje biti drugaciji tj imati nesta jedinstveno iz polja poput naslova-->
       <!-- kada stavimo : onda ovaj = prima js  ako stavim samo info prenjet ce se string -->
+      </div>
       <footer id="footer"></footer>
-    </div>
   </div>
 </template>
 

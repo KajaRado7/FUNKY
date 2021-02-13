@@ -223,7 +223,7 @@
                 v-model="model.check"
                 type="checkbox"
                 name="exampleCheckBoxes"
-                id="exampleCheck1"
+                id="Music"
                 value="Music"
                 checked
               />
@@ -238,7 +238,7 @@
                 type="checkbox"
                 v-model="model.check"
                 name="exampleCheckBoxes"
-                id="exampleCheck2"
+                id="Games"
                 value="Games"
               />
               Games
@@ -251,7 +251,7 @@
                 v-model="model.check"
                 type="checkbox"
                 name="exampleCheckBoxes"
-                id="exampleCheck3"
+                id="Literature"
                 value="Literature"
               />
               Literature
@@ -264,7 +264,7 @@
                 v-model="model.check"
                 type="checkbox"
                 name="exampleCheckBoxes"
-                id="exampleCheck4"
+                id="Art"
                 value="Art"
               />
               Art
@@ -277,7 +277,7 @@
                 v-model="model.check"
                 type="checkbox"
                 name="exampleCheckBoxes"
-                id="exampleCheck5"
+                id="Outdoor"
                 value="Outdoor"
               />
               Outdoor
@@ -290,7 +290,7 @@
                 v-model="model.check"
                 type="checkbox"
                 name="exampleCheckBoxes"
-                id="exampleCheck6"
+                id="Indoor"
                 value="Indoor"
               />
               Indoor
@@ -308,7 +308,7 @@
                 type="checkbox"
                 checked="checked"
                 name="exampleCheckBoxes"
-                id="exampleCheck7"
+                id="Other"
                 value="Other"
                 @change="$v.model.check.$touch()"
               />

@@ -1,33 +1,34 @@
 <template>
   <div class="container" style="max-width: 500px;">
-    <div>
-      
+    <div id="cards">
+      <dogadaji-card v-for="card in cards" :key="card.naslov" :info="card" />
     </div>
     <footer id="footer"></footer>
   </div>
 </template>
-
 <script>
-import store from '@/store';
+
 import DogadajiCard from '@/components/DogadajiCard.vue';
-import { firebase } from '@/firebase';
 import { db } from '@/firebase';
-import router from '@/router';
 
 export default {
   name: 'Favoriti',
-  data() {
+  props: ['info'],
+  data: function() {
     return {
-      store,
       cards: [],
     };
   },
   components: {
     DogadajiCard,
   },
+  
+  mounted(){    
+    this.getFav();
+  },
    methods: {
        
-    getPosts() {
+    getFav() {
       console.log('dohvat..');
 
       db.collection('posts')
@@ -35,12 +36,12 @@ export default {
         .then((query) => {
           query.forEach((doc) => {
             const data = doc.data();
-            if (heart == true) {
+            if (data.info.heart = !data.info.heart) {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
-                heart: false,
+                heart: true,
 
    })
             }
@@ -49,3 +50,10 @@ export default {
     }
    }
 }
+</script>
+<style scoped>
+#cards {
+  max-width: 500px;
+  align-content: center;
+}
+</style>
