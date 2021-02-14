@@ -10,6 +10,7 @@
 <script>
 import InformacijeCard from '@/components/InformacijeCard.vue';
 import { db } from '@/firebase';
+import DogadajiCard from '../components/DogadajiCard.vue';
 
 
 export default {
@@ -21,7 +22,7 @@ export default {
     },
     components: {
       InformacijeCard,
-    },
+      },
     mounted(){    
     this.getInfo();
     },
@@ -35,6 +36,7 @@ export default {
           query.forEach((doc) => {
               const data = doc.data();
 
+          if(data.eventName == data.eventName){
               this.cards.push({
                 id: doc.id,
                 adress: data.adress,
@@ -47,12 +49,13 @@ export default {
                 note: data.note,
                 region: data.region,
                 time: data.time,
-                image: data.url,  
-                               
+                image: data.url,                                 
               })
+          }
           });
           });
     },
+    
 }
 }
 </script>

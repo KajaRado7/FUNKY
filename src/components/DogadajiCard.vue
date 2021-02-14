@@ -1,9 +1,12 @@
 <template>
   <div class="card">
+    <button type="button" @click="myfuntion()">
     <img class="card-img-top" :src="info.img" />
     <!-- info je u west gdje su sve slike navedene -->
+    </button>
     <div class="card-body">
-      <p class="card-text">{{ info.naslov }}</p>
+      <p class="card-text" value="naslov">{{ info.naslov }}</p>
+      
       <div class="actions" id="heart  ">
         <i
           class="far fa-heart"
@@ -21,6 +24,10 @@
 </template>
 
 <script>
+import InformacijeCard from '@/components/InformacijeCard.vue';
+import { db } from '@/firebase';
+import DogadajiCard from '../components/DogadajiCard.vue';
+
 export default {
   data: function() {
     return {
@@ -29,6 +36,14 @@ export default {
   },
   props: ['info'],
   name: 'DogadajiCard',
+  methods: {
+    myfuntion(){           
+          this.$router.push({
+            name: 'Informacije'
+          });          
+    }
+    
+  }
 };
 </script>
 

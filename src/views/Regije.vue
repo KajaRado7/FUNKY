@@ -28,7 +28,7 @@ cards = [
   {
     img: require('@/assets/zagreb.png'),
     naslov: 'Central Croatia',
-    route: '/Sredisnja',
+    /*route: '/Sredisnja',*/
   },
   {
     img: require('@/assets/dubrovnik.jpg'),
@@ -61,7 +61,7 @@ export default {
     };
   },
   computed: {
-    filteredCards() {
+    /*filteredCards() {
       // logika koja filtrira kartice
       let termin = this.store.searchText.toLowerCase();
       let newCards = [];
@@ -71,7 +71,7 @@ export default {
       }
 
       return newCards;
-    },
+    },*/
   },
   methods: {
     getFiltered() {

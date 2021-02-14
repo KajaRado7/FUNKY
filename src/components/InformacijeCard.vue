@@ -5,10 +5,11 @@
       <div class="card-body">
                
         <div class="form-group">
-          <label for="eventName">
-            Event name
-            <span class="text-danger ml-1">{{info.eventName }}</span>
-          </label>
+         
+          <label for="eventName">            
+            Event name            
+           <span class="text-danger ml-1">{{info.eventName }}</span>    
+        </label>           
         </div>
 
         <div class="form-group">
@@ -41,7 +42,7 @@
         <div class="form-group">
           <label for="address">
             Address
-            <span class="text-danger ml-1">{{ info.adress }}</span>
+            <span class="text-danger ml-1">{{ info.address }}</span>
           </label>
         </div>
 
@@ -75,15 +76,16 @@
 </template>
 
 <script>
+import { db } from '@/firebase';
+
 export default {
     props: ['info'],
-    name: 'InformacijeCard',
-     
+    name: 'InformacijeCard',     
 };
 </script>
 
 <style scoped>
-#cards {
+/*#cards {
   margin-bottom: 25px;
   margin-top: 17px;
   border-bottom: none;
@@ -93,13 +95,41 @@ export default {
   border-right: none;
   border-top: none;
   background-color: #1a1a1a;
+}*/
+.form-control,
+select {
+  width: 100%;
+}
+#footer {
+  width: 100%;
+  height: 80px;
 }
 .card-img-top {
   height: 150px;
   object-fit: cover;
   border-radius: 14%; /* zaobljenost rubova*/
+}¸
+.form-control {
+  margin-bottom: 8px;
+  margin-top: 10px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid #f5b85c;
+  background-color: #1a1a1a;
+  color: #d0d0d0;
+  outline: none;
+  box-shadow: none;
 }
-.card-body {
+.form-control:focus,
+.form-control:active {
+  background: #1a1a1a;
+  color: white;
+  box-shadow: none;
+  border-bottom: 2px solid #f5b85c;
+}
+
+/*.card-body {
   text-align: center;
   margin-top: -5px;
   margin-bottom: 5px;
@@ -110,5 +140,5 @@ export default {
   font-size: 18px;
   margin-left: -10px;
   color: #d0d0d0;
-}
+}*/
 </style>

@@ -36,7 +36,7 @@ export default {
         .then((query) => {
           query.forEach((doc) => {
             const data = doc.data();
-            if (data.info.heart = !data.info.heart) {
+            if (data.heart == true) {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
