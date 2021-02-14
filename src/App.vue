@@ -3,9 +3,42 @@
     <div class="FunkyLogo">
       <img class="Funky" src="@/assets/Funky-AI.png" />
     </div>
-    <nav class="navbar1 " v-if="store.currentUser">
-      <span class="title mb-0 h4"></span>
+    <!---TopNavbar----------------------------------------------------------------------->
+    <nav class="topNavbar">
+      <span class="title mb-0 h4" v-if="checkRoute('Regije')">Regions</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Filter')">Filter</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Filtered')">Filtered</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Favoriti')">
+        My Favorites
+      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Informacije')">
+        Informations
+      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Account')">Account</span>
+      <span class="title mb-0 h4" v-if="checkRoute('AddEvent')">Add Event</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Login')">
+        <font-awesome-icon icon="arrow-left" transform=" left-80" />
+        Login
+      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Registracija')">
+        <font-awesome-icon icon="arrow-left" transform=" left-80" />
+        Registration
+      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Home')">
+        Create Account
+      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Juzna')">Dalmatia</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Istocna')">Slavonia</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Gorska')">
+        Mountain Croatia
+      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Sredisnja')">
+        Central Croatia
+      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Zapadna')">Istria</span>
     </nav>
+
+    <!---TopNavbar----------------------------------------------------------------------->
     <div class="col-md-1 col-sm-0"></div>
     <div class="col-md-10 col-sm-12">
       <div id="app">
@@ -34,21 +67,24 @@
           <router-link to="/favoriti">My favorites</router-link>
           |
           <router-link to="/Informacije">Informacije</router-link>
-          |--->
+          |
           <router-link to="/filter">Filter</router-link>
           |
           <router-link to="/filtered">Filtered</router-link>
           |
           <router-link to="/AddEvent">Add event</router-link>
           |
-          <router-link to="/Informacije">Informacije</router-link>
+          <router-link to="/Informacije">Informacije</router-link>--->
         </div>
         <router-view />
       </div>
     </div>
 
     <!----NavigationIconBasedBottomMenu--------------------------------------------------->
-    <nav class="navbar2 fixed-bottom navbar-light " v-if="store.currentUser">
+    <nav
+      class="bottomNavbar fixed-bottom navbar-light "
+      v-if="store.currentUser"
+    >
       <div>
         <router-link to="/regije" class="navItem color ">
           <font-awesome-icon icon="map-marker-alt" size="2x" />
@@ -88,6 +124,11 @@ export default {
     this.created();
   },
   methods: {
+    checkRoute(route) {
+      // Top Navbar -> prikaz el. ovisno na kojoj stranici se nalazimo
+      if (this.$route.name == route) return true;
+      else return false;
+    },
     logout() {
       firebase
         .auth()
@@ -140,6 +181,9 @@ export default {
 </script>
 
 <style lang="scss">
+.title {
+  margin: auto;
+}
 .Funky {
   max-width: 55%;
   display: block;
@@ -152,15 +196,15 @@ export default {
 .color:focus {
   color: #f5b85c;
 }
-.navbar1 {
+.topNavbar {
   width: 100%;
   height: 50px;
   background-color: #f5b85c;
-
+  padding: 9px;
   justify-content: center;
   text-align: center;
 }
-.navbar2 {
+.bottomNavbar {
   justify-content: space-evenly;
   display: flex;
 
@@ -209,10 +253,10 @@ export default {
   padding: 30px;
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: grey;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #f5b85c;
     }
   }
 }

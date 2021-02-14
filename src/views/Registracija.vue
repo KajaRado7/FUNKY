@@ -3,19 +3,11 @@
     class="container"
     style="max-width: 500px; text-align: left; color:white"
   >
-    <div
-      class="alert alert-success"
-      role="alert"
-      style="max-width: 500px; text-align: center; background-color: #F5B85C; border-radius: 15px; color: black"
-    >
-      <h2 class="alert-heading">Registration</h2>
-    </div>
-
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
-         <div v-if="errorMessage" class="alert alert-danger" role="alert">
-						The email address is already in use by another account.
-						</div>
+        <div v-if="errorMessage" class="alert alert-danger" role="alert">
+          The email address is already in use by another account.
+        </div>
         <label for="name">Full name</label>
         <input
           type="text"
@@ -150,11 +142,10 @@
 </template>
 
 <script>
-import {firebase} from '@/firebase';
+import { firebase } from '@/firebase';
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
 import { db } from '@/firebase';
 import store from '@/store';
-
 
 export default {
   name: 'Registracija',
@@ -197,9 +188,8 @@ export default {
   },
   methods: {
     handleSubmit() {
-      
-      let id= this.userForm.email;
-      let that=this;
+      let id = this.userForm.email;
+      let that = this;
       that.isSubmitted = true;
       that.$v.$touch();
       if (that.$v.$invalid) {
@@ -207,36 +197,41 @@ export default {
       }
 
       firebase
-      .auth()
-      .createUserWithEmailAndPassword(that.userForm.email,that.userForm.password)
-      .then(function()   { 
-        db.collection("users").doc(id).set({
-          name: that.userForm.name,
-          email: that.userForm.email,
-          password: that.userForm.password
+        .auth()
+        .createUserWithEmailAndPassword(
+          that.userForm.email,
+          that.userForm.password
+        )
+        .then(function() {
+          db.collection('users')
+            .doc(id)
+            .set({
+              name: that.userForm.name,
+              email: that.userForm.email,
+              password: that.userForm.password,
+            })
+            .then((doc) => {
+              console.log('Spremljeno', doc.id);
+            })
+            .catch(function(error) {
+              console.error('Došlo je do greške', error);
+            });
+          store.displayName = that.userForm.name;
+          store.currentUser = that.userForm.email;
+          store.password = that.userForm.password;
+
+          that.$router.replace({ name: 'Regije' });
         })
-        .then((doc) => {
-              console.log("Spremljeno", doc.id)
-          })
-        .catch(function(error){
-        console.error('Došlo je do greške',error);
-      });
-      store.displayName = that.userForm.name;
-      store.currentUser = that.userForm.email;
-      store.password = that.userForm.password;
-          
-              that.$router.replace({name: "Regije" });  
-        })
-      /*.then(() => {
+        /*.then(() => {
 					firebase
 						.auth()
 						.currentUser.updateProfile({ displayName: this.userForm.name });
 				})*/
 
-      .catch(error => {
-        console.error(error);
-        this.errorMessage = error.message;
-      });
+        .catch((error) => {
+          console.error(error);
+          this.errorMessage = error.message;
+        });
     },
   },
 };

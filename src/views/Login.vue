@@ -3,19 +3,11 @@
     class="container"
     style="max-width: 500px; text-align: left; color:white"
   >
-    <div
-      class="alert alert-success"
-      role="alert"
-      style="max-width: 500px; text-align: center; background-color: #F5B85C; border-radius: 15px; color: black"
-    >
-      <h2 class="alert-heading">Login</h2>
-    </div>
-
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
-       <div v-if="errorMessage" class="alert alert-danger" role="alert">
-						Invalid email or password
-						</div>
+        <div v-if="errorMessage" class="alert alert-danger" role="alert">
+          Invalid email or password
+        </div>
         <label for="email">Email</label>
         <input
           type="email"
@@ -28,11 +20,11 @@
         />
         <div
           v-if="isSubmitted && $v.userForm.email.$error"
-          class="invalid-feedback"  >   
-         <span v-if="!$v.userForm.email.required">
+          class="invalid-feedback"
+        >
+          <span v-if="!$v.userForm.email.required">
             Email field is required
           </span>
-
         </div>
       </div>
       <br />
@@ -50,7 +42,8 @@
         />
         <div
           v-if="isSubmitted && $v.userForm.password.$error"
-          class="invalid-feedback" >
+          class="invalid-feedback"
+        >
           <span v-if="!$v.userForm.password.required">
             Password field is required
           </span>
@@ -64,22 +57,21 @@
           <b>Login</b>
         </button>
         <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import {firebase} from '@/firebase';
+import { firebase } from '@/firebase';
 import { required, email, sameAs } from 'vuelidate/lib/validators';
-
 
 export default {
   name: 'Login',
@@ -89,7 +81,7 @@ export default {
         email: '',
         password: '',
       },
-      errorMessage: "",
+      errorMessage: '',
       isSubmitted: false,
     };
   },
@@ -101,40 +93,38 @@ export default {
       },
       password: {
         required,
-        sameAsPassword:  sameAs('password'),
+        sameAsPassword: sameAs('password'),
       },
     },
   },
   methods: {
     handleSubmit() {
-      let that=this;
+      let that = this;
       this.isSubmitted = true;
       this.$v.$touch();
       if (this.$v.$invalid) {
         return;
       }
-      console.log("login..." + this.userForm.email);
+      console.log('login...' + this.userForm.email);
       firebase
-      .auth()
-      .signInWithEmailAndPassword(this.userForm.email,this.userForm.password)
-      .then(function(result) {
-        console.log('Uspješna prijava.', result); 
-        that.$router.replace({ name: 'Regije'});  
-      })
-    .catch(error => {
-     // Handle Errors here.
-     /*var errorCode = error.code;
+        .auth()
+        .signInWithEmailAndPassword(this.userForm.email, this.userForm.password)
+        .then(function(result) {
+          console.log('Uspješna prijava.', result);
+          that.$router.replace({ name: 'Regije' });
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          /*var errorCode = error.code;
      var errorMessage = error.message;
      if (errorCode === 'auth/wrong-password') {
      alert('Wrong password.');
     } else {
        alert(errorMessage);
 }*/
-console.error(error);
-this.errorMessage = error.message;
-
-});
-
+          console.error(error);
+          this.errorMessage = error.message;
+        });
     },
   },
 };

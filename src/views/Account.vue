@@ -4,14 +4,6 @@
     style="max-width: 500px;text-align: left; color: white"
   >
     <div id="myAccount">
-      <div
-        style="max-width: 500px; text-align: center; background-color: #F5B85C; border-radius: 15px; color: black; padding: 16px 32px;"
-      >
-        <h2>My account</h2>
-      </div>
-      <br />
-      <br />
-
       <label>Full name</label>
       <br />
       <br />

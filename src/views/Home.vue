@@ -1,26 +1,27 @@
 <template>
-  <div class="box">
-    <p class="account">Create your account</p>
-    <router-link to="/Registracija">
-      <button class="btn_email">
-        <font-awesome-icon class="emailIcon" icon="envelope" size="lg" />
-        <b>Create account with email</b>
+  <div id="box">
+    <div class="boxElements">
+      <router-link to="/Registracija">
+        <button class="btn_email">
+          <font-awesome-icon class="emailIcon" icon="envelope" size="lg" />
+          <b>Create account with email</b>
+        </button>
+      </router-link>
+      <br />
+      <br />
+      <button class="btn_google" @click="loginWithGoogle()" type="button">
+        <font-awesome-icon
+          class="googleIcon"
+          :icon="['fab', 'google']"
+          size="lg"
+        />
+        <b>Sign in with Google</b>
       </button>
-    </router-link>
-    <br />
-    <br />
-    <button class="btn_google" @click="loginWithGoogle()" type="button">
-      <font-awesome-icon
-        class="googleIcon"
-        :icon="['fab', 'google']"
-        size="lg"
-      />
-      <b>Sign in with Google</b>
-    </button>
-    <br />
-    <br />
-    <p>Already have an account ?</p>
-    <router-link to="/Login" class="login-link"><b>Login</b></router-link>
+      <br />
+      <br />
+      <p>Already have an account ?</p>
+      <router-link to="/Login" class="login-link"><b>Login</b></router-link>
+    </div>
   </div>
 </template>
 
@@ -44,6 +45,11 @@ export default {
     };
   },
   methods: {
+    checkRoute(route) {
+      // Background image
+      if (this.$route.name == route) return true;
+      else return false;
+    },
     loginWithGoogle() {
       console.log('Login with google');
       const provider = new firebase.auth.GoogleAuthProvider();
@@ -102,12 +108,15 @@ p {
 .login-link {
   color: #f5b85c;
 }
-.box {
+.boxElements {
+  margin-top: 13px;
+}
+#box {
   max-width: 350px;
   text-align: center;
   color: white;
   width: fixed;
-  height: 340px;
+  height: 290px;
   padding: 20px;
   box-sizing: border-box;
   border-radius: 8px;

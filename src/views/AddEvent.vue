@@ -7,17 +7,6 @@
              color: white"
     >
       <form @submit.prevent="addNewEvent">
-        <br />
-        <br />
-        <div
-          class="alert alert-success"
-          role="alert"
-          style="max-width: 500px; text-align: center; background-color: #F5B85C; border-radius: 15px; color: black"
-        >
-          <h2 class="alert-heading">Add event</h2>
-        </div>
-        <br />
-        <br />
         <div class="mainDiv">
           <div style="text-align: left;">
             <label for="addEventPicture">
@@ -27,13 +16,13 @@
           </div>
           <br />
           <croppa
-          class="imageZone"
+            class="imageZone"
             :width="260"
             :height="150"
             placeholder="Upload image"
             v-model="imageReference"
           ></croppa>
-        <div class="text-danger">{{ this.image }}</div>
+          <div class="text-danger">{{ this.image }}</div>
         </div>
         <br />
         <div class="form-group">
@@ -43,8 +32,8 @@
           </label>
 
           <!-- DEJANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
-          <input 
-            type="text" 
+          <input
+            type="text"
             maxlength="27"
             name="eName"
             v-model="eventName"
@@ -60,8 +49,8 @@
             Event name must be filled!
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         <div class="form-group">
           <label for="date">
@@ -81,8 +70,8 @@
             Date must be filled!
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         <div class="form-group">
           <label for="time">
@@ -102,8 +91,8 @@
             Time must be filled!
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         <div class="form-group">
           <label for="region">
@@ -113,26 +102,26 @@
           <br />
           <br />
           <div class="chooseRegion">
-          <select
-            name="region"
-            class="select"
-            id="region-select"
-            v-model="regions"
-            :class="{ 'is-invalid': submitted && $v.regions.$error }"
-          >
-            <option disabled selected>--Please choose a region--</option>
-            <option value="sredisnja" >Central Croatia</option>
-            <option value="juzna" >Dalmatia</option>
-            <option value="zapadna">Istria</option>
-            <option value="istocna" >Slavonia</option>
-            <option value="gorska">Mountain Croatia</option>
-          </select>
-          <div
-            v-if="submitted && !$v.regions.required"
-            class="invalid-feedback"
-          >
-            Region must be chosen!
-          </div>
+            <select
+              name="region"
+              class="select"
+              id="region-select"
+              v-model="regions"
+              :class="{ 'is-invalid': submitted && $v.regions.$error }"
+            >
+              <option disabled selected>--Please choose a region--</option>
+              <option value="sredisnja">Central Croatia</option>
+              <option value="juzna">Dalmatia</option>
+              <option value="zapadna">Istria</option>
+              <option value="istocna">Slavonia</option>
+              <option value="gorska">Mountain Croatia</option>
+            </select>
+            <div
+              v-if="submitted && !$v.regions.required"
+              class="invalid-feedback"
+            >
+              Region must be chosen!
+            </div>
           </div>
         </div>
         <br />
@@ -152,15 +141,12 @@
             placeholder="e.g. Pula"
             :class="{ 'is-invalid': submitted && $v.city.$error }"
           />
-          <div
-            v-if="submitted && !$v.city.required"
-            class="invalid-feedback"
-          >
+          <div v-if="submitted && !$v.city.required" class="invalid-feedback">
             City must be filled!
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         <div class="form-group">
           <label for="address">
@@ -183,8 +169,8 @@
             Address must be filled!
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         <div class="form-group">
           <label for="eventEntry">
@@ -207,8 +193,8 @@
             Event entry must be filled!
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         <div class="form-group">
           <label for="categories">
@@ -315,7 +301,7 @@
               Other
               <span class="checkmark"></span>
             </label>
-            <br/>
+            <br />
             <div
               v-if="submitted && $v.model.check.$error"
               class="invalid-feedback"
@@ -329,8 +315,8 @@
             </div>
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         <div class="form-group">
           <label for="capacity">
@@ -353,8 +339,8 @@
             Capacity must be filled!
           </div>
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
 
         <div class="form-group">
           <label for="note">Note:</label>
@@ -418,14 +404,14 @@ export default {
     },
   },
   methods: {
-    getEvent(){
-        //Promise based,omotač
-        return new Promise((resolveFn, errorFn) => {
-          this.imageReference.generateBlob((data) => {
-            resolveFn(data);
-          });
+    getEvent() {
+      //Promise based,omotač
+      return new Promise((resolveFn, errorFn) => {
+        this.imageReference.generateBlob((data) => {
+          resolveFn(data);
         });
-      },
+      });
+    },
     async addNewEvent() {
       this.submitted = true;
       this.$v.$touch();
@@ -437,54 +423,55 @@ export default {
         return;
       }
 
-       try {
-       let blobData = await this.getEvent()
-       let imageName ='posts/' + store.currentUser + '/' + Date.now() + '.png';
-       let result = await storage.ref(imageName).put(blobData);
-       let url = await result.ref.getDownloadURL();
-          console.log('Javni link', url);
-                const newEventName = this.eventName;
-                const newDate = this.date;
-                const newTime = this.time;
-                const newCity = this.city;
-                const newAddress = this.address;
-                const newRegion = this.regions;
-                const newEventEntry = this.eventEntry;
-                const check = this.model.check;
-                const newCapacity = this.capacity;
-                const newNote = this.note;
+      try {
+        let blobData = await this.getEvent();
+        let imageName =
+          'posts/' + store.currentUser + '/' + Date.now() + '.png';
+        let result = await storage.ref(imageName).put(blobData);
+        let url = await result.ref.getDownloadURL();
+        console.log('Javni link', url);
+        const newEventName = this.eventName;
+        const newDate = this.date;
+        const newTime = this.time;
+        const newCity = this.city;
+        const newAddress = this.address;
+        const newRegion = this.regions;
+        const newEventEntry = this.eventEntry;
+        const check = this.model.check;
+        const newCapacity = this.capacity;
+        const newNote = this.note;
 
-       let doc = await db.collection('posts').add({
-                    email: store.currentUser,
-                    posted_at: Date.now(),
-                    url: url,
-                    name: newEventName,
-                    date: newDate,
-                    time: newTime,
-                    city: newCity,
-                    address: newAddress,
-                    region: newRegion,
-                    entry: newEventEntry,
-                    model: check,
-                    capacity: newCapacity,
-                    note: newNote,
-                  })
-                    console.log('Document: ', doc);
-                    this.imageReference.remove();
-                    this.eventName = '';
-                    (this.date = ''), (this.time = '');
-                    this.city = '';
-                    this.address = '';
-                    this.eventEntry = '';
-                    this.regions = '';
-                    this.model.check = '';
-                    this.capacity = '';
-                    this.note = '';
-                    this.submitted = false;
-    } catch (e){
-      console.e('greška', e);
-    }
-    }
+        let doc = await db.collection('posts').add({
+          email: store.currentUser,
+          posted_at: Date.now(),
+          url: url,
+          name: newEventName,
+          date: newDate,
+          time: newTime,
+          city: newCity,
+          address: newAddress,
+          region: newRegion,
+          entry: newEventEntry,
+          model: check,
+          capacity: newCapacity,
+          note: newNote,
+        });
+        console.log('Document: ', doc);
+        this.imageReference.remove();
+        this.eventName = '';
+        (this.date = ''), (this.time = '');
+        this.city = '';
+        this.address = '';
+        this.eventEntry = '';
+        this.regions = '';
+        this.model.check = '';
+        this.capacity = '';
+        this.note = '';
+        this.submitted = false;
+      } catch (e) {
+        console.e('greška', e);
+      }
+    },
   },
 };
 </script>
@@ -579,7 +566,7 @@ img.preview {
   cursor: pointer;
   margin-top: 1rem;
 }
-.imageZone{
+.imageZone {
   background: #1a1a1a;
   border: 3px dashed #f5b85c;
 }
@@ -587,13 +574,13 @@ img.preview {
   border: 4px solid #f5b85c;
 }
 .checkbox > input:checked {
-    border: 1px solid  #f5b85c;
-    background-color:  #f5b85c;
-    box-shadow: inset 0px 0px 0px 4px #f5b85c;
+  border: 1px solid #f5b85c;
+  background-color: #f5b85c;
+  box-shadow: inset 0px 0px 0px 4px #f5b85c;
 }
-.checkbox > input{
+.checkbox > input {
   border: 2px solid #f5b85c;
-  background-color:  #1a1a1a;
+  background-color: #1a1a1a;
   box-shadow: none;
 }
 </style>
