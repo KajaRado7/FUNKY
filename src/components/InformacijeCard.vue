@@ -1,74 +1,93 @@
 <template>
   
-    <div id="cards">
+    <div id="cards" style="text-align: left; color: white;">
       <img class="card-img-top" :src="info.image" />
+      <br/>
+      <br/>
+      <div class="hr"></div>
+
       <div class="card-body">
                
         <div class="form-group">
          
           <label for="eventName">            
-            Event name            
-           <span class="text-danger ml-1">{{info.eventName }}</span>    
+            Event name:          
+           <span class="text">{{info.eventName }}</span>    
         </label>           
         </div>
+        <br/>
 
         <div class="form-group">
             <label for="date">
-              Date
-            <span class="text-danger ml-1">{{ info.date }}</span>
+              Date:
+            <span class="text">{{ info.date }}</span>
             </label>
-          <br />
         </div>
+        <br/>
+
         <div class="form-group">
           <label for="time">
-            Time
-            <span class="text-danger ml-1">{{ info.time }}</span>
+            Time:
+            <span class="text">{{ info.time }}</span>
           </label>
         </div>
+        <br/>
 
         <div class="form-group">
             <label for="region">
-            Region
-            <span class="text-danger ml-1">{{ info.region }}</span>
+            Region:
+            <span class="text">{{ info.region }}</span>
           </label>
         </div>
+        <br/>
+
         <div class="form-group">
           <label for="city">
-            City
-            <span class="text-danger ml-1">{{ info.city }}</span>
+            City:
+            <span class="text">{{ info.city }}</span>
           </label>
         </div>
+        <br/>
 
         <div class="form-group">
           <label for="address">
-            Address
-            <span class="text-danger ml-1">{{ info.address }}</span>
+            Address:
+            <span class="text">{{ info.address }}</span>
           </label>
         </div>
+        <br/>
 
         <div class="form-group">
           <label for="eventEntry">
-            Event entry
-            <span class="text-danger ml-1">{{ info.eventEntry }}</span>
+            Event entry:
+            <span class="text">{{ info.eventEntry }}</span>
           </label>
         </div>
+        <br/>
 
         <div class="form-group">
           <label for="categories">
             Categories:
-            <span class="text-danger ml-1">{{ info.categories }}</span>
+            <span class="text">{{ info.categories }}</span>
           </label>
         </div>
+        <br/>
+
         <div class="form-group">
           <label for="capacity">
-            Capacity
-            <span class="text-danger ml-1">{{ info.capacity }}</span>
+            Capacity:
+            <span class="text">{{ info.capacity }}</span>
           </label>
         </div>
+        <br/>
+
         <div class="form-group">
-          <label for="note">Note:</label>
-          {{ info.note }}
+          <label for="note">
+            Note:
+            <span class="text">{{ info.note }}</span>
+          </label>
         </div>
+        <br/>
     </div>
     </div>
   
@@ -141,4 +160,15 @@ select {
   margin-left: -10px;
   color: #d0d0d0;
 }*/
+
+.text {
+  color: #f5b85c;
+}
+.hr {
+  display: block;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
+  color: #f5b85c;
+}
 </style>

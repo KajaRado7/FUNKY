@@ -84,6 +84,6 @@ export default {
   overflow: hidden;
   border-style: inset;
   border-width: 1px;
-  color: white;
+  color: #f5b85c;
 }
 </style>

@@ -28,7 +28,7 @@ cards = [
   {
     img: require('@/assets/zagreb.png'),
     naslov: 'Central Croatia',
-    /*route: '/Sredisnja',*/
+    route: '/Sredisnja',
   },
   {
     img: require('@/assets/dubrovnik.jpg'),

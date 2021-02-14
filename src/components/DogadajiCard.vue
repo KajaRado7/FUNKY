@@ -6,8 +6,9 @@
     </button>
     <div class="card-body">
       <p class="card-text" value="naslov">{{ info.naslov }}</p>
-      
-      <div class="actions" id="heart  ">
+     
+      <div class="actions" id="heart">
+        <button type="button" @click="clickheart()">
         <i
           class="far fa-heart"
           v-if="!info.heart"
@@ -18,6 +19,7 @@
           v-if="info.heart"
           @click="info.heart = !info.heart"
         ></i>
+        </button>
       </div>
     </div>
   </div>
@@ -29,18 +31,26 @@ import { db } from '@/firebase';
 import DogadajiCard from '../components/DogadajiCard.vue';
 
 export default {
+  props: ['info'],
+  name: 'DogadajiCard',
   data: function() {
     return {
       heart: false,
     };
   },
-  props: ['info'],
-  name: 'DogadajiCard',
+  mounted() {
+     this.clickheart();
+  },
   methods: {
     myfuntion(){           
           this.$router.push({
             name: 'Informacije'
           });          
+    },
+    
+    clickheart(){
+       if(heart){
+       }
     }
     
   }
@@ -65,7 +75,7 @@ export default {
 .card-img-top {
   height: 150px;
   object-fit: cover;
-  border-radius: 14%; /* zaobljenost rubova*/
+  border-radius: 0%; /* zaobljenost rubova*/
 }
 
 .card-body {
