@@ -71,6 +71,12 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-image: url('~@/assets/pozadina2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 .googleIcon {
   margin-right: 10px;
 }
@@ -104,7 +110,6 @@ p {
   height: 340px;
   padding: 20px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
   border-radius: 8px;
   background: rgba(47, 46, 46, 0.77);
   font-size: 16px;

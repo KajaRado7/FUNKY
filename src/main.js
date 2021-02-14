@@ -23,6 +23,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faFrown } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
 
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import { faDice } from '@fortawesome/free-solid-svg-icons';
@@ -39,6 +40,7 @@ library.add(faHeart); // <font-awesome-icon icon="heart" />
 library.add(faArrowLeft); // <font-awesome-icon icon="arrow-left" />
 library.add(faFrown); // <font-awesome-icon icon="frown" /> --> tuzan smajl
 library.add(faEnvelope); // <font-awesome-icon icon="envelope" />
+library.add(faSlidersH); // <font-awesome-icon icon="sliders-h" />
 
 library.add(faMusic); // <font-awesome-icon icon="music" />
 library.add(faDice); // <font-awesome-icon icon="dice" />
