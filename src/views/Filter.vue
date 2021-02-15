@@ -138,70 +138,70 @@
 </template>
 
 <script>
-import store from '@/store.js';
+import store from "@/store.js";
 
 export default {
-  name: 'Filter',
+  name: "Filter",
   data() {
     return {
       store,
       filters: [],
-      filteredUsers: '',
+      filteredUsers: "",
 
       users: [
         {
-          event: 'Music event',
-          category: 'Music',
+          event: "Music event",
+          category: "Music"
         },
         {
-          event: 'Games event',
-          category: 'Games',
+          event: "Games event",
+          category: "Games"
         },
         {
-          event: 'Literature',
-          category: 'Literature',
+          event: "Literature",
+          category: "Literature"
         },
         {
-          event: 'Art',
-          category: 'Art',
+          event: "Art",
+          category: "Art"
         },
         {
-          event: 'Outdoor event',
-          category: 'Outdoor',
+          event: "Outdoor event",
+          category: "Outdoor"
         },
         {
-          event: 'Indoor event',
-          category: 'Indoor',
+          event: "Indoor event",
+          category: "Indoor"
         },
         {
-          event: 'Other event',
-          category: 'Other',
+          event: "Other event",
+          category: "Other"
         },
         // proba za mix event - ne funkc.
         {
-          event: 'Mix event',
-          category: 'Music Outdoor',
-        },
-      ],
+          event: "Mix event",
+          category: "Music Outdoor"
+        }
+      ]
     };
   },
   methods: {
     setFilters(newFilter) {
       if (this.filters.includes(newFilter))
-        this.filters = this.filters.filter((filter) => filter != newFilter);
+        this.filters = this.filters.filter(filter => filter != newFilter);
       else this.filters.push(newFilter);
     },
     filter() {
       if (!this.filters.length) return;
 
-      this.filteredUsers = this.users.filter((user) =>
+      this.filteredUsers = this.users.filter(user =>
         this.filters.includes(user.category)
       );
 
       this.filters = [];
-    },
+    }
   },
-  name: 'App',
+  name: "App"
 };
 </script>
 

@@ -44,8 +44,8 @@ export default {
   methods: {
     myfuntion() {
       this.$router.push({
-        name: 'Informacije',
-      });
+        name: 'Informacije', params: { event_id: this.info.id }}
+      );
     },
 
     clickheart() {

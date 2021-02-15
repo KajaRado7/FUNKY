@@ -88,7 +88,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ '../views/Account.vue'),
   },
   {
-    path: '/informacije',
+    path: '/informacije/:event_id',
     name: 'Informacije',
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/Informacije.vue'),
