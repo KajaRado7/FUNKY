@@ -36,7 +36,7 @@ export default {
             query.forEach(doc => {
               const data = doc.data();
 
-              if(data.region == 'gorska'){
+              if(data.region == 'Mountain Croatia'){
               this.cards.push({
                 id: doc.id,
                 img: data.url,
@@ -46,7 +46,7 @@ export default {
               /*if(data.region == !gorska){
                 console.log("Sorry,there are no events available yet ... ")
               } */
-              }else if(data.region == !'gorska'){
+              }else if(data.region == !'Mountain Croatia'){
                ("Sorry,there are no events available yet ... ");
               }
 

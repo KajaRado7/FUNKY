@@ -39,7 +39,7 @@
           <!-- DEJANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
           <input
             type="text"
-            maxlength="27"
+            maxlength="50"
             name="eName"
             v-model="eventName"
             class="form-control"
@@ -111,11 +111,11 @@
               :class="{ 'is-invalid': submitted && $v.regions.$error }"
             >
               <option disabled selected>--Please choose a region--</option>
-              <option value="sredisnja">Central Croatia</option>
-              <option value="juzna">Dalmatia</option>
-              <option value="zapadna">Istria</option>
-              <option value="istocna">Slavonia</option>
-              <option value="gorska">Mountain Croatia</option>
+              <option value="Central Croatia">Central Croatia</option>
+              <option value="Dalmatia">Dalmatia</option>
+              <option value="Istria">Istria</option>
+              <option value="Slavonia">Slavonia</option>
+              <option value="Mountain Croatia">Mountain Croatia</option>
             </select>
             <div
               v-if="submitted && !$v.regions.required"
@@ -342,11 +342,18 @@
           <label for="note">Note:</label>
           <textarea
             class="form-control"
-            maxlength="120"
+            maxlength="500"
             v-model="note"
             id="note"
             rows="4"
+            :class="{ 'is-invalid': submitted && $v.note.$error }"
           ></textarea>
+           <div
+            v-if="submitted && !$v.note.required"
+            class="invalid-feedback"
+          >
+            Note must be filled!
+          </div>
         </div>
         <br />
         <button type="button" class="btn_publish" @click="addNewEvent()">
@@ -399,6 +406,7 @@ export default {
     model: {
       check: { required },
     },
+    note: { required },
   },
   methods: {
     getEvent() {
@@ -580,6 +588,6 @@ img.preview {
   box-shadow: none;
 }
 .loading {
-  width: 400px;
+  width: 200px;
 }
 </style>
