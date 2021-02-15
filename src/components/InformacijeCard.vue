@@ -169,6 +169,6 @@ select {
   overflow: hidden;
   border-style: inset;
   border-width: 1px;
-  color: #f5b85c;
+  border-bottom: 2px solid #f5b85c;
 }
 </style>

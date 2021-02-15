@@ -129,14 +129,14 @@ export default {
       if (this.$route.name == route) return true;
       else return false;
     },
-    logout() {
+    /*logout() {
       firebase
         .auth()
         .signOut()
         .then(() => {
           this.$router.push({ name: 'Login' });
         });
-    },
+    },**/
 
     created() {
       const self = this;

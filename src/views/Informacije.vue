@@ -39,7 +39,7 @@ export default {
           if(data.eventName == data.eventName){
               this.cards.push({
                 id: doc.id,
-                adress: data.adress,
+                address: data.address,
                 capacity: data.capacity,
                 city: data.city,
                 date: data.date,

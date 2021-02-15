@@ -6,7 +6,8 @@
              text-align: left; 
              color: white"
     >
-      <form @submit.prevent="addNewEvent">
+    <img v-if="loading" class="loading" :src="require('@/assets/loading3.gif')"/>
+      <form v-if="!loading" @submit.prevent="addNewEvent">
         <div class="mainDiv">
           <div style="text-align: left;">
             <label for="addEventPicture">
@@ -372,6 +373,7 @@ export default {
   name: 'AddEvent',
   data() {
     return {
+      loading: false,
       store,
       model: {
         check: [],
@@ -424,6 +426,7 @@ export default {
       }
 
       try {
+        this.loading = true;
         let blobData = await this.getEvent();
         let imageName =
           'posts/' + store.currentUser + '/' + Date.now() + '.png';
@@ -457,7 +460,7 @@ export default {
           note: newNote,
         });
         console.log('Document: ', doc);
-        this.imageReference.remove();
+       // this.imageReference.remove();
         this.eventName = '';
         (this.date = ''), (this.time = '');
         this.city = '';
@@ -469,8 +472,9 @@ export default {
         this.note = '';
         this.submitted = false;
       } catch (e) {
-        console.e('greška', e);
+        console.error('greška', e);
       }
+      this.loading = false;
     },
   },
 };
@@ -582,5 +586,8 @@ img.preview {
   border: 2px solid #f5b85c;
   background-color: #1a1a1a;
   box-shadow: none;
+}
+.loading{
+  width: 400px;
 }
 </style>

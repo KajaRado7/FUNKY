@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <button type="button" @click="myfuntion()">
+    <button type="button" class="btn_publish" @click="myfuntion()">
     <img class="card-img-top" :src="info.img" />
     <!-- info je u west gdje su sve slike navedene -->
     </button>
@@ -75,7 +75,7 @@ export default {
 .card-img-top {
   height: 150px;
   object-fit: cover;
-  border-radius: 0%; /* zaobljenost rubova*/
+  border-radius: 14%; /* zaobljenost rubova*/
 }
 
 .card-body {
@@ -94,7 +94,7 @@ export default {
 
 .actions {
   position: absolute;
-  top: 165px;
+  top: 200px;
   right: -10px;
   padding-right: 20px;
   float: right;
@@ -108,5 +108,20 @@ export default {
 .actions i {
   font-size: 1.4rem;
   cursor: pointer;
+}
+.btn_publish {
+  background-color: black;
+  border: none;
+  border-radius: 14px;
+  display: block;
+  margin: auto;
+  margin-bottom: 25px;
+  margin-top: 17px;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  background-color: #1a1a1a;
 }
 </style>
