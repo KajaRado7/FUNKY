@@ -8,7 +8,10 @@
         <div v-if="errorMessage" class="alert alert-danger" role="alert">
           The email address is already in use by another account.
         </div>
-        <label for="name">Full name</label>
+        <label for="name">
+          Full name
+          <span class="text-danger ml-1">*</span>
+        </label>
         <input
           type="text"
           v-model="userForm.name"
@@ -28,7 +31,10 @@
       <br />
 
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">
+          Email
+          <span class="text-danger ml-1">*</span>
+        </label>
         <input
           type="email"
           v-model="userForm.email"
@@ -53,7 +59,10 @@
       <br />
 
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">
+          Password
+          <span class="text-danger ml-1">*</span>
+        </label>
         <input
           type="password"
           v-model="userForm.password"
@@ -78,7 +87,10 @@
       <br />
 
       <div class="form-group">
-        <label for="confirmPassword">Repeat password</label>
+        <label for="confirmPassword">
+          Repeat password
+          <span class="text-danger ml-1">*</span>
+        </label>
         <input
           type="password"
           v-model="userForm.confirmPassword"
@@ -238,6 +250,21 @@ export default {
 </script>
 
 <style scoped>
+#name,
+#email,
+#password,
+#confirmPassword {
+  margin-bottom: 8px;
+  margin-top: 10px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid #f5b85c;
+  background-color: #1a1a1a;
+  color: #d0d0d0;
+  outline: none;
+  box-shadow: none;
+}
 #footer {
   width: 100%;
   height: 100px;

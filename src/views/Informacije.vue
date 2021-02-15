@@ -12,31 +12,30 @@ import InformacijeCard from '@/components/InformacijeCard.vue';
 import { db } from '@/firebase';
 import DogadajiCard from '../components/DogadajiCard.vue';
 
-
 export default {
-    name: 'Informacije',
-    data: function(){
-        return {
-            cards: [],
-            };
-    },
-    components: {
-      InformacijeCard,
-      },
-    mounted(){    
+  name: 'Informacije',
+  data: function() {
+    return {
+      cards: [],
+    };
+  },
+  components: {
+    InformacijeCard,
+  },
+  mounted() {
     this.getInfo();
-    },
-    methods: {
-      getInfo() {
-        console.log('firebase dohvat...');
+  },
+  methods: {
+    getInfo() {
+      console.log('firebase dohvat...');
 
-        db.collection('posts')
+      db.collection('posts')
         .get()
         .then((query) => {
           query.forEach((doc) => {
-              const data = doc.data();
+            const data = doc.data();
 
-          if(data.eventName == data.eventName){
+            if (data.eventName == data.eventName) {
               this.cards.push({
                 id: doc.id,
                 address: data.address,
@@ -49,16 +48,18 @@ export default {
                 note: data.note,
                 region: data.region,
                 time: data.time,
-                image: data.url,                                 
-              })
-          }
+                image: data.url,
+              });
+            }
           });
-          });
+        });
     },
-    
-}
-}
+  },
+};
 </script>
 <style scoped>
-
+#footer {
+  width: 100%;
+  height: 80px;
+}
 </style>

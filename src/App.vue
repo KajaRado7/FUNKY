@@ -71,10 +71,10 @@
           <router-link to="/filter">Filter</router-link>
           |
           <router-link to="/filtered">Filtered</router-link>
-          |
+          |--->
           <router-link to="/AddEvent">Add event</router-link>
           |
-          <router-link to="/Informacije">Informacije</router-link>--->
+          <router-link to="/Informacije">Informacije</router-link>
         </div>
         <router-view />
       </div>

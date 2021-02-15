@@ -8,7 +8,10 @@
         <div v-if="errorMessage" class="alert alert-danger" role="alert">
           Invalid email or password
         </div>
-        <label for="email">Email</label>
+        <label for="email">
+          Email
+          <span class="text-danger ml-1">*</span>
+        </label>
         <input
           type="email"
           v-model="userForm.email"
@@ -30,7 +33,10 @@
       <br />
 
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">
+          Password
+          <span class="text-danger ml-1">*</span>
+        </label>
         <input
           type="password"
           v-model="userForm.password"
@@ -131,6 +137,19 @@ export default {
 </script>
 
 <style scoped>
+#email,
+#password1 {
+  margin-bottom: 8px;
+  margin-top: 10px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid #f5b85c;
+  background-color: #1a1a1a;
+  color: #d0d0d0;
+  outline: none;
+  box-shadow: none;
+}
 .btn_login {
   background-color: #f5b85c;
   border: none;
@@ -143,6 +162,7 @@ export default {
   margin: auto;
   text-decoration: none;
 }
+
 .form_group > label {
   font-weight: 600;
   max-width: 500px;

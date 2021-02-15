@@ -6,7 +6,11 @@
              text-align: left; 
              color: white"
     >
-    <img v-if="loading" class="loading" :src="require('@/assets/loading3.gif')"/>
+      <img
+        v-if="loading"
+        class="loading"
+        :src="require('@/assets/loading3.gif')"
+      />
       <form v-if="!loading" @submit.prevent="addNewEvent">
         <div class="mainDiv">
           <div style="text-align: left;">
@@ -460,7 +464,7 @@ export default {
           note: newNote,
         });
         console.log('Document: ', doc);
-       // this.imageReference.remove();
+        // this.imageReference.remove();
         this.eventName = '';
         (this.date = ''), (this.time = '');
         this.city = '';
@@ -587,7 +591,7 @@ img.preview {
   background-color: #1a1a1a;
   box-shadow: none;
 }
-.loading{
+.loading {
   width: 400px;
 }
 </style>
