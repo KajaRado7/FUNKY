@@ -35,7 +35,7 @@
             Event name
             <span class="text-danger ml-1">*</span>
           </label>
-
+          <br />
           <!-- DEJANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
           <input
             type="text"
@@ -55,8 +55,6 @@
           </div>
         </div>
         <br />
-        <br />
-
         <div class="form-group">
           <label for="date">
             Date
@@ -76,8 +74,6 @@
           </div>
         </div>
         <br />
-        <br />
-
         <div class="form-group">
           <label for="time">
             Time
@@ -97,7 +93,6 @@
           </div>
         </div>
         <br />
-        <br />
 
         <div class="form-group">
           <label for="region">
@@ -106,6 +101,7 @@
           </label>
           <br />
           <br />
+
           <div class="chooseRegion">
             <select
               name="region"
@@ -130,7 +126,7 @@
           </div>
         </div>
         <br />
-        <br />
+
         <!-- DEJANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
         <div class="form-group">
           <label for="city">
@@ -150,7 +146,6 @@
             City must be filled!
           </div>
         </div>
-        <br />
         <br />
 
         <div class="form-group">
@@ -175,7 +170,6 @@
           </div>
         </div>
         <br />
-        <br />
 
         <div class="form-group">
           <label for="eventEntry">
@@ -198,7 +192,6 @@
             Event entry must be filled!
           </div>
         </div>
-        <br />
         <br />
 
         <div class="form-group">
@@ -321,7 +314,6 @@
           </div>
         </div>
         <br />
-        <br />
 
         <div class="form-group">
           <label for="capacity">
@@ -344,7 +336,6 @@
             Capacity must be filled!
           </div>
         </div>
-        <br />
         <br />
 
         <div class="form-group">
@@ -548,10 +539,7 @@ img.preview {
 .form-control {
   margin-bottom: 8px;
   margin-top: 10px;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: 2px solid #f5b85c;
+  border: 2px solid #f5b85c;
   background-color: #1a1a1a;
   color: #d0d0d0;
   outline: none;

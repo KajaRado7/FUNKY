@@ -141,10 +141,7 @@ export default {
 #password1 {
   margin-bottom: 8px;
   margin-top: 10px;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  border-bottom: 2px solid #f5b85c;
+  border: 2px solid #f5b85c;
   background-color: #1a1a1a;
   color: #d0d0d0;
   outline: none;

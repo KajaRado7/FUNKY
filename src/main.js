@@ -20,7 +20,7 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faFrown } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faSlidersH } from '@fortawesome/free-solid-svg-icons';
@@ -37,7 +37,7 @@ library.add(faMapMarkerAlt); // <font-awesome-icon icon="map-marker-alt" />
 library.add(faUser); // <font-awesome-icon icon="user" />
 library.add(faPlusCircle); // <font-awesome-icon icon="plus-circle" />
 library.add(faHeart); // <font-awesome-icon icon="heart" />
-library.add(faArrowLeft); // <font-awesome-icon icon="arrow-left" />
+library.add(faArrowAltCircleLeft); // <font-awesome-icon icon="arrow-alt-circle-left" />
 library.add(faFrown); // <font-awesome-icon icon="frown" /> --> tuzan smajl
 library.add(faEnvelope); // <font-awesome-icon icon="envelope" />
 library.add(faSlidersH); // <font-awesome-icon icon="sliders-h" />

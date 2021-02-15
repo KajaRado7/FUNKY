@@ -7,7 +7,6 @@
   </div>
 </template>
 <script>
-
 import DogadajiCard from '@/components/DogadajiCard.vue';
 import { db } from '@/firebase';
 
@@ -22,12 +21,11 @@ export default {
   components: {
     DogadajiCard,
   },
-  
-  mounted(){    
+
+  mounted() {
     this.getFav();
   },
-   methods: {
-       
+  methods: {
     getFav() {
       console.log('dohvat..');
 
@@ -36,23 +34,25 @@ export default {
         .then((query) => {
           query.forEach((doc) => {
             const data = doc.data();
-            if (data.heart = true) {
+            if ((data.heart = true)) {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
                 heart: true,
-
-   })
-      
+              });
             }
-        })
-        })
-    }
-   }
-}
+          });
+        });
+    },
+  },
+};
 </script>
 <style scoped>
+#footer {
+  width: 100%;
+  height: 60px;
+}
 #cards {
   max-width: 500px;
   align-content: center;

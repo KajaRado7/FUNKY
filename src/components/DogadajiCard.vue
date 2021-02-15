@@ -1,24 +1,24 @@
 <template>
   <div class="card">
     <button type="button" class="btn_publish" @click="myfuntion()">
-    <img class="card-img-top" :src="info.img" />
-    <!-- info je u west gdje su sve slike navedene -->
+      <img class="card-img-top" :src="info.img" />
+      <!-- info je u west gdje su sve slike navedene -->
     </button>
     <div class="card-body">
       <p class="card-text" value="naslov">{{ info.naslov }}</p>
-     
+
       <div class="actions" id="heart">
         <button type="button" @click="clickheart()">
-        <i
-          class="far fa-heart"
-          v-if="!info.heart"
-          @click="info.heart = !info.heart"
-        ></i>
-        <i
-          class="fas fa-heart red"
-          v-if="info.heart"
-          @click="info.heart = !info.heart"
-        ></i>
+          <i
+            class="far fa-heart"
+            v-if="!info.heart"
+            @click="info.heart = !info.heart"
+          ></i>
+          <i
+            class="fas fa-heart red"
+            v-if="info.heart"
+            @click="info.heart = !info.heart"
+          ></i>
         </button>
       </div>
     </div>
@@ -39,21 +39,20 @@ export default {
     };
   },
   mounted() {
-     this.clickheart();
+    this.clickheart();
   },
   methods: {
-    myfuntion(){           
-          this.$router.push({
-            name: 'Informacije'
-          });          
+    myfuntion() {
+      this.$router.push({
+        name: 'Informacije',
+      });
     },
-    
-    clickheart(){
-       if(heart){
-       }
-    }
-    
-  }
+
+    clickheart() {
+      if (heart) {
+      }
+    },
+  },
 };
 </script>
 
@@ -62,7 +61,6 @@ export default {
 <style scoped>
 .card {
   margin-bottom: 25px;
-  margin-top: 17px;
   border-bottom: 2px solid #f5b85c;
   border-bottom-left-radius: 0%;
   border-bottom-right-radius: 0%;

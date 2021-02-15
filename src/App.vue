@@ -5,37 +5,124 @@
     </div>
     <!---TopNavbar----------------------------------------------------------------------->
     <nav class="topNavbar">
-      <span class="title mb-0 h4" v-if="checkRoute('Regije')">Regions</span>
-      <span class="title mb-0 h4" v-if="checkRoute('Filter')">Filter</span>
-      <span class="title mb-0 h4" v-if="checkRoute('Filtered')">Filtered</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Regije')">
+        Regions
+        <router-link to="/filter" class="topNavItem">
+          <font-awesome-icon icon="sliders-h" transform=" right-60" />
+        </router-link>
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
+      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Filter')">
+        Filter
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
+      </span>
+
+      <span class="title mb-0 h4" v-if="checkRoute('Filtered')">
+        <router-link to="/filter" class="topNavItem">
+          <font-awesome-icon
+            icon="arrow-alt-circle-left"
+            transform=" left-70"
+          />
+        </router-link>
+        Filtered
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
+      </span>
       <span class="title mb-0 h4" v-if="checkRoute('Favoriti')">
         My Favorites
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
       </span>
       <span class="title mb-0 h4" v-if="checkRoute('Informacije')">
         Informations
       </span>
-      <span class="title mb-0 h4" v-if="checkRoute('Account')">Account</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Account')">
+        Account
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
+      </span>
       <span class="title mb-0 h4" v-if="checkRoute('AddEvent')">Add Event</span>
       <span class="title mb-0 h4" v-if="checkRoute('Login')">
-        <font-awesome-icon icon="arrow-left" transform=" left-80" />
+        <router-link to="/" class="topNavItem">
+          <font-awesome-icon
+            icon="arrow-alt-circle-left"
+            transform=" left-70"
+          />
+        </router-link>
         Login
       </span>
       <span class="title mb-0 h4" v-if="checkRoute('Registracija')">
-        <font-awesome-icon icon="arrow-left" transform=" left-80" />
+        <router-link to="/" class="topNavItem">
+          <font-awesome-icon
+            icon="arrow-alt-circle-left"
+            transform=" left-70"
+          />
+        </router-link>
         Registration
       </span>
       <span class="title mb-0 h4" v-if="checkRoute('Home')">
+        <!--pozadinska slika(proba)---->
+        <div
+          :style="{
+            'background-image': 'url(@/assets/pozadina2.jpg)',
+          }"
+          v-if="!store.currentUser"
+        ></div>
+        <!--pozadinska slika(proba)---->
         Create Account
       </span>
-      <span class="title mb-0 h4" v-if="checkRoute('Juzna')">Dalmatia</span>
-      <span class="title mb-0 h4" v-if="checkRoute('Istocna')">Slavonia</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Juzna')">
+        Dalmatia
+        <router-link to="/filter" class="topNavItem">
+          <font-awesome-icon icon="sliders-h" transform=" right-60" />
+        </router-link>
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
+      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Istocna')">
+        Slavonia
+        <router-link to="/filter" class="topNavItem">
+          <font-awesome-icon icon="sliders-h" transform=" right-60" />
+        </router-link>
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
+      </span>
       <span class="title mb-0 h4" v-if="checkRoute('Gorska')">
         Mountain Croatia
+        <router-link to="/filter" class="topNavItem">
+          <font-awesome-icon icon="sliders-h" transform=" right-60" />
+        </router-link>
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
       </span>
       <span class="title mb-0 h4" v-if="checkRoute('Sredisnja')">
         Central Croatia
+        <router-link to="/filter" class="topNavItem">
+          <font-awesome-icon icon="sliders-h" transform=" right-60" />
+        </router-link>
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
       </span>
-      <span class="title mb-0 h4" v-if="checkRoute('Zapadna')">Istria</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Zapadna')">
+        Istria
+        <router-link to="/filter" class="topNavItem">
+          <font-awesome-icon icon="sliders-h" transform=" right-60" />
+        </router-link>
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
+      </span>
     </nav>
 
     <!---TopNavbar----------------------------------------------------------------------->
@@ -43,7 +130,7 @@
     <div class="col-md-10 col-sm-12">
       <div id="app">
         <div id="nav">
-          <!--  <router-link to="/">Home</router-link>
+          <!--<router-link to="/">Home</router-link>
           <router-link to="/Registracija">Registracija</router-link>
           |
           <router-link to="/Login">Log in</router-link>
@@ -71,37 +158,37 @@
           <router-link to="/filter">Filter</router-link>
           |
           <router-link to="/filtered">Filtered</router-link>
-          |--->
+          |
           <router-link to="/AddEvent">Add event</router-link>
           |
-          <router-link to="/Informacije">Informacije</router-link>
+          <router-link to="/Informacije">Informacije</router-link>-->
         </div>
         <router-view />
       </div>
     </div>
 
-    <!----NavigationIconBasedBottomMenu--------------------------------------------------->
+    <!----BottomNavbar--------------------------------------------------->
     <nav
       class="bottomNavbar fixed-bottom navbar-light "
       v-if="store.currentUser"
     >
       <div>
-        <router-link to="/regije" class="navItem color ">
+        <router-link to="/regije" class="btmNavItem btmColor ">
           <font-awesome-icon icon="map-marker-alt" size="2x" />
         </router-link>
       </div>
       <div>
-        <router-link to="/favoriti" class="navItem color ">
+        <router-link to="/favoriti" class="btmNavItem btmColor ">
           <font-awesome-icon icon="heart" size="2x" />
         </router-link>
       </div>
       <div>
-        <router-link to="/account" class="navItem color ">
+        <router-link to="/account" class="btmNavItem btmColor ">
           <font-awesome-icon icon="user" size="2x" />
         </router-link>
       </div>
     </nav>
-    <!----NavigationIconBasedBottomMenu--------------------------------------------------->
+    <!----BottomNavbar--------------------------------------------------->
 
     <div class="col-md-1 col-sm-0"></div>
   </div>
@@ -192,17 +279,21 @@ export default {
   margin-top: 8px;
 }
 
-//promjena boje router-linkova
-.color:focus {
+//promjena boje router-linkova na Bottom Navbar-u
+.btmColor:focus {
   color: #f5b85c;
 }
+
 .topNavbar {
   width: 100%;
   height: 50px;
   background-color: #f5b85c;
-  padding: 9px;
+  padding: 10px;
   justify-content: center;
   text-align: center;
+}
+.topNavItem {
+  color: black;
 }
 .bottomNavbar {
   justify-content: space-evenly;
@@ -214,7 +305,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-.navItem {
+.btmNavItem {
   color: white;
   display: flex;
   flex-grow: 1;
@@ -231,7 +322,7 @@ export default {
   }
 }
 @media only screen and (max-width: 600px) {
-  .navItem {
+  .btmNavItem {
     flex-direction: column;
 
     font-awesome-icon {
