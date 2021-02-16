@@ -346,14 +346,7 @@
             v-model="note"
             id="note"
             rows="4"
-            :class="{ 'is-invalid': submitted && $v.note.$error }"
           ></textarea>
-           <div
-            v-if="submitted && !$v.note.required"
-            class="invalid-feedback"
-          >
-            Note must be filled!
-          </div>
         </div>
         <br />
         <button type="button" class="btn_publish" @click="addNewEvent()">
@@ -366,32 +359,32 @@
 </template>
 
 <script>
-import { firebase } from '@/firebase';
-import store from '@/store';
-import { db, storage } from '@/firebase';
-import { required } from 'vuelidate/lib/validators';
+import { firebase } from "@/firebase";
+import store from "@/store";
+import { db, storage } from "@/firebase";
+import { required } from "vuelidate/lib/validators";
 
 export default {
-  name: 'AddEvent',
+  name: "AddEvent",
   data() {
     return {
       loading: false,
       store,
       model: {
-        check: [],
+        check: []
       },
       imageReference: null,
-      eventName: '',
-      date: '',
-      time: '',
-      regions: '',
-      city: '',
-      address: '',
-      eventEntry: '',
-      capacity: '',
-      note: '',
+      eventName: "",
+      date: "",
+      time: "",
+      regions: "",
+      city: "",
+      address: "",
+      eventEntry: "",
+      capacity: "",
+      note: "",
       image: null,
-      submitted: false,
+      submitted: false
     };
   },
   validations: {
@@ -404,15 +397,15 @@ export default {
     address: { required },
     capacity: { required },
     model: {
-      check: { required },
+      check: { required }
     },
-    note: { required },
+    note: { required }
   },
   methods: {
     getEvent() {
       //Promise based,omotač
       return new Promise((resolveFn, errorFn) => {
-        this.imageReference.generateBlob((data) => {
+        this.imageReference.generateBlob(data => {
           resolveFn(data);
         });
       });
@@ -422,8 +415,8 @@ export default {
       this.$v.$touch();
       if (this.$v.$invalid) {
         if (!this.imageReference.hasImage()) {
-          this.image = 'No image to upload!';
-          console.log('No image to upload');
+          this.image = "No image to upload!";
+          console.log("No image to upload");
         }
         return;
       }
@@ -432,10 +425,10 @@ export default {
         this.loading = true;
         let blobData = await this.getEvent();
         let imageName =
-          'posts/' + store.currentUser + '/' + Date.now() + '.png';
+          "posts/" + store.currentUser + "/" + Date.now() + ".png";
         let result = await storage.ref(imageName).put(blobData);
         let url = await result.ref.getDownloadURL();
-        console.log('Javni link', url);
+        console.log("Javni link", url);
         const newEventName = this.eventName;
         const newDate = this.date;
         const newTime = this.time;
@@ -447,7 +440,7 @@ export default {
         const newCapacity = this.capacity;
         const newNote = this.note;
 
-        let doc = await db.collection('posts').add({
+        let doc = await db.collection("posts").add({
           email: store.currentUser,
           posted_at: Date.now(),
           url: url,
@@ -460,26 +453,26 @@ export default {
           entry: newEventEntry,
           model: check,
           capacity: newCapacity,
-          note: newNote,
+          note: newNote
         });
-        console.log('Document: ', doc);
+        console.log("Document: ", doc);
         // this.imageReference.remove();
-        this.eventName = '';
-        (this.date = ''), (this.time = '');
-        this.city = '';
-        this.address = '';
-        this.eventEntry = '';
-        this.regions = '';
-        this.model.check = '';
-        this.capacity = '';
-        this.note = '';
+        this.eventName = "";
+        (this.date = ""), (this.time = "");
+        this.city = "";
+        this.address = "";
+        this.eventEntry = "";
+        this.regions = "";
+        this.model.check = "";
+        this.capacity = "";
+        this.note = "";
         this.submitted = false;
       } catch (e) {
-        console.error('greška', e);
+        console.error("greška", e);
       }
       this.loading = false;
-    },
-  },
+    }
+  }
 };
 </script>
 

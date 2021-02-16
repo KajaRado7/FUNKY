@@ -8,7 +8,7 @@
       <p class="card-text" value="naslov">{{ info.naslov }}</p>
 
       <div class="actions" id="heart">
-        <button type="button" @click="clickheart()">
+        <div @click="clickheart()">
           <i
             class="far fa-heart"
             v-if="!info.heart"
@@ -19,23 +19,23 @@
             v-if="info.heart"
             @click="info.heart = !info.heart"
           ></i>
-        </button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import InformacijeCard from '@/components/InformacijeCard.vue';
-import { db } from '@/firebase';
-import DogadajiCard from '../components/DogadajiCard.vue';
+import InformacijeCard from "@/components/InformacijeCard.vue";
+import { db } from "@/firebase";
+import DogadajiCard from "../components/DogadajiCard.vue";
 
 export default {
-  props: ['info'],
-  name: 'DogadajiCard',
+  props: ["info"],
+  name: "DogadajiCard",
   data: function() {
     return {
-      heart: false,
+      heart: false
     };
   },
   mounted() {
@@ -44,15 +44,16 @@ export default {
   methods: {
     myfuntion() {
       this.$router.push({
-        name: 'Informacije', params: { event_id: this.info.id }}
-      );
+        name: "Informacije",
+        params: { event_id: this.info.id }
+      });
     },
 
     clickheart() {
       if (heart) {
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

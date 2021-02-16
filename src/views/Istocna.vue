@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import DogadajiCard from '@/components/DogadajiCard.vue';
-import { db } from '@/firebase';
+import DogadajiCard from "@/components/DogadajiCard.vue";
+import { db } from "@/firebase";
 
 /*let cards = [];
 
@@ -28,43 +28,43 @@ cards = [
 ]; */
 
 export default {
-  name: 'Istocna',
+  name: "Istocna",
   data: function() {
     return {
-      cards: [],
+      cards: []
     };
   },
   components: {
-    DogadajiCard,
+    DogadajiCard
   },
   mounted() {
     this.getPosts();
   },
   methods: {
     getPosts() {
-      console.log('firebase dohvat..');
+      console.log("Firebase dohvat..");
 
-      db.collection('posts')
+      db.collection("posts")
         .get()
-        .then((query) => {
-          query.forEach((doc) => {
+        .then(query => {
+          query.forEach(doc => {
             const data = doc.data();
 
-            if (data.region == 'Slavonia') {
+            if (data.region == "Slavonia") {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
-                heart: false,
+                heart: false
               });
-              if('Central Croatia' == null){
-                console.log("Sorry,there are no events available yet ... ")
+              if ("Central Croatia" == null) {
+                console.log("Sorry,there are no events available yet ... ");
               }
-            } 
+            }
           });
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

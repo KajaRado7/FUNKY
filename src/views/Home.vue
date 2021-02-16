@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import { firebase } from '@/firebase';
-import store from '@/store';
+import { firebase } from "@/firebase";
+import store from "@/store";
 export default {
-  name: 'Home',
+  name: "Home",
   data() {
     return {
       /**
@@ -40,8 +40,8 @@ export default {
        */
       googleSignInParams: {
         client_id:
-          '336328634543-unbk0scnqr5bkel2ve7pdut8k5to0ul9.apps.googleusercontent.com',
-      },
+          "336328634543-unbk0scnqr5bkel2ve7pdut8k5to0ul9.apps.googleusercontent.com"
+      }
     };
   },
   methods: {
@@ -51,14 +51,14 @@ export default {
       else return false;
     },
     loginWithGoogle() {
-      console.log('Login with google');
+      console.log("Login with google");
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then((result) => {
+        .then(result => {
           store.currentUser = result.additionalUserInfo.profile.email;
-          this.$router.replace({ name: 'Regije' });
+          this.$router.replace({ name: "Regije" });
           //store.token = result.credential.accessToken; // mozda cu ga kasnije za nesto koristiti. za test neka ostane
         })
         .catch(function(error) {
@@ -71,14 +71,14 @@ export default {
           // var credential = error.credential;
           // ...
         });
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style scoped>
-html,body {
-  background-image: url('~@/assets/pozadina2.jpg');
+body {
+  background-image: url("~@/assets/pozadina2.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

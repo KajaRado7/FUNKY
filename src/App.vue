@@ -3,6 +3,7 @@
     <div class="FunkyLogo">
       <img class="Funky" src="@/assets/Funky-AI.png" />
     </div>
+    <div class="backImage"></div>
     <!---TopNavbar----------------------------------------------------------------------->
     <nav class="topNavbar">
       <span class="title mb-0 h4" v-if="checkRoute('Regije')">
@@ -14,6 +15,7 @@
           <font-awesome-icon icon="plus-circle" transform=" right-70" />
         </router-link>
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Filter')">
         Filter
         <router-link to="/addevent" class="topNavItem">
@@ -33,22 +35,30 @@
           <font-awesome-icon icon="plus-circle" transform=" right-70" />
         </router-link>
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Favoriti')">
         My Favorites
         <router-link to="/addevent" class="topNavItem">
           <font-awesome-icon icon="plus-circle" transform=" right-70" />
         </router-link>
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Informacije')">
         Informations
+        <router-link to="/addevent" class="topNavItem">
+          <font-awesome-icon icon="plus-circle" transform=" right-70" />
+        </router-link>
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Account')">
         Account
         <router-link to="/addevent" class="topNavItem">
           <font-awesome-icon icon="plus-circle" transform=" right-70" />
         </router-link>
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('AddEvent')">Add Event</span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Login')">
         <router-link to="/" class="topNavItem">
           <font-awesome-icon
@@ -58,6 +68,7 @@
         </router-link>
         Login
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Registracija')">
         <router-link to="/" class="topNavItem">
           <font-awesome-icon
@@ -67,17 +78,11 @@
         </router-link>
         Registration
       </span>
-      <span class="title mb-0 h4" v-if="checkRoute('Home') ">
-        <!--pozadinska slika(proba)---->
-        <div
-          :style="{
-            'background-image': 'url(@/assets/pozadina2.jpg)',
-          }"
-          v-if="!store.currentUser"
-        ></div>
-        <!--pozadinska slika(proba)---->
+
+      <span class="title mb-0 h4" v-if="checkRoute('Home')">
         Create Account
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Juzna')">
         Dalmatia
         <router-link to="/filter" class="topNavItem">
@@ -87,6 +92,7 @@
           <font-awesome-icon icon="plus-circle" transform=" right-70" />
         </router-link>
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Istocna')">
         Slavonia
         <router-link to="/filter" class="topNavItem">
@@ -96,6 +102,7 @@
           <font-awesome-icon icon="plus-circle" transform=" right-70" />
         </router-link>
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Gorska')">
         Mountain Croatia
         <router-link to="/filter" class="topNavItem">
@@ -105,6 +112,7 @@
           <font-awesome-icon icon="plus-circle" transform=" right-70" />
         </router-link>
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Sredisnja')">
         Central Croatia
         <router-link to="/filter" class="topNavItem">
@@ -114,6 +122,7 @@
           <font-awesome-icon icon="plus-circle" transform=" right-70" />
         </router-link>
       </span>
+
       <span class="title mb-0 h4" v-if="checkRoute('Zapadna')">
         Istria
         <router-link to="/filter" class="topNavItem">
@@ -124,7 +133,6 @@
         </router-link>
       </span>
     </nav>
-
     <!---TopNavbar----------------------------------------------------------------------->
     <div class="col-md-1 col-sm-0"></div>
     <div class="col-md-10 col-sm-12">
@@ -162,6 +170,7 @@
           <router-link to="/AddEvent">Add event</router-link>
           |
           <router-link to="/Informacije">Informacije</router-link>-->
+          <router-link to="/filtered">Filtered</router-link>
         </div>
         <router-view />
       </div>
@@ -195,16 +204,16 @@
 </template>
 
 <script>
-import store from '@/store';
-import { firebase } from '@/firebase';
-import { db } from '@/firebase';
-import router from '@/router';
+import store from "@/store";
+import { firebase } from "@/firebase";
+import { db } from "@/firebase";
+import router from "@/router";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      store,
+      store
     };
   },
   mounted() {
@@ -227,34 +236,34 @@ export default {
 
     created() {
       const self = this;
-      firebase.auth().onAuthStateChanged((user) => {
+      firebase.auth().onAuthStateChanged(user => {
         const currentRoute = router.currentRoute;
 
-        console.log('PROVJERA STANJA LOGINA!');
+        console.log("PROVJERA STANJA LOGINA!");
         if (user) {
           self.authenticated = true;
           // User is signed in.
-          console.log('*** User', user.email);
+          console.log("*** User", user.email);
           store.currentUser = user.email;
 
-          db.collection('users')
+          db.collection("users")
             .doc(self.store.currentUser)
             .get()
-            .then((doc) => {
+            .then(doc => {
               if (doc.exists) {
-                console.log('Document data:', doc.data());
+                console.log("Document data:", doc.data());
 
                 store.displayName = doc.data().name;
                 store.currentUser = doc.data().email;
               } else {
-                console.log('No such document!');
+                console.log("No such document!");
               }
             });
         } else {
           /* if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Home' });*/
           // User is not signed in.
-          console.log('*** No user');
+          console.log("*** No user");
           store.currentUser = null;
 
           /* if (currentRoute.meta.needsUser) {
@@ -262,12 +271,18 @@ export default {
     }*/
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
 <style lang="scss">
+.backImage {
+  background-image: url("~@/assets/pozadina2.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 .title {
   margin: auto;
 }
@@ -351,6 +366,7 @@ export default {
     }
   }
 }
+
 body {
   background-color: #1a1a1a;
 }

@@ -4,14 +4,14 @@
       <dogadaji-card v-for="card in cards" :key="card.naslov" :info="card" />
       <!-- :key mora svugdje biti drugaciji tj imati nesta jedinstveno iz polja poput naslova-->
       <!-- kada stavimo : onda ovaj = prima js  ako stavim samo info prenjet ce se string -->
-      </div>
-      <footer id="footer"></footer>
+    </div>
+    <footer id="footer"></footer>
   </div>
 </template>
 
 <script>
-import DogadajiCard from '@/components/DogadajiCard.vue';
-import { db } from '@/firebase';
+import DogadajiCard from "@/components/DogadajiCard.vue";
+import { db } from "@/firebase";
 
 /*let cards = [];
 
@@ -29,40 +29,40 @@ cards = [
 ]; */
 
 export default {
-  name: 'Sredisnja',
+  name: "Sredisnja",
   data: function() {
     return {
-      cards: [],
+      cards: []
     };
   },
   components: {
-    DogadajiCard,
+    DogadajiCard
   },
-  mounted(){    
+  mounted() {
     this.getPosts();
   },
   methods: {
-   getPosts(){
-        console.log("firebase dohvat..");
+    getPosts() {
+      console.log("Firebase dohvat..");
 
-        db.collection('posts')
-          .get()
-          .then((query) => {
-            query.forEach(doc => {
-              const data = doc.data();
+      db.collection("posts")
+        .get()
+        .then(query => {
+          query.forEach(doc => {
+            const data = doc.data();
 
-              if(data.region == 'Central Croatia'){
+            if (data.region == "Central Croatia") {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
-                heart: false,
-              })
-              if('Central Croatia' == null){
-                console.log("Sorry,there are no events available yet ... ")
+                heart: false
+              });
+              if ("Central Croatia" == null) {
+                console.log("Sorry,there are no events available yet ... ");
               }
-              }
-            });
+            }
+          });
         });
     }
   }

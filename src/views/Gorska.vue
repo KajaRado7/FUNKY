@@ -10,48 +10,46 @@
 </template>
 
 <script>
-import DogadajiCard from '@/components/DogadajiCard.vue';
-import { db } from '@/firebase';
+import DogadajiCard from "@/components/DogadajiCard.vue";
+import { db } from "@/firebase";
 
 export default {
-  name: 'Gorska',
+  name: "Gorska",
   data: function() {
     return {
-      cards: [],
+      cards: []
     };
   },
   components: {
-    DogadajiCard,
+    DogadajiCard
   },
-  mounted(){    
+  mounted() {
     this.getPosts();
   },
   methods: {
-   getPosts(){
-        console.log("firebase dohvat..");
+    getPosts() {
+      console.log("Firebase dohvat..");
 
-        db.collection('posts')
-          .get()
-          .then((query) => {
-            query.forEach(doc => {
-              const data = doc.data();
+      db.collection("posts")
+        .get()
+        .then(query => {
+          query.forEach(doc => {
+            const data = doc.data();
 
-              if(data.region == 'Mountain Croatia'){
+            if (data.region == "Mountain Croatia") {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
-                heart: false,                
-              })
+                heart: false
+              });
               /*if(data.region == !gorska){
                 console.log("Sorry,there are no events available yet ... ")
               } */
-              }else if(data.region == !'Mountain Croatia'){
-               ("Sorry,there are no events available yet ... ");
-              }
-
-
-            });
+            } else if (data.region == !"Mountain Croatia") {
+              ("Sorry,there are no events available yet ... ");
+            }
+          });
         });
     }
   }

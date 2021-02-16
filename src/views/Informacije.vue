@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     async getInfo() {
-      console.log("firebase dohvat...");
+      console.log("Firebase dohvat...");
       var doc = await db
         .collection("posts")
         .doc(this.eventId)

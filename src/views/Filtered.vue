@@ -1,8 +1,9 @@
 <template>
   <div class="container" style="max-width: 500px;">
-    <!--<div id="cards">
-      <dogadaji-card v-for="card in cards" :key="card.naslov" :info="card" />
-    </div>-->
+    <div id="cards">
+      <informacije-card :info="card" />
+    </div>
+    <footer id="footer"></footer>
   </div>
 </template>
 
