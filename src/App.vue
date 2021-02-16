@@ -13,7 +13,96 @@
           </router-link>
         </div>
         <!--CurrentPageName----->
-        <h4 class="col-4 d-flex justify-content-center">{{ $route.name }}</h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Regije')"
+        >
+          Regions
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Filter')"
+        >
+          Filter
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Filtered')"
+        >
+          Filtered
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Favoriti')"
+        >
+          My Favorites
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Informacije')"
+        >
+          Informations
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Account')"
+        >
+          My Account
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('AddEvent')"
+        >
+          Add Event
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Login')"
+        >
+          Login
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Registracija')"
+        >
+          Registration
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Home')"
+        >
+          Create Account
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Juzna')"
+        >
+          Dalmatia
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Istocna')"
+        >
+          Slavonia
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Gorska')"
+        >
+          Mountain Cro.
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Sredisnja')"
+        >
+          Central Cro.
+        </h4>
+        <h4
+          class="col-4 d-flex justify-content-center"
+          v-if="checkRoute('Zapadna')"
+        >
+          Istria
+        </h4>
         <!--CurrentPageName----->
         <div class="col-4 d-flex justify-content-center">
           <router-link to="/filter" class="col-4 topColor" v-if="showFilter">
@@ -25,37 +114,8 @@
           </router-link>
         </div>
       </span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Regije')"> </span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Filter')"> </span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Filtered')"> </span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Favoriti')"></span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Informacije')"></span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Account')"></span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('AddEvent')"></span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Login')"> </span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Registracija')"> </span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Home')"> </span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Juzna')"></span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Istocna')"></span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Gorska')"></span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Sredisnja')"></span>
-
-      <span class="title mb-0 h4" v-if="checkRoute('Zapadna')"></span>
     </nav>
+
     <!---TopNavbar----------------------------------------------------------------------->
     <div class="col-md-1 col-sm-0"></div>
     <div class="col-md-10 col-sm-12">
