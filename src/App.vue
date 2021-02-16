@@ -212,13 +212,6 @@ export default {
   },
   methods: {
     checkRoute(route) {
-      // Background image
-      if (this.$route.name == '/'){
-         url('~@/assets/pozadina2.jpg');
-      return true;}
-      else return false;
-    },
-    checkRoute(route) {
       // Top Navbar -> prikaz el. ovisno na kojoj stranici se nalazimo
       if (this.$route.name == route) return true;
       else return false;
