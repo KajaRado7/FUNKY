@@ -20,15 +20,18 @@
             </label>
           </div>
           <br />
-          <croppa
-            class="imageZone"
-            :width="260"
-            :height="150"
-            placeholder="Upload image"
-            v-model="imageReference"
-          ></croppa>
+          <div class="croppa">
+            <croppa
+              class="imageZone"
+              :width="260"
+              :height="150"
+              placeholder="Upload image"
+              v-model="imageReference"
+            ></croppa>
+          </div>
           <div class="text-danger">{{ this.image }}</div>
         </div>
+
         <br />
         <div class="form-group">
           <label for="eventName">
@@ -582,6 +585,9 @@ img.preview {
 }
 .loading {
   width: 200px;
+  text-align: center;
+}
+.croppa {
   text-align: center;
 }
 </style>

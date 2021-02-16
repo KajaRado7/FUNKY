@@ -126,13 +126,7 @@
         </label>
       </div>
     </div>
-    <!--<button class="filterBtn" @click="filter"><b>Filter</b></button>-->
-    <router-link to="/filtered">
-      <button type="button" class="filterBtn" @click="filter">
-        <!--(u doradi)potrebno je dohvaćene filtrirane kartice prebaciti u Filtered.vue-->
-        <b>Filter</b>
-      </button>
-    </router-link>
+    <button class="filterBtn" @click="filter"><b>Filter</b></button>
 
     <div class="result" style="margin-top: 1rem;">
       <b>Test:</b>

@@ -9,16 +9,19 @@
         aria-label="Search"
       />
     </form>
-    <div id="cards" v-if="this.regije">
+
+    <p v-show="this.regije">
       <regije-card v-for="card in cards" :key="card.naslov" :info="card" />
-    </div>
-    <div v-else>
+    </p>
+    <!--<regije-card v-for="card in cards" :key="card.naslov" :info="card" />-->
+    <p v-show="!this.regije">
+      <!-- OVO -->
       <dogadaji-card
         v-for="card in cardsEvents"
         :key="card.naslov"
         :info="card"
       />
-    </div>
+    </p>
     <footer id="footer"></footer>
   </div>
 </template>
@@ -71,7 +74,6 @@ export default {
   },
   computed: {
     async filteredCards() {
-      // logika koja filtrira kartice
       if (!store.searchText) {
         this.regije = true;
       } else {
@@ -100,7 +102,7 @@ export default {
     }
   },
   methods: {
-    getFiltered() {
+    /* getFiltered() {
       db.collection("posts")
         .get()
         .then(query => {
@@ -118,7 +120,7 @@ export default {
             }
           });
         });
-    }
+    }*/
   },
   components: {
     RegijeCard,
