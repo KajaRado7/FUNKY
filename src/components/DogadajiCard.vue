@@ -7,6 +7,13 @@
     <div class="card-body">
       <p class="card-text" value="naslov">{{ info.naslov }}</p>
 
+      <span
+        v-if="site == 'home'"
+        class="transform"
+        :class="favorite ? 'icon-heart-2' : 'icon-heart'"
+        @click.stop.prevent="toggleFav"
+      ></span>
+
       <div class="actions" id="heart">
         <div @click="clickheart()">
           <i
