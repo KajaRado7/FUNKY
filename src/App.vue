@@ -67,7 +67,7 @@
         </router-link>
         Registration
       </span>
-      <span class="title mb-0 h4" v-if="checkRoute('Home')">
+      <span class="title mb-0 h4" v-if="checkRoute('Home') ">
         <!--pozadinska slika(proba)---->
         <div
           :style="{
@@ -211,6 +211,13 @@ export default {
     this.created();
   },
   methods: {
+    checkRoute(route) {
+      // Background image
+      if (this.$route.name == '/'){
+         url('~@/assets/pozadina2.jpg');
+      return true;}
+      else return false;
+    },
     checkRoute(route) {
       // Top Navbar -> prikaz el. ovisno na kojoj stranici se nalazimo
       if (this.$route.name == route) return true;

@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style scoped>
-body {
+html,body {
   background-image: url('~@/assets/pozadina2.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;

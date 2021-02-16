@@ -589,5 +589,6 @@ img.preview {
 }
 .loading {
   width: 200px;
+  text-align: center;
 }
 </style>
