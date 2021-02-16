@@ -76,32 +76,32 @@
 </template>
 
 <script>
-import { firebase } from '@/firebase';
-import { required, email, sameAs } from 'vuelidate/lib/validators';
+import { firebase } from "@/firebase";
+import { required, email, sameAs } from "vuelidate/lib/validators";
 
 export default {
-  name: 'Login',
+  name: "Login",
   data() {
     return {
       userForm: {
-        email: '',
-        password: '',
+        email: "",
+        password: ""
       },
-      errorMessage: '',
-      isSubmitted: false,
+      errorMessage: "",
+      isSubmitted: false
     };
   },
   validations: {
     userForm: {
       email: {
         required,
-        email,
+        email
       },
       password: {
         required,
-        sameAsPassword: sameAs('password'),
-      },
-    },
+        sameAsPassword: sameAs("password")
+      }
+    }
   },
   methods: {
     handleSubmit() {
@@ -111,15 +111,15 @@ export default {
       if (this.$v.$invalid) {
         return;
       }
-      console.log('login...' + this.userForm.email);
+      console.log("login..." + this.userForm.email);
       firebase
         .auth()
         .signInWithEmailAndPassword(this.userForm.email, this.userForm.password)
         .then(function(result) {
-          console.log('Uspješna prijava.', result);
-          that.$router.replace({ name: 'Regije' });
+          console.log("Uspješna prijava.", result);
+          that.$router.replace({ name: "Regije" });
         })
-        .catch((error) => {
+        .catch(error => {
           // Handle Errors here.
           /*var errorCode = error.code;
      var errorMessage = error.message;
@@ -131,8 +131,8 @@ export default {
           console.error(error);
           this.errorMessage = error.message;
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

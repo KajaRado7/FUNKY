@@ -45,13 +45,13 @@
 </template>
 
 <script>
-import { firebase } from '@/firebase';
-import store from '@/store';
+import { firebase } from "@/firebase";
+import store from "@/store";
 
 export default {
   data() {
     return {
-      store,
+      store
     };
   },
 
@@ -64,10 +64,10 @@ export default {
           this.store.displayName = null;
           this.store.currentUser = null;
 
-          this.$router.push({ name: 'Home' });
+          this.$router.push({ name: "Home" });
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

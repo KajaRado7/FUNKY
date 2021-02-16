@@ -6,132 +6,55 @@
     <div class="backImage"></div>
     <!---TopNavbar----------------------------------------------------------------------->
     <nav class="topNavbar">
-      <span class="title mb-0 h4" v-if="checkRoute('Regije')">
-        Regions
-        <router-link to="/filter" class="topNavItem">
-          <font-awesome-icon icon="sliders-h" transform=" right-60" />
-        </router-link>
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
+      <span class="row mb-0 h4">
+        <div class="col-4 d-flex justify-content-center">
+          <router-link to="/" class="topColor" v-if="showBackArrow">
+            <font-awesome-icon icon="arrow-alt-circle-left" />
+          </router-link>
+        </div>
+        <!--CurrentPageName----->
+        <h4 class="col-4 d-flex justify-content-center">{{ $route.name }}</h4>
+        <!--CurrentPageName----->
+        <div class="col-4 d-flex justify-content-center">
+          <router-link to="/filter" class="col-4 topColor" v-if="showFilter">
+            <font-awesome-icon icon="sliders-h" />
+          </router-link>
+
+          <router-link to="/addevent" class="topColor" v-if="showAddButton">
+            <font-awesome-icon icon="plus-circle" />
+          </router-link>
+        </div>
       </span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Filter')">
-        Filter
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Regije')"> </span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Filtered')">
-        <router-link to="/filter" class="topNavItem">
-          <font-awesome-icon
-            icon="arrow-alt-circle-left"
-            transform=" left-70"
-          />
-        </router-link>
-        Filtered
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Filter')"> </span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Favoriti')">
-        My Favorites
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Filtered')"> </span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Informacije')">
-        Informations
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Favoriti')"></span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Account')">
-        Account
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Informacije')"></span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('AddEvent')">Add Event</span>
+      <span class="title mb-0 h4" v-if="checkRoute('Account')"></span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Login')">
-        <router-link to="/" class="topNavItem">
-          <font-awesome-icon
-            icon="arrow-alt-circle-left"
-            transform=" left-70"
-          />
-        </router-link>
-        Login
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('AddEvent')"></span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Registracija')">
-        <router-link to="/" class="topNavItem">
-          <font-awesome-icon
-            icon="arrow-alt-circle-left"
-            transform=" left-70"
-          />
-        </router-link>
-        Registration
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Login')"> </span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Home')">
-        Create Account
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Registracija')"> </span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Juzna')">
-        Dalmatia
-        <router-link to="/filter" class="topNavItem">
-          <font-awesome-icon icon="sliders-h" transform=" right-60" />
-        </router-link>
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Home')"> </span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Istocna')">
-        Slavonia
-        <router-link to="/filter" class="topNavItem">
-          <font-awesome-icon icon="sliders-h" transform=" right-60" />
-        </router-link>
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Juzna')"></span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Gorska')">
-        Mountain Croatia
-        <router-link to="/filter" class="topNavItem">
-          <font-awesome-icon icon="sliders-h" transform=" right-60" />
-        </router-link>
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Istocna')"></span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Sredisnja')">
-        Central Croatia
-        <router-link to="/filter" class="topNavItem">
-          <font-awesome-icon icon="sliders-h" transform=" right-60" />
-        </router-link>
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Gorska')"></span>
 
-      <span class="title mb-0 h4" v-if="checkRoute('Zapadna')">
-        Istria
-        <router-link to="/filter" class="topNavItem">
-          <font-awesome-icon icon="sliders-h" transform=" right-60" />
-        </router-link>
-        <router-link to="/addevent" class="topNavItem">
-          <font-awesome-icon icon="plus-circle" transform=" right-70" />
-        </router-link>
-      </span>
+      <span class="title mb-0 h4" v-if="checkRoute('Sredisnja')"></span>
+
+      <span class="title mb-0 h4" v-if="checkRoute('Zapadna')"></span>
     </nav>
     <!---TopNavbar----------------------------------------------------------------------->
     <div class="col-md-1 col-sm-0"></div>
@@ -157,20 +80,17 @@
           |
           <router-link to="/Juzna">Juzna</router-link>
           |
-          <router-link to="/account">My account</router-link>
+          <router-link to="/Account">My account</router-link>
           |
-          <router-link to="/favoriti">My favorites</router-link>
+          <router-link to="/Favoriti">My favorites</router-link>
           |
           <router-link to="/Informacije">Informacije</router-link>
           |
-          <router-link to="/filter">Filter</router-link>
+          <router-link to="/Filter">Filter</router-link>
           |
-          <router-link to="/filtered">Filtered</router-link>
-          |
-          <router-link to="/AddEvent">Add event</router-link>
-          |
-          <router-link to="/Informacije">Informacije</router-link>-->
-          <router-link to="/filtered">Filtered</router-link>
+          <router-link to="/Filtered">Filtered</router-link>
+          |-->
+          <router-link to="/Filtered">Filtered</router-link>
         </div>
         <router-view />
       </div>
@@ -216,12 +136,50 @@ export default {
       store
     };
   },
+  // TopNav prikaz elemenata
+  computed: {
+    showAddButton() {
+      // prikaz ikone za dodavanje događaja
+      let curRoute = this.$route.name;
+      let routes = ["Regije", "Filter", "Favoriti", "Filtered", "Account"];
+      let result = routes.filter(route => route == curRoute);
+
+      if (result.length > 0) return true;
+      else return false;
+    },
+    showFilter() {
+      // prikaz ikone za filtriranje
+      let curRoute = this.$route.name;
+      let routes = [
+        "Istocna",
+        "Gorska",
+        "Sredisnja",
+        "Zapadna",
+        "Juzna",
+        "Regije",
+        "Filtered"
+      ];
+      let result = routes.filter(route => route == curRoute);
+
+      if (result.length > 0) return true;
+      else return false;
+    },
+    showBackArrow() {
+      // prikaz ikone za povratak na Home
+      let curRoute = this.$route.name;
+      let routes = ["Registracija", "Login"];
+
+      let result = routes.filter(route => route == curRoute);
+
+      if (result.length > 0) return true;
+      else return false;
+    }
+  },
   mounted() {
     this.created();
   },
   methods: {
     checkRoute(route) {
-      // Top Navbar -> prikaz el. ovisno na kojoj stranici se nalazimo
       if (this.$route.name == route) return true;
       else return false;
     },
@@ -277,6 +235,7 @@ export default {
 </script>
 
 <style lang="scss">
+/*pozadinska slika -> Home.vue*/
 .backImage {
   background-image: url("~@/assets/pozadina2.jpg");
   background-repeat: no-repeat;
@@ -294,7 +253,10 @@ export default {
   margin-top: 8px;
 }
 
-//promjena boje router-linkova na Bottom Navbar-u
+//promjena boje router-linkova na Top i Bottom Navbaru
+.topColor {
+  color: black;
+}
 .btmColor:focus {
   color: #f5b85c;
 }
@@ -307,9 +269,7 @@ export default {
   justify-content: center;
   text-align: center;
 }
-.topNavItem {
-  color: black;
-}
+
 .bottomNavbar {
   justify-content: space-evenly;
   display: flex;

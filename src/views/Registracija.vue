@@ -99,7 +99,7 @@
           name="confirmPassword"
           class="form-control"
           :class="{
-            'is-invalid': isSubmitted && $v.userForm.confirmPassword.$error,
+            'is-invalid': isSubmitted && $v.userForm.confirmPassword.$error
           }"
         />
         <div
@@ -154,49 +154,49 @@
 </template>
 
 <script>
-import { firebase } from '@/firebase';
-import { required, email, minLength, sameAs } from 'vuelidate/lib/validators';
-import { db } from '@/firebase';
-import store from '@/store';
+import { firebase } from "@/firebase";
+import { required, email, minLength, sameAs } from "vuelidate/lib/validators";
+import { db } from "@/firebase";
+import store from "@/store";
 
 export default {
-  name: 'Registracija',
+  name: "Registracija",
   data() {
     return {
       userForm: {
-        name: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        accept: '',
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        accept: ""
       },
       isSubmitted: false,
-      errorMessage: '',
+      errorMessage: ""
     };
   },
   validations: {
     userForm: {
       name: {
-        required,
+        required
       },
       email: {
         required,
-        email,
+        email
       },
       password: {
         required,
-        minLength: minLength(5),
+        minLength: minLength(5)
       },
       confirmPassword: {
         required,
-        sameAsPassword: sameAs('password'),
+        sameAsPassword: sameAs("password")
       },
       accept: {
         required(val) {
           return val;
-        },
-      },
-    },
+        }
+      }
+    }
   },
   methods: {
     handleSubmit() {
@@ -215,24 +215,24 @@ export default {
           that.userForm.password
         )
         .then(function() {
-          db.collection('users')
+          db.collection("users")
             .doc(id)
             .set({
               name: that.userForm.name,
               email: that.userForm.email,
-              password: that.userForm.password,
+              password: that.userForm.password
             })
-            .then((doc) => {
-              console.log('Spremljeno', doc.id);
+            .then(doc => {
+              console.log("Spremljeno", doc.id);
             })
             .catch(function(error) {
-              console.error('Došlo je do greške', error);
+              console.error("Došlo je do greške", error);
             });
           store.displayName = that.userForm.name;
           store.currentUser = that.userForm.email;
           store.password = that.userForm.password;
 
-          that.$router.replace({ name: 'Regije' });
+          that.$router.replace({ name: "Regije" });
         })
         /*.then(() => {
 					firebase
@@ -240,12 +240,12 @@ export default {
 						.currentUser.updateProfile({ displayName: this.userForm.name });
 				})*/
 
-        .catch((error) => {
+        .catch(error => {
           console.error(error);
           this.errorMessage = error.message;
         });
-    },
-  },
+    }
+  }
 };
 </script>
 

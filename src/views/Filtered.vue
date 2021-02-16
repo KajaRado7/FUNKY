@@ -1,8 +1,8 @@
 <template>
   <div class="container" style="max-width: 500px;">
-    <div id="cards">
+    <!--<div id="cards">
       <informacije-card :info="card" />
-    </div>
+    </div>-->
     <footer id="footer"></footer>
   </div>
 </template>

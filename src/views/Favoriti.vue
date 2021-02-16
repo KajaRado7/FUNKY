@@ -7,19 +7,19 @@
   </div>
 </template>
 <script>
-import DogadajiCard from '@/components/DogadajiCard.vue';
-import { db } from '@/firebase';
+import DogadajiCard from "@/components/DogadajiCard.vue";
+import { db } from "@/firebase";
 
 export default {
-  name: 'Favoriti',
-  props: ['info'],
+  name: "Favoriti",
+  props: ["info"],
   data: function() {
     return {
-      cards: [],
+      cards: []
     };
   },
   components: {
-    DogadajiCard,
+    DogadajiCard
   },
 
   mounted() {
@@ -27,25 +27,25 @@ export default {
   },
   methods: {
     getFav() {
-      console.log('dohvat..');
+      console.log("Firebase dohvat..");
 
-      db.collection('posts')
+      db.collection("posts")
         .get()
-        .then((query) => {
-          query.forEach((doc) => {
+        .then(query => {
+          query.forEach(doc => {
             const data = doc.data();
             if ((data.heart = true)) {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
-                heart: true,
+                heart: true
               });
             }
           });
         });
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped>
