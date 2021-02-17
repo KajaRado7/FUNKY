@@ -404,5 +404,9 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
+h4 {
+  white-space: nowrap;
+}
 //------------------------------------
 </style>

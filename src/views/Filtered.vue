@@ -1,13 +1,26 @@
 <template>
   <div class="container" style="max-width: 500px;">
-    <!--<div id="cards">
-      <informacije-card :info="card" />
-    </div>-->
+    <dogadaji-card :key="card.id" :info="card" v-for="card in events" />
     <footer id="footer"></footer>
   </div>
 </template>
 
-<script></script>
+<script>
+import store from "@/store.js";
+import DogadajiCard from "../components/DogadajiCard.vue";
+
+export default {
+  components: { DogadajiCard },
+  data() {
+    return {
+      events: []
+    };
+  },
+  mounted() {
+    this.events = store.filteredEvents;
+  }
+};
+</script>
 
 <style scoped>
 #footer {
