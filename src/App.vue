@@ -158,7 +158,6 @@
           |
           <router-link to="/Filtered">Filtered</router-link>
           |-->
-          <router-link to="/Filtered">Filtered</router-link>
         </div>
         <router-view />
       </div>

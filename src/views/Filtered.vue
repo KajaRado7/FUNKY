@@ -1,6 +1,7 @@
 <template>
   <div class="container" style="max-width: 500px;">
-    <dogadaji-card :key="card.id" :info="card" v-for="card in events" />
+    <DogadajiCard :key="card.id" :info="card" v-for="card in events" />
+
     <footer id="footer"></footer>
   </div>
 </template>

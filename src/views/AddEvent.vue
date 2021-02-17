@@ -489,7 +489,7 @@ select {
   padding: 8px 12px;
   border: 2px solid #f5b85c;
   border-radius: 4px;
-  background-color: #1a1a1a;
+  background-color: transparent;
   color: white;
 }
 #footer {
@@ -533,7 +533,7 @@ img.preview {
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background: rgba(78, 76, 76, 0.77);
+  background: transparent;
   font-size: 16px;
   margin: auto;
   margin-top: 5%;
@@ -544,14 +544,14 @@ img.preview {
   margin-bottom: 8px;
   margin-top: 10px;
   border: 2px solid #f5b85c;
-  background-color: #1a1a1a;
+  background-color: transparent;
   color: #d0d0d0;
   outline: none;
   box-shadow: none;
 }
 .form-control:focus,
 .form-control:active {
-  background: #1a1a1a;
+  background: transparent;
   color: white;
   box-shadow: none;
   border-bottom: 2px solid #f5b85c;
@@ -567,7 +567,7 @@ img.preview {
   margin-top: 1rem;
 }
 .imageZone {
-  background: #1a1a1a;
+  background: rgba(192, 139, 53, 0.25);
   border: 3px dashed #f5b85c;
 }
 .imageZone:hover {

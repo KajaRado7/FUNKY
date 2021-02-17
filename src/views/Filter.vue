@@ -126,12 +126,8 @@
         </label>
       </div>
     </div>
-    <button class="filterBtn" @click="filter"><b>Filter</b></button>
 
-    <div class="result" style="margin-top: 1rem;">
-      <b>Test:</b>
-      {{ filteredUsers }}
-    </div>
+    <button class="filterBtn" @click="filterEvents()"><b>Filter</b></button>
 
     <footer id="footer"></footer>
   </div>
@@ -139,50 +135,14 @@
 
 <script>
 import store from "@/store.js";
+import { db } from "@/firebase";
 
 export default {
-  name: "Filter",
   data() {
     return {
       store,
       filters: [],
-      filteredUsers: "",
-
-      users: [
-        {
-          event: "Music event",
-          category: "Music"
-        },
-        {
-          event: "Games event",
-          category: "Games"
-        },
-        {
-          event: "Literature",
-          category: "Literature"
-        },
-        {
-          event: "Art",
-          category: "Art"
-        },
-        {
-          event: "Outdoor event",
-          category: "Outdoor"
-        },
-        {
-          event: "Indoor event",
-          category: "Indoor"
-        },
-        {
-          event: "Other event",
-          category: "Other"
-        },
-        // proba za mix event - ne funkc.
-        {
-          event: "Mix event",
-          category: "Music Outdoor"
-        }
-      ]
+      filterResults: []
     };
   },
   methods: {
@@ -191,17 +151,32 @@ export default {
         this.filters = this.filters.filter(filter => filter != newFilter);
       else this.filters.push(newFilter);
     },
-    filter() {
-      if (!this.filters.length) return;
+    checkFilter(categories) {
+      return this.filters.some(r => categories.indexOf(r) >= 0);
+    },
+    filterEvents() {
+      this.filterResults = [];
 
-      this.filteredUsers = this.users.filter(user =>
-        this.filters.includes(user.category)
-      );
+      db.collection("posts")
+        .get()
+        .then(query => {
+          query.forEach(doc => {
+            const data = doc.data();
 
-      this.filters = [];
+            if (this.checkFilter(data.model))
+              this.filterResults.push({
+                id: doc.id,
+                img: data.url,
+                naslov: data.name,
+                heart: false
+              });
+          });
+        });
+
+      this.store.filteredEvents = this.filterResults;
+      this.$router.push({ path: "/filtered" });
     }
-  },
-  name: "App"
+  }
 };
 </script>
 
@@ -225,7 +200,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  background-color: transparent;
+  background-color: #1a1a1a;
   padding: 15px 32px;
   font-size: 16px;
   margin: 10px;

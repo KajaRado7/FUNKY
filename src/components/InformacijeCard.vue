@@ -119,14 +119,14 @@ select {
   border-right: none;
   border-top: none;
   border-bottom: 2px solid #f8f8f8;
-  background-color: #1a1a1a;
+  background-color: transparent;
   color: #d0d0d0;
   outline: none;
   box-shadow: none;
 }
 .form-control:focus,
 .form-control:active {
-  background: #1a1a1a;
+  background: transparent;
   color: white;
   box-shadow: none;
   border-bottom: 2px solid #f5b85c;
