@@ -200,7 +200,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  background-color: #1a1a1a;
+  background-color: transparent;
   padding: 15px 32px;
   font-size: 16px;
   margin: 10px;

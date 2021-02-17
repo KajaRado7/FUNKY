@@ -208,7 +208,19 @@ export default {
     showAddButton() {
       // prikaz ikone za dodavanje događaja
       let curRoute = this.$route.name;
-      let routes = ["Regije", "Filter", "Favoriti", "Filtered", "Account"];
+      let routes = [
+        "Regije",
+        "Filter",
+        "Favoriti",
+        "Filtered",
+        "Account",
+        "Informacije",
+        "Istocna",
+        "Gorska",
+        "Sredisnja",
+        "Zapadna",
+        "Juzna"
+      ];
       let result = routes.filter(route => route == curRoute);
 
       if (result.length > 0) return true;
@@ -224,7 +236,8 @@ export default {
         "Zapadna",
         "Juzna",
         "Regije",
-        "Filtered"
+        "Filtered",
+        "Informacije"
       ];
       let result = routes.filter(route => route == curRoute);
 
@@ -406,6 +419,7 @@ body {
 
 h4 {
   white-space: nowrap;
+  color: black;
 }
 //------------------------------------
 </style>

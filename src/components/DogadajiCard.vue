@@ -128,6 +128,6 @@ export default {
   border-left: none;
   border-right: none;
   border-top: none;
-  background-color: #1a1a1a;
+  background-color: transparent;
 }
 </style>
