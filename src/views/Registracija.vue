@@ -200,7 +200,6 @@ export default {
   },
   methods: {
     handleSubmit() {
-      let id = this.userForm.email;
       let that = this;
       that.isSubmitted = true;
       that.$v.$touch();
@@ -215,6 +214,7 @@ export default {
           that.userForm.password
         )
         .then(function() {
+          const id = that.userForm.email;
           db.collection("users")
             .doc(id)
             .set({
@@ -222,12 +222,7 @@ export default {
               email: that.userForm.email,
               password: that.userForm.password
             })
-            .then(doc => {
-              console.log("Spremljeno", doc.id);
-            })
-            .catch(function(error) {
-              console.error("Došlo je do greške", error);
-            });
+
           store.displayName = that.userForm.name;
           store.currentUser = that.userForm.email;
           store.password = that.userForm.password;
