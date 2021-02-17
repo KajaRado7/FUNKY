@@ -8,7 +8,15 @@
     <nav class="topNavbar">
       <span class="row mb-0 h4">
         <div class="col-4 d-flex justify-content-center">
-          <router-link to="/" class="topColor" v-if="showBackArrow">
+          <router-link to="/" class="topColor" v-if="showBackArrowHome">
+            <font-awesome-icon icon="arrow-alt-circle-left" />
+          </router-link>
+
+          <router-link
+            to="/Regije"
+            class="topColor"
+            v-if="showBackArrowRegions"
+          >
             <font-awesome-icon icon="arrow-alt-circle-left" />
           </router-link>
         </div>
@@ -71,7 +79,7 @@
           class="col-4 d-flex justify-content-center"
           v-if="checkRoute('Home')"
         >
-          Create Account
+          <p>Create Account</p>
         </h4>
         <h4
           class="col-4 d-flex justify-content-center"
@@ -224,10 +232,20 @@ export default {
       if (result.length > 0) return true;
       else return false;
     },
-    showBackArrow() {
+    showBackArrowHome() {
       // prikaz ikone za povratak na Home
       let curRoute = this.$route.name;
       let routes = ["Registracija", "Login"];
+
+      let result = routes.filter(route => route == curRoute);
+
+      if (result.length > 0) return true;
+      else return false;
+    },
+    showBackArrowRegions() {
+      // prikaz ikone za povratak na Regije
+      let curRoute = this.$route.name;
+      let routes = ["Sredisnja", "Juzna", "Zapadna", "Istocna", "Gorska"];
 
       let result = routes.filter(route => route == curRoute);
 
@@ -295,13 +313,6 @@ export default {
 </script>
 
 <style lang="scss">
-/*pozadinska slika -> Home.vue*/
-.backImage {
-  background-image: url("~@/assets/pozadina2.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
 .title {
   margin: auto;
 }
@@ -388,7 +399,10 @@ export default {
 }
 
 body {
-  background-color: #1a1a1a;
+  background-image: url("~@/assets/backImg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 //------------------------------------
 </style>

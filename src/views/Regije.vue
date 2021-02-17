@@ -148,7 +148,7 @@ export default {
   border-right: none;
   border-top: none;
   border-bottom: 2px solid #f5b85c;
-  background-color: #1a1a1a;
+  background-color: transparent;
   color: #d0d0d0;
   outline: none;
   box-shadow: none;

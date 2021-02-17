@@ -1,6 +1,6 @@
 <template>
   <div id="cards">
-    <a :href="info.route"><img class="card-img-top" :src="info.img" /></a>
+    <a :href="info.route"><img class="card-img-top" :src="info.img"/></a>
     <div class="card-body">
       <p class="card-text">{{ info.naslov }}</p>
     </div>
@@ -9,8 +9,8 @@
 
 <script>
 export default {
-  props: ['info'],
-  name: 'RegijeCard',
+  props: ["info"],
+  name: "RegijeCard"
 };
 </script>
 
@@ -25,7 +25,7 @@ export default {
   border-left: none;
   border-right: none;
   border-top: none;
-  background-color: #1a1a1a;
+  background-color: transparent;
   align-items: center;
 }
 .card-img-top {

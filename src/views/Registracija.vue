@@ -258,7 +258,7 @@ export default {
   margin-top: 10px;
 
   border: 2px solid #f5b85c;
-  background-color: #1a1a1a;
+  background-color: transparent;
   color: #d0d0d0;
   outline: none;
   box-shadow: none;
