@@ -34,14 +34,14 @@ export default {
           query.forEach(doc => {
             const data = doc.data();
 
-            if (data.region == "Juzna") {
+            if (data.region == "Dalmatia") {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
                 heart: false
               });
-              if ("Gorska" == null) {
+              if ("Dalmatia " == null) {
                 console.log("Sorry,there are no events available yet ... ");
               }
             }

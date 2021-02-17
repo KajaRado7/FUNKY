@@ -50,14 +50,14 @@ export default {
           query.forEach(doc => {
             const data = doc.data();
 
-            if (data.region == "Istocna") {
+            if (data.region == "Slavonia") {
               this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
                 heart: false
               });
-              if ("Gorska" == null) {
+              if ("Slavonia" == null) {
                 console.log("Sorry,there are no events available yet ... ");
               }
             }

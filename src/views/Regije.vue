@@ -10,11 +10,11 @@
       />
     </form>
 
-    <p v-show="this.regije">
+    <p v-if="this.regije">
       <regije-card v-for="card in cards" :key="card.naslov" :info="card" />
     </p>
     <!--<regije-card v-for="card in cards" :key="card.naslov" :info="card" />-->
-    <p v-show="!this.regije">
+    <p v-else>
       <!-- OVO -->
       <dogadaji-card
         v-for="card in cardsEvents"
@@ -99,7 +99,6 @@ export default {
             });
         });
       }
-      console.log(this.filteredCards);
     }
   },
   methods: {
