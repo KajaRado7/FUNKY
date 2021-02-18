@@ -349,7 +349,14 @@
             v-model="note"
             id="note"
             rows="4"
+            :class="{ 'is-invalid': submitted && $v.note.$error }"
           ></textarea>
+          <div
+            v-if="submitted && !$v.note.required"
+            class="invalid-feedback"
+          >
+            Note must be filled!
+          </div>
         </div>
         <br />
         <button type="button" class="btn_publish" @click="addNewEvent()">
@@ -490,7 +497,7 @@ select {
   border: 2px solid #f5b85c;
   border-radius: 4px;
   background-color: transparent;
-  color: white;
+  color: black;
 }
 #footer {
   width: 100%;

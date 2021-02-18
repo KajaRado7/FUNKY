@@ -62,7 +62,7 @@ export default {
                 naslov: data.name,
                 heart: false
               });
-              if (data.Istria == null) {
+              if ("Istria" == null) {
                 console.log("Sorry,there are no events available yet ... ");
               }
             }

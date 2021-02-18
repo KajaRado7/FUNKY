@@ -229,11 +229,6 @@ export default {
 
           that.$router.replace({ name: "Regije" });
         })
-        /*.then(() => {
-					firebase
-						.auth()
-						.currentUser.updateProfile({ displayName: this.userForm.name });
-				})*/
 
         .catch(error => {
           console.error(error);
