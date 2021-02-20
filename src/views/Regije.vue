@@ -3,25 +3,32 @@
     <form id="search" class="navbar-form form-inline ml-auto">
       <input
         v-model="store.searchText"
+        @keyup="this.filteredCards"
         class="form-control mr-sm-2"
         type="search"
         placeholder="Search City"
         aria-label="Search"
       />
     </form>
-
-    <p v-if="this.regije">
-      <regije-card v-for="card in cards" :key="card.naslov" :info="card" />
-    </p>
-    <!--<regije-card v-for="card in cards" :key="card.naslov" :info="card" />-->
-    <p v-else>
-      <!-- OVO -->
-      <dogadaji-card
-        v-for="card in cardsEvents"
-        :key="card.naslov"
-        :info="card"
-      />
-    </p>
+    <img
+      class="loading"
+      v-if="loading"
+      :src="require('@/assets/loading.gif')"
+    />
+    <div v-if="!loading">
+      <p v-if="this.regije">
+        <regije-card v-for="card in cards" :key="card.naslov" :info="card" />
+      </p>
+      <!--<regije-card v-for="card in cards" :key="card.naslov" :info="card" />-->
+      <p v-if="!this.regije">
+        <!-- OVO -->
+        <dogadaji-card
+          v-for="card in cardsEvents"
+          :key="card.naslov"
+          :info="card"
+        />
+      </p>
+    </div>
     <footer id="footer"></footer>
   </div>
 </template>
@@ -69,38 +76,11 @@ export default {
       cards, //prvi cards je kljuc, a drugi varijabla od gore tj ova lista
       store,
       regije: true,
-      cardsEvents: []
+      cardsEvents: [],
+      loading: false
     };
   },
-  computed: {
-    async filteredCards() {
-      if (!store.searchText) {
-        this.regije = true;
-      } else {
-        this.regije = false;
-        let ref = await db
-          .collection("posts")
-          //.where("city", ">=", store.searchText)
-          .get();
-        this.cardsEvents = [];
-        ref.forEach(doc => {
-          const data = doc.data();
-
-          if (
-            data["city"]
-              .toLowerCase()
-              .startsWith(store.searchText.toLowerCase())
-          )
-            this.cardsEvents.push({
-              id: doc.id,
-              img: data.url,
-              naslov: data.name,
-              heart: false
-            });
-        });
-      }
-    }
-  },
+  computed: {},
   methods: {
     /* getFiltered() {
       db.collection("posts")
@@ -121,6 +101,38 @@ export default {
           });
         });
     }*/
+
+    async getEvents() {
+      let ref = await db
+        .collection("posts")
+        //.where("city", ">=", store.searchText)
+        .get();
+      this.cardsEvents = [];
+      ref.forEach(doc => {
+        const data = doc.data();
+
+        if (
+          data["city"].toLowerCase().startsWith(store.searchText.toLowerCase())
+        )
+          this.cardsEvents.push({
+            id: doc.id,
+            img: data.url,
+            naslov: data.name,
+            heart: false
+          });
+      });
+      this.loading = false;
+    },
+    filteredCards() {
+      if (!store.searchText.length) {
+        this.regije = true;
+      } else {
+        this.loading = true;
+        this.regije = false;
+        this.getEvents();
+      }
+      return this.regije;
+    }
   },
   components: {
     RegijeCard,
