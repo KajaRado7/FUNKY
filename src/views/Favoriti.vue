@@ -9,13 +9,15 @@
 <script>
 import DogadajiCard from "@/components/DogadajiCard.vue";
 import { db } from "@/firebase";
+import store from "@/store";
 
 export default {
   name: "Favoriti",
   props: ["info"],
   data: function() {
     return {
-      cards: []
+      cards: [],
+      site: "favorit",
     };
   },
   components: {
@@ -23,28 +25,30 @@ export default {
   },
 
   mounted() {
-    this.getFav();
+      this.getFav();
   },
   methods: {
-    getFav() {
-      console.log("Firebase dohvat..");
-
-      db.collection("posts")
+     getFav() {
+      db
+        .collection("users")
+        .doc(store.currentUser)
+        .collection("posts")
         .get()
-        .then(query => {
+         .then(query => {
           query.forEach(doc => {
             const data = doc.data();
-            if ((data.heart = true)) {
-              this.cards.push({
+
+      if (this.heart){
+        this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
-                heart: true
+                heart: this.heart
               });
-            }
-          });
-        });
-    }
+      }
+    })
+  })
+     }
   }
 };
 </script>

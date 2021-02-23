@@ -302,6 +302,7 @@ export default {
                 console.log("Document data:", doc.data());
 
                 store.displayName = doc.data().name;
+                store.contact = doc.data().contact;
                 store.currentUser = doc.data().email;
               } else {
                 console.log("No such document!");

@@ -17,7 +17,8 @@ export default {
   name: "Gorska",
   data: function() {
     return {
-      cards: []
+      cards: [],
+      heart: true,
     };
   },
   components: {

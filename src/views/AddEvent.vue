@@ -370,12 +370,18 @@
 
 <script>
 import { firebase } from "@/firebase";
+import moment from 'moment';
 import store from "@/store";
 import { db, storage } from "@/firebase";
 import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "AddEvent",
+  /*computed: {
+         postedFromNow() {
+      return moment(this.posted_at).fromNow();
+    }
+    },*/
   data() {
     return {
       loading: false,

@@ -14,20 +14,12 @@
         @click.stop.prevent="toggleFav"
       ></span> -->
 
-      <div class="actions" id="heart">
-        <div @click="clickheart()">
-          <i
-            class="far fa-heart"
-            v-if="!info.heart"
-            @click="info.heart = !info.heart"
-          ></i>
-          <i
-            class="fas fa-heart red"
-            v-if="info.heart"
-            @click="info.heart = !info.heart"
-          ></i>
+      <div class="actions">
+        <span
+         :class="heart ? 'far fa-heart' : 'fas fa-heart red'"
+         @click.prevent="clickheart()"
+         ></span>
         </div>
-      </div>
     </div>
   </div>
 </template>
@@ -36,13 +28,14 @@
 import InformacijeCard from "@/components/InformacijeCard.vue";
 import { db } from "@/firebase";
 import DogadajiCard from "../components/DogadajiCard.vue";
+import store from "@/store";
 
 export default {
   props: ["info"],
   name: "DogadajiCard",
   data: function() {
     return {
-      heart: false
+      heart: null,
     };
   },
   mounted() {
@@ -56,8 +49,17 @@ export default {
       });
     },
 
-    clickheart() {
-      if (heart) {
+    async clickheart() {
+      this.heart = !this.heart;
+      if (this.heart) {
+        await db
+          .collection("users")
+          .doc(store.currentUser)
+          .collection("posts")
+          .doc(this.info.id)
+          .set({
+            favorited: Date.now(),
+          });
       }
     }
   }

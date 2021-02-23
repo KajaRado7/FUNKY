@@ -31,6 +31,34 @@
       <br />
 
       <div class="form-group">
+        <label for="contact">
+          Contact
+          <span class="text-danger ml-1">*</span>
+        </label>
+        <input
+          type="contact"
+          v-model="userForm.contact"
+          id="contact"
+          placeholder="1234567890"
+          name="contact"
+          class="form-control"
+          :class="{ 'is-invalid': isSubmitted && $v.userForm.contact.$error }"
+        />
+        <div
+          v-if="isSubmitted && $v.userForm.contact.$error"
+          class="invalid-feedback"
+        >
+          <span v-if="!$v.userForm.contact.required">
+            Contact field is required.
+          </span>
+          <span v-if="!$v.userForm.contact.minLength">
+            Contact should be at least 8 characters long.
+          </span>
+        </div>
+      </div>
+      <br/>
+
+      <div class="form-group">
         <label for="email">
           Email
           <span class="text-danger ml-1">*</span>
@@ -165,6 +193,7 @@ export default {
     return {
       userForm: {
         name: "",
+        contact: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -178,6 +207,10 @@ export default {
     userForm: {
       name: {
         required
+      },
+      contact: {
+        required,
+        minLength: minLength(8)
       },
       email: {
         required,
@@ -219,11 +252,13 @@ export default {
             .doc(id)
             .set({
               name: that.userForm.name,
+              contact: that.userForm.contact,
               email: that.userForm.email,
               password: that.userForm.password
             })
 
           store.displayName = that.userForm.name;
+          store.contact = that.userForm.contact;
           store.currentUser = that.userForm.email;
           store.password = that.userForm.password;
 
@@ -241,6 +276,7 @@ export default {
 
 <style scoped>
 #name,
+#contact,
 #email,
 #password,
 #confirmPassword {

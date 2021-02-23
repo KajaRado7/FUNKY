@@ -21,6 +21,15 @@
       <div class="hr"></div>
       <br />
       <br />
+      
+      <label>Contact</label>
+      <br />
+      <br />
+
+      <p class="userInfo">{{ store.contact }}</p>
+      <div class="hr"></div>
+      <br />
+      <br />
 
       <div class="col-lg-12 col-md-12 text-center">
         <button
@@ -62,6 +71,7 @@ export default {
         .signOut()
         .then(() => {
           this.store.displayName = null;
+          this.store.contact = null;
           this.store.currentUser = null;
 
           this.$router.push({ name: "Home" });
