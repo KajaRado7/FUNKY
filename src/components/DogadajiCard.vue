@@ -16,10 +16,10 @@
 
       <div class="actions">
         <span
-         :class="heart ? 'far fa-heart' : 'fas fa-heart red'"
-         @click.prevent="clickheart()"
-         ></span>
-        </div>
+          :class="heart ? 'far fa-heart' : 'fas fa-heart red'"
+          @click.prevent="clickheart()"
+        ></span>
+      </div>
     </div>
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
   name: "DogadajiCard",
   data: function() {
     return {
-      heart: null,
+      heart: null
     };
   },
   mounted() {
@@ -58,7 +58,7 @@ export default {
           .collection("posts")
           .doc(this.info.id)
           .set({
-            favorited: Date.now(),
+            favorited: Date.now()
           });
       }
     }
@@ -89,7 +89,7 @@ export default {
 .card-body {
   height: 10px;
   text-align: left;
-  margin-top: 0%;
+  margin-top: -6%;
   margin-bottom: 5%;
 }
 
@@ -102,11 +102,12 @@ export default {
 
 .actions {
   position: absolute;
-  top: 200px;
+  top: 185px;
   right: -10px;
   padding-right: 20px;
   float: right;
   color: #c92525;
+  font-size: 20px;
 }
 
 .actions red {
@@ -114,7 +115,7 @@ export default {
 }
 
 .actions i {
-  font-size: 1.4rem;
+  font-size: 3rem;
   cursor: pointer;
 }
 .btn_publish {

@@ -17,7 +17,7 @@ export default {
   data: function() {
     return {
       cards: [],
-      site: "favorit",
+      site: "favorit"
     };
   },
   components: {
@@ -25,30 +25,29 @@ export default {
   },
 
   mounted() {
-      this.getFav();
+    this.getFav();
   },
   methods: {
-     getFav() {
-      db
-        .collection("users")
+    getFav() {
+      db.collection("users")
         .doc(store.currentUser)
         .collection("posts")
         .get()
-         .then(query => {
+        .then(query => {
           query.forEach(doc => {
             const data = doc.data();
 
-      if (this.heart){
-        this.cards.push({
+            if (this.heart) {
+              this.cards.push({
                 id: doc.id,
                 img: data.url,
                 naslov: data.name,
                 heart: this.heart
               });
-      }
-    })
-  })
-     }
+            }
+          });
+        });
+    }
   }
 };
 </script>

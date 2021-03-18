@@ -105,7 +105,7 @@ export default {
     async getEvents() {
       let ref = await db
         .collection("posts")
-        //.where("city", ">=", store.searchText)
+
         .get();
       this.cardsEvents = [];
       ref.forEach(doc => {
