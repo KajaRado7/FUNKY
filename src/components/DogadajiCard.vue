@@ -55,8 +55,10 @@ export default {
         await db
           .collection("users")
           .doc(store.currentUser)
-          .collection("posts")
+          .collection("favoriti")
           .doc(this.info.id)
+          .collection("posts")
+          .doc(this.eventId)
           .set({
             favorited: Date.now()
           });

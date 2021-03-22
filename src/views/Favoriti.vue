@@ -16,7 +16,9 @@ export default {
   props: ["info"],
   data: function() {
     return {
+      eventId: this.$route.params.event_id,
       cards: [],
+      card: {},
       site: "favorit"
     };
   },
@@ -28,26 +30,25 @@ export default {
     this.getFav();
   },
   methods: {
-    getFav() {
-      db.collection("users")
-        .doc(store.currentUser)
-        .collection("posts")
-        .get()
-        .then(query => {
-          query.forEach(doc => {
-            const data = doc.data();
+    async getFav() {
+    this.eventId = this.id;
+    if(this.heart =!this.heart){
 
-            if (this.heart) {
-              this.cards.push({
+      console.log("Firebase dohvat...");
+      var doc = await db
+      .collection("favoriti")
+      .doc(this.id)
+      .get();
+      const data = doc.data();
+
+      this.cards.push({
                 id: doc.id,
-                img: data.url,
-                naslov: data.name,
+                //img: data.url,
+                //naslov: data.name,
                 heart: this.heart
               });
-            }
-          });
-        });
     }
+  }
   }
 };
 </script>

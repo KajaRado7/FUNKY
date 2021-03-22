@@ -39,7 +39,6 @@
             <span class="text-danger ml-1">*</span>
           </label>
           <br />
-          <!-- DEJANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-->
           <input
             type="text"
             maxlength="50"
@@ -129,8 +128,6 @@
           </div>
         </div>
         <br />
-
-        <!-- DEJANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA -->
         <div class="form-group">
           <label for="city">
             City
