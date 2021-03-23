@@ -38,9 +38,6 @@ export default {
       heart: null
     };
   },
-  mounted() {
-    this.clickheart();
-  },
   methods: {
     myfuntion() {
       this.$router.push({
@@ -48,7 +45,6 @@ export default {
         params: { event_id: this.info.id }
       });
     },
-
     async clickheart() {
       this.heart = !this.heart;
       if (this.heart) {
@@ -57,9 +53,12 @@ export default {
           .doc(store.currentUser)
           .collection("favoriti")
           .doc(this.info.id)
-          .collection("posts")
-          .doc(this.eventId)
+          // .collection("posts")
+          // .doc(this.eventId)
           .set({
+            id: this.info.id,
+            naslov: this.info.naslov,
+            img: this.info.img,
             favorited: Date.now()
           });
       }

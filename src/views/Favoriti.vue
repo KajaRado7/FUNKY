@@ -32,25 +32,29 @@ export default {
   methods: {
     async getFav() {
     this.eventId = this.id;
-    if(this.heart =!this.heart){
+    // if(this.heart =!this.heart){
 
       console.log("Firebase dohvat...");
-      var doc = await db
-      .collection("favoriti")
-      .doc(this.id)
-      .get();
-      const data = doc.data();
 
-      this.cards.push({
-                id: doc.id,
-                //img: data.url,
-                //naslov: data.name,
-                heart: this.heart
+      var doc = await db.collection("users")
+          .doc("chiarabatelic@gmail.com")
+          .collection("favoriti").get().then((query) => {
+            query.forEach(element => {
+              element = element.data();
+              this.cards.push({
+                id: element.id,
+                img: element.img,
+                naslov: element.naslov,
+                // heart: this.heart
               });
+            });
+          });
+
+      
     }
   }
   }
-};
+// };
 </script>
 <style scoped>
 #footer {
