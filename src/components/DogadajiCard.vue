@@ -16,7 +16,7 @@
 
       <div class="actions">
         <span
-          :class="heart ? 'far fa-heart' : 'fas fa-heart red'"
+          :class="!heart ? 'far fa-heart' : 'fas fa-heart red'"
           @click.prevent="clickheart()"
         ></span>
       </div>
@@ -29,13 +29,15 @@ import InformacijeCard from "@/components/InformacijeCard.vue";
 import { db } from "@/firebase";
 import DogadajiCard from "../components/DogadajiCard.vue";
 import store from "@/store";
+// import Vue from 'vue';
+// Vue.forceUpdate();
 
 export default {
   props: ["info"],
   name: "DogadajiCard",
   data: function() {
     return {
-      heart: null
+      heart: null,
     };
   },
   methods: {
@@ -45,22 +47,26 @@ export default {
         params: { event_id: this.info.id }
       });
     },
+    mounted(){
+      this.clickheart();
+    },
     async clickheart() {
       this.heart = !this.heart;
       if (this.heart) {
         await db
-          .collection("users")
-          .doc(store.currentUser)
-          .collection("favoriti")
-          .doc(this.info.id)
-          // .collection("posts")
-          // .doc(this.eventId)
+          .collection("users").doc(store.currentUser)
+          .collection("favoriti").doc(this.info.id)
           .set({
             id: this.info.id,
             naslov: this.info.naslov,
             img: this.info.img,
-            favorited: Date.now()
+            favorited: Date.now(),
           });
+      } else {
+        await db
+          .collection("users").doc(store.currentUser)
+          .collection("favoriti").doc(this.info.id)
+          .delete();
       }
     }
   }

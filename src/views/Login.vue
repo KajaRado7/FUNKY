@@ -104,7 +104,7 @@ export default {
     }
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       let that = this;
       this.isSubmitted = true;
       this.$v.$touch();
@@ -112,7 +112,7 @@ export default {
         return;
       }
       console.log("login..." + this.userForm.email);
-      firebase
+      await firebase
         .auth()
         .signInWithEmailAndPassword(this.userForm.email, this.userForm.password)
         .then(function(result) {

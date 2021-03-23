@@ -232,7 +232,7 @@ export default {
     }
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       let that = this;
       that.isSubmitted = true;
       that.$v.$touch();
@@ -240,7 +240,7 @@ export default {
         return;
       }
 
-      firebase
+      await firebase
         .auth()
         .createUserWithEmailAndPassword(
           that.userForm.email,

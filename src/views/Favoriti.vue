@@ -25,35 +25,32 @@ export default {
   components: {
     DogadajiCard
   },
-
   mounted() {
     this.getFav();
   },
   methods: {
     async getFav() {
-    this.eventId = this.id;
-    // if(this.heart =!this.heart){
-
+    // this.eventId = this.id;
+    // console.log(this.id);
       console.log("Firebase dohvat...");
-
-      var doc = await db.collection("users")
-          .doc("chiarabatelic@gmail.com")
-          .collection("favoriti").get().then((query) => {
-            query.forEach(element => {
-              element = element.data();
-              this.cards.push({
-                id: element.id,
-                img: element.img,
-                naslov: element.naslov,
-                // heart: this.heart
-              });
-            });
-          });
-
-      
+      try {
+        var doc = await db.collection("users")
+                  .doc(store.currentUser)
+                  .collection("favoriti").get().then((query) => {
+                    query.forEach(element => {
+                      element = element.data();
+                      this.cards.push({
+                        id: element.id,
+                        img: element.img,
+                        naslov: element.naslov,
+                        // heart: this.heart
+                      });
+                    });
+                  }).catch((e) => console.log(e));
+      } catch(ex) {}
     }
   }
-  }
+}
 // };
 </script>
 <style scoped>
