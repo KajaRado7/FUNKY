@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <button type="button" class="btn_publish" @click="myfuntion()">
+    <button type="button" class="btn_publish" @click="myfunction()">
       <img class="card-img-top" :src="info.img" />
       <!-- info je u west gdje su sve slike navedene -->
     </button>
@@ -40,15 +40,16 @@ export default {
       heart: null,
     };
   },
+   mounted(){
+      this.isFav();
+      //this.clickheart();
+    },
   methods: {
-    myfuntion() {
+    myfunction() {
       this.$router.push({
         name: "Informacije",
         params: { event_id: this.info.id }
       });
-    },
-    mounted(){
-      this.clickheart();
     },
     async clickheart() {
       this.heart = !this.heart;
@@ -63,14 +64,36 @@ export default {
             favorited: Date.now(),
           });
       } else {
+        this.$emit("delete", this.info.id)    //naziv eventa je delete, mozemo imate vise evenata - yt, kartica ovako salje parentu naziv koju karticu treba izbacit iz fav 
         await db
           .collection("users").doc(store.currentUser)
           .collection("favoriti").doc(this.info.id)
           .delete();
+        
       }
+    },
+    async isFav() {
+    // this.eventId = this.id;
+    // console.log(this.id);
+      console.log("Firebase dohvat...");
+    
+        var query = await db.collection("users")
+                  .doc(store.currentUser)
+                  .collection("favoriti").where("naslov", "==", this.info.naslov).get();
+                  this.heart = false;
+                  query.forEach((doc) => {
+                    this.heart = true;
+                    
+                   })
+        
     }
+
   }
-};
+  
+}
+
+    
+    
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -284,7 +284,7 @@ export default {
 
     created() {
       const self = this;
-      firebase.auth().onAuthStateChanged(user => {
+      firebase.auth().onAuthStateChanged(async user => {
         const currentRoute = router.currentRoute;
 
         console.log("PROVJERA STANJA LOGINA!");
@@ -293,21 +293,24 @@ export default {
           // User is signed in.
           console.log("*** User", user.email);
           store.currentUser = user.email;
+          localStorage.setItem("email", user.email);  //
 
-          db.collection("users")
-            .doc(self.store.currentUser)
-            .get()
-            .then(doc => {
+          
+         let doc = await db.collection("users")
+            .doc(user.email)
+            .get();
+               //then se pokrene nakon sto get sve uhvati, kada zelimo spremat u varijablu moramo stavit await i onda ceka na sekvencijalno lupanje
               if (doc.exists) {
                 console.log("Document data:", doc.data());
 
                 store.displayName = doc.data().name;
                 store.contact = doc.data().contact;
                 store.currentUser = doc.data().email;
+                localStorage.setItem("email", doc.data().email);
               } else {
                 console.log("No such document!");
               }
-            });
+            
         } else {
           /* if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Home' });*/

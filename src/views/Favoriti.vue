@@ -1,7 +1,7 @@
 <template>
   <div class="container" style="max-width: 500px;">
     <div id="cards">
-      <dogadaji-card v-for="card in cards" :key="card.naslov" :info="card" />
+      <dogadaji-card v-for="card in cards" :key="card.naslov" :info="card" @delete="delEvent"/>
     </div>
     <footer id="footer"></footer>
   </div>
@@ -18,7 +18,7 @@ export default {
     return {
       eventId: this.$route.params.event_id,
       cards: [],
-      card: {},
+      //card: {},
       site: "favorit"
     };
   },
@@ -32,11 +32,12 @@ export default {
     async getFav() {
     // this.eventId = this.id;
     // console.log(this.id);
-      console.log("Firebase dohvat...");
-      try {
-        var doc = await db.collection("users")
-                  .doc(store.currentUser)
-                  .collection("favoriti").get().then((query) => {
+      console.log("Firebase dohvat favoriti");
+        var email = localStorage.getItem("email");
+        
+        var query = await db.collection("users")
+                  .doc(email).collection("favoriti").get();
+                  console.log(query.docs);
                     query.forEach(element => {
                       element = element.data();
                       this.cards.push({
@@ -45,11 +46,18 @@ export default {
                         naslov: element.naslov,
                         // heart: this.heart
                       });
-                    });
-                  }).catch((e) => console.log(e));
-      } catch(ex) {}
+                    
+                  });
+                   //try catch catcha error ali nebitno
+              
+    },
+    delEvent(id) {
+      this.cards = this.cards.filter((card) => {
+        return card.id !== id;
+      });
     }
   }
+  
 }
 // };
 </script>
