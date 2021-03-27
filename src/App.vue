@@ -19,6 +19,11 @@
           >
             <font-awesome-icon icon="arrow-alt-circle-left" />
           </router-link>
+
+          <!-- to="" mora sadrzavati regiju sa koje je dosao taj info. card(u doradi)-->
+          <router-link to="" class="topColor" v-if="showBackArrowRegions_Info">
+            <font-awesome-icon icon="arrow-alt-circle-left" />
+          </router-link>
         </div>
         <!--CurrentPageName----->
         <h4
@@ -128,41 +133,10 @@
     <div class="col-md-1 col-sm-0"></div>
     <div class="col-md-10 col-sm-12">
       <div id="app">
-        <div id="nav">
-          <!--<router-link to="/">Home</router-link>
-          <router-link to="/Registracija">Registracija</router-link>
-          |
-          <router-link to="/Login">Log in</router-link>
-          |
-          <router-link to="/Regije">Regije</router-link>
-          |
-          <router-link to="/AddEvent">Add event</router-link>
-          |
-          <router-link to="/Zapadna">Zapadna</router-link>
-          |
-          <router-link to="/Istocna">Istocna</router-link>
-          |
-          <router-link to="/Sredisnja">Sredisnja</router-link>
-          |
-          <router-link to="/Gorska">Gorska</router-link>
-          |
-          <router-link to="/Juzna">Juzna</router-link>
-          |
-          <router-link to="/Account">My account</router-link>
-          |
-          <router-link to="/Favoriti">My favorites</router-link>
-          |
-          <router-link to="/Informacije">Informacije</router-link>
-          |
-          <router-link to="/Filter">Filter</router-link>
-          |
-          <router-link to="/Filtered">Filtered</router-link>
-          |-->
-        </div>
+        <div id="nav"></div>
         <router-view />
       </div>
     </div>
-
     <!----BottomNavbar--------------------------------------------------->
     <nav
       class="bottomNavbar fixed-bottom navbar-light "
@@ -263,6 +237,16 @@ export default {
 
       if (result.length > 0) return true;
       else return false;
+    },
+    showBackArrowRegions_Info() {
+      // prikaz ikone za povratak na Regije
+      let curRoute = this.$route.name;
+      let routes = ["Informacije"];
+
+      let result = routes.filter(route => route == curRoute);
+
+      if (result.length > 0) return true;
+      else return false;
     }
   },
   mounted() {
@@ -293,24 +277,23 @@ export default {
           // User is signed in.
           console.log("*** User", user.email);
           store.currentUser = user.email;
-          localStorage.setItem("email", user.email);  //
+          localStorage.setItem("email", user.email); //
 
-          
-         let doc = await db.collection("users")
+          let doc = await db
+            .collection("users")
             .doc(user.email)
             .get();
-               //then se pokrene nakon sto get sve uhvati, kada zelimo spremat u varijablu moramo stavit await i onda ceka na sekvencijalno lupanje
-              if (doc.exists) {
-                console.log("Document data:", doc.data());
+          //then se pokrene nakon sto get sve uhvati, kada zelimo spremat u varijablu moramo stavit await i onda ceka na sekvencijalno lupanje
+          if (doc.exists) {
+            console.log("Document data:", doc.data());
 
-                store.displayName = doc.data().name;
-                store.contact = doc.data().contact;
-                store.currentUser = doc.data().email;
-                localStorage.setItem("email", doc.data().email);
-              } else {
-                console.log("No such document!");
-              }
-            
+            store.displayName = doc.data().name;
+            store.contact = doc.data().contact;
+            store.currentUser = doc.data().email;
+            localStorage.setItem("email", doc.data().email);
+          } else {
+            console.log("No such document!");
+          }
         } else {
           /* if (!currentRoute.meta.needsUser) {
     router.push({ name: 'Home' });*/
