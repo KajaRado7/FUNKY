@@ -50,6 +50,19 @@ export default {
         time: data.time,
         image: data.url
       };
+    },
+    async getGoing(){
+      var query = await db.collection("users")
+                  .doc(store.currentUser).collection("going").get();
+                  console.log(query.docs);
+                    query.forEach(element => {
+                      element = element.data();
+                      this.cards.push({
+                        id: element.id,
+                        count: element.count
+                      });
+
+    })
     }
   }
 };

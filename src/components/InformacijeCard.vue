@@ -73,7 +73,7 @@
         <div class="nazivi">
           Capacity:
         </div>
-        <span class="text">{{ info.capacity }}</span>
+        <span class="text">{{ result  }}/{{ info.capacity }}</span>
       </div>
       <br />
 
@@ -84,16 +84,55 @@
         <span class="text">{{ info.note }}</span>
       </div>
       <br />
+      <div><button @click='clickGoing'>Going/Interested</button>
+           <button @click='notGoing'>Not going</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { db } from "@/firebase";
+import store from "@/store";
 
 export default {
   props: ["info"],
-  name: "InformacijeCard"
+  name: "InformacijeCard",
+   data: function() {
+    return {
+      store,
+      result: 0
+      };
+  },
+  methods: 
+    {
+    emitResult () {
+      this.$emit('input', this.result)
+    },
+    clickGoing () {
+      this.result += 1
+      if(this.result<= this.info.capacity){
+        db
+        .collection("users")
+        .doc(store.currentUser)
+        .collection("going")
+        .doc(this.info.id).set({
+          id: this.info.id,
+          result: this.result
+        })
+      }
+      if (this.result=this.info.capacity){
+          console.log("Capacity is full")
+      }
+    },
+    notGoing () {
+      this.result -= 1
+      this.emitResult()
+    }
+  }  
+
+  
+  
 };
 </script>
 
