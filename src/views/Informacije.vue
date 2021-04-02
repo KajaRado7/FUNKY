@@ -25,6 +25,7 @@ export default {
   },
   mounted() {
     this.getInfo();
+    this.getGoing();
   },
   methods: {
     async getInfo() {
@@ -51,19 +52,24 @@ export default {
         image: data.url
       };
     },
-    async getGoing(){
-      var query = await db.collection("users")
-                  .doc(store.currentUser).collection("going").get();
+    async getGoing() {
+      console.log("Firebase dohvat favoriti");
+        var email = localStorage.getItem("email");
+        
+        var query = await db.collection("users")
+                  .doc(email).collection("going").get();
                   console.log(query.docs);
-                    query.forEach(element => {
+                    /*query.forEach(element => {
                       element = element.data();
-                      this.cards.push({
+                      this.cards.push  ({
                         id: element.id,
-                        count: element.count
+                        result: element.result
                       });
-
-    })
-    }
+                    
+                  });*/
+                   //try catch catcha error ali nebitno
+              
+    },
   }
 };
 </script>

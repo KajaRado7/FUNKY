@@ -84,8 +84,8 @@
         <span class="text">{{ info.note }}</span>
       </div>
       <br />
-      <div><button @click='clickGoing'>Going/Interested</button>
-           <button @click='notGoing'>Not going</button>
+      <div><button v-if="going" @click='clickGoing'>Going/Interested</button>
+           <button v-if="nGoing" @click='notGoing'>Not going</button>
       </div>
     </div>
   </div>
@@ -101,18 +101,27 @@ export default {
    data: function() {
     return {
       store,
-      result: 0
+      result: 0,
+      going: true,
+      nGoing: false
       };
+  },
+  mounted(){
+     this.emitResult();
+     this.clickGoing();
+     this.notGoing();
   },
   methods: 
     {
-    emitResult () {
+    async emitResult () {
       this.$emit('input', this.result)
     },
-    clickGoing () {
-      this.result += 1
-      if(this.result<= this.info.capacity){
-        db
+   async clickGoing () {
+    if(this.result < this.info.capacity){
+        this.going = false;
+        this.nGoing = true;
+        this.result += 1
+        await db
         .collection("users")
         .doc(store.currentUser)
         .collection("going")
@@ -120,15 +129,26 @@ export default {
           id: this.info.id,
           result: this.result
         })
+        //this.emitResult()
       }
-      if (this.result=this.info.capacity){
+      /*else if (this.result = this.info.capacity){
           console.log("Capacity is full")
-      }
+      }*/
     },
-    notGoing () {
-      this.result -= 1
-      this.emitResult()
-    }
+   async notGoing () {
+      this.going = true;
+      this.nGoing = false;
+      this.result -= this.result;
+     
+        this.$emit("delete", this.info.id)  
+          await db
+          .collection("users").doc(store.currentUser)
+          .collection("going").doc(this.info.id)
+          .delete();
+        
+      
+      //this.emitResult()
+    },
   }  
 
   
