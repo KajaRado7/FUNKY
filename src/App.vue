@@ -20,11 +20,14 @@
             <font-awesome-icon icon="arrow-alt-circle-left" />
           </router-link>
 
-          <!-- to="" mora sadrzavati regiju sa koje je dosao taj info. card(u doradi)-->
-          <router-link to="" class="topColor" v-if="showBackArrowRegions_Info">
+          <!-- vraca nam 1 router unazad -->
+          <a @click="$router.go(-1)" class="topColor" v-if="showBackArrowRegions_Info"> 
             <font-awesome-icon icon="arrow-alt-circle-left" />
-          </router-link>
-        </div>
+          </a>
+          <!--<router-link to="" class="topColor" v-if="showBackArrowRegions_Info">
+            <font-awesome-icon icon="arrow-alt-circle-left" />
+          </router-link> -->
+        </div> 
         <!--CurrentPageName----->
         <h4
           class="col-4 d-flex justify-content-center"

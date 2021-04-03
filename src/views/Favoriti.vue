@@ -48,7 +48,7 @@ export default {
                       });
                     
                   });
-                   //try catch catcha error ali nebitno
+                   //try catch catcha error 
               
     },
     delEvent(id) {

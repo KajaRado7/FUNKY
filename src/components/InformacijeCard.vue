@@ -106,7 +106,7 @@ export default {
   data: function() {
     return {
       store,
-      result: 0,
+      result: null,
       going: true,
       nGoing: false
     };
@@ -121,34 +121,48 @@ export default {
       this.$emit("input", this.result);
     },
     async clickGoing() {
+      console.log("Firebase dohvat going");
       if (this.result < this.info.capacity) {
         this.going = false;
         this.nGoing = true;
-        this.result += 1;
-        await db
+        this.result++;
+        var email = localStorage.getItem("email");
+
+      var query =  await db
           .collection("users")
-          .doc(store.currentUser)
+          .doc(email)
           .collection("going")
           .doc(this.info.id)
-          .set({
+          .get();
+          console.log(query.docs);
+          query.forEach(element => {
+              element = element.data();
+          this.result.push({
+            result: element.result
+          });
+          }); 
+        /* .set({
             id: this.info.id,
             result: this.result
-          });
+          });*/
         //this.emitResult()
       }
+    
       /*else if (this.result = this.info.capacity){
           console.log("Capacity is full")
       }*/
-    },
+    
+  },
     async notGoing() {
       this.going = true;
       this.nGoing = false;
       this.result -= this.result;
+      var email = localStorage.getItem("email");
 
       this.$emit("delete", this.info.id);
       await db
         .collection("users")
-        .doc(store.currentUser)
+        .doc(email)
         .collection("going")
         .doc(this.info.id)
         .delete();
