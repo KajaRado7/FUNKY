@@ -73,7 +73,7 @@
         <div class="nazivi">
           Capacity:
         </div>
-        <span class="text">{{ result  }}/{{ info.capacity }}</span>
+        <span class="text">{{ result }}/{{ info.capacity }}</span>
       </div>
       <br />
 
@@ -84,8 +84,13 @@
         <span class="text">{{ info.note }}</span>
       </div>
       <br />
-      <div><button v-if="going" @click='clickGoing'>Going/Interested</button>
-           <button v-if="nGoing" @click='notGoing'>Not going</button>
+      <div class="buttons">
+        <button class="clickButton" v-if="going" @click="clickGoing">
+          <b>Going / Interested</b>
+        </button>
+        <button class="clickButton" v-if="nGoing" @click="notGoing">
+          <b>Not going</b>
+        </button>
       </div>
     </div>
   </div>
@@ -98,65 +103,74 @@ import store from "@/store";
 export default {
   props: ["info"],
   name: "InformacijeCard",
-   data: function() {
+  data: function() {
     return {
       store,
       result: 0,
       going: true,
       nGoing: false
-      };
+    };
   },
-  mounted(){
-     this.emitResult();
-     this.clickGoing();
-     this.notGoing();
+  mounted() {
+    this.emitResult();
+    this.clickGoing();
+    this.notGoing();
   },
-  methods: 
-    {
-    async emitResult () {
-      this.$emit('input', this.result)
+  methods: {
+    async emitResult() {
+      this.$emit("input", this.result);
     },
-   async clickGoing () {
-    if(this.result < this.info.capacity){
+    async clickGoing() {
+      if (this.result < this.info.capacity) {
         this.going = false;
         this.nGoing = true;
-        this.result += 1
+        this.result += 1;
         await db
-        .collection("users")
-        .doc(store.currentUser)
-        .collection("going")
-        .doc(this.info.id).set({
-          id: this.info.id,
-          result: this.result
-        })
+          .collection("users")
+          .doc(store.currentUser)
+          .collection("going")
+          .doc(this.info.id)
+          .set({
+            id: this.info.id,
+            result: this.result
+          });
         //this.emitResult()
       }
       /*else if (this.result = this.info.capacity){
           console.log("Capacity is full")
       }*/
     },
-   async notGoing () {
+    async notGoing() {
       this.going = true;
       this.nGoing = false;
       this.result -= this.result;
-     
-        this.$emit("delete", this.info.id)  
-          await db
-          .collection("users").doc(store.currentUser)
-          .collection("going").doc(this.info.id)
-          .delete();
-        
-      
-      //this.emitResult()
-    },
-  }  
 
-  
-  
+      this.$emit("delete", this.info.id);
+      await db
+        .collection("users")
+        .doc(store.currentUser)
+        .collection("going")
+        .doc(this.info.id)
+        .delete();
+
+      //this.emitResult()
+    }
+  }
 };
 </script>
 
 <style scoped>
+.buttons {
+  max-width: 500px;
+  text-align: center;
+}
+.clickButton {
+  background-color: #f5b85c;
+  border: none;
+  border-radius: 15px;
+  padding: 16px 32px;
+  color: black;
+}
 .form-control,
 select {
   width: 100%;

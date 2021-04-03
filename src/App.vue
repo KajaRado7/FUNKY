@@ -398,7 +398,7 @@ export default {
 }
 
 body {
-  background-image: url("~@/assets/backImg.jpg");
+  background-color: black;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

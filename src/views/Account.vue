@@ -21,7 +21,7 @@
       <div class="hr"></div>
       <br />
       <br />
-      
+
       <label>Contact</label>
       <br />
       <br />
@@ -45,7 +45,6 @@
 											   color: black"
         >
           <b>Logout</b>
-          <small></small>
         </button>
       </div>
     </div>
