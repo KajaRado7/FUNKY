@@ -115,6 +115,7 @@ export default {
     this.emitResult();
     this.clickGoing();
     this.notGoing();
+  //  this.isGoing();
   },
   methods: {
     async emitResult() {
@@ -133,18 +134,29 @@ export default {
           .doc(email)
           .collection("going")
           .doc(this.info.id)
-          .get();
+        /*  .get();
           console.log(query.docs);
           query.forEach(element => {
               element = element.data();
           this.result.push({
             result: element.result
           });
-          }); 
-        /* .set({
+          }); */
+         .set({
             id: this.info.id,
+            /*image: this.info.image,
+            eventName: this.info.name,
+            date: this.info.date,
+            time: this.info.time,
+            region: this.info.region,
+            city: this.info.city,
+            address: this.info.address,
+            eventEnty: this.info.entry,
+            categories: this.info.categories,
+            capacity: this.info.capacity,
+            note: this.info.note, */
             result: this.result
-          });*/
+          });
         //this.emitResult()
       }
     
@@ -153,7 +165,8 @@ export default {
       }*/
     
   },
-    async notGoing() {
+
+   async notGoing() {
       this.going = true;
       this.nGoing = false;
       this.result -= this.result;
@@ -168,7 +181,19 @@ export default {
         .delete();
 
       //this.emitResult()
-    }
+    },
+  async isGoing(){
+      console.log("Firebase dohvat going...");
+      var query = await db.collection("users")
+                  .doc(store.currentUser)
+                  .collection("going").where("id", "==", this.info.id.toString()).get();
+                  this.going = false;
+                  query.forEach((doc) => {
+                    this.going = true;
+                    
+                   })
+    } 
+    
   }
 };
 </script>

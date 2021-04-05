@@ -53,11 +53,35 @@ export default {
       };
     },
     async getGoing() {
-      console.log("Firebase dohvat favoriti");
+      console.log("Firebase dohvat idu");
         var email = localStorage.getItem("email");
         
-        var query = await db.collection("users")
+      var query = await db.collection("users")
                   .doc(email).collection("going").get();
+                  console.log(query.docs);
+                  query.forEach(element => {
+                    element = element.data();
+                    this.cards.push({
+                      id: element.id,
+
+                    })
+                  })
+                 /* db.collection("users")
+                  .doc(email)
+                  .collection("going")
+                  .doc(this.info.id)
+                  .get()
+                  .then((query) => {
+                    query.forEach((doc) => {
+                      console.log('ID ', doc.id);
+                      console.log('Podaci ', doc.data());
+
+                      this.card = {
+                        id: this.info.id,
+                        result: this.result
+                      }
+                    })
+                  }) */
                   console.log(query.docs);
                     /*query.forEach(element => {
                       element = element.data();
