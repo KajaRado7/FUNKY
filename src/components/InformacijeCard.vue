@@ -111,22 +111,41 @@ export default {
       nGoing: false
     };
   },
-  mounted() {
-    this.emitResult();
-    this.clickGoing();
-    this.notGoing();
+  created() {
+    // this.emitResult();
+    // this.clickGoing();
+    // this.notGoing();
+    this.updateG();
+    this.sizeG();
   //  this.isGoing();
   },
   methods: {
-    async emitResult() {
-      this.$emit("input", this.result);
+    async sizeG(){
+      var query = await db.collection("users")
+                  .doc(store.currentUser)
+                  .collection("going").where("result", "==", this.result).get().then((data) => {
+                    data = data.size;
+                    console.log(data);
+                    console.log(this.result);
+                  })
+                  
+    },
+    async updateG(){
+      await db.collection("users")
+              .doc(store.currentUser)
+              .collection("going").doc(this.info.id).update({
+                result: this.result
+              })
+              .then(() => {
+                console.log("Document successfully updated!");
+              });
     },
     async clickGoing() {
       console.log("Firebase dohvat going");
       if (this.result < this.info.capacity) {
         this.going = false;
         this.nGoing = true;
-        this.result++;
+        this.result += 1;
         var email = localStorage.getItem("email");
 
       var query =  await db
@@ -157,6 +176,10 @@ export default {
             note: this.info.note, */
             result: this.result
           });
+          // this.isGoing();
+          
+      this.updateG();
+          this.sizeG();
         //this.emitResult()
       }
     
@@ -169,7 +192,9 @@ export default {
    async notGoing() {
       this.going = true;
       this.nGoing = false;
-      this.result -= this.result;
+      this.sizeG();
+      this.result -= 1;
+      this.updateG()
       var email = localStorage.getItem("email");
 
       this.$emit("delete", this.info.id);
@@ -179,7 +204,9 @@ export default {
         .collection("going")
         .doc(this.info.id)
         .delete();
+        
 
+      
       //this.emitResult()
     },
   async isGoing(){
@@ -190,9 +217,28 @@ export default {
                   this.going = false;
                   query.forEach((doc) => {
                     this.going = true;
-                    
+                    console.log(doc);
                    })
-    } 
+    },
+//     async sizeG(){
+//       var query = await db.collection("users")
+//                   .doc(store.currentUser)
+//                   .collection("going").where("result", "==", this.result).get().then((data) => {
+//                     data = data.size;
+//                     console.log(data);
+//                     console.log(this.result);
+//                   })
+                  
+//     },
+//     async updateG(){
+//       await db.collection("users")
+//                   .doc(store.currentUser).collection("going").doc(this.info.id).update({
+//     result: this.result
+// })
+// .then(() => {
+//     console.log("Document successfully updated!");
+// });
+//     } 
     
   }
 };

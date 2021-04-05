@@ -113,11 +113,11 @@
               :class="{ 'is-invalid': submitted && $v.regions.$error }"
             >
               <option disabled selected>--Please choose a region--</option>
-              <option value="Central Croatia">Central Croatia</option>
-              <option value="Dalmatia">Dalmatia</option>
-              <option value="Istria">Istria</option>
-              <option value="Slavonia">Slavonia</option>
-              <option value="Mountain Croatia">Mountain Croatia</option>
+              <option value="Central Croatia" class="selected">Central Croatia</option>
+              <option value="Dalmatia" class="selected">Dalmatia</option>
+              <option value="Istria" class="selected">Istria</option>
+              <option value="Slavonia" class="selected">Slavonia</option>
+              <option value="Mountain Croatia" class="selected">Mountain Croatia</option>
             </select>
             <div
               v-if="submitted && !$v.regions.required"
@@ -500,7 +500,7 @@ select {
   border: 2px solid #f5b85c;
   border-radius: 4px;
   background-color: transparent;
-  color: black;
+  color: white;
 }
 #footer {
   width: 100%;
@@ -594,10 +594,16 @@ img.preview {
   box-shadow: none;
 }
 .loading {
-  width: 200px;
   text-align: center;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 200px;
 }
 .croppa {
   text-align: center;
+}
+.selected{
+  color: black;
 }
 </style>
