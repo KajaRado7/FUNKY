@@ -1,4 +1,5 @@
 <template>
+ <div id="vanjskiBox">
   <div id="box">
     <div class="boxElements">
       <router-link to="/Registracija">
@@ -23,6 +24,7 @@
       <router-link to="/Login" class="login-link"><b>Login</b></router-link>
     </div>
   </div>
+ </div>
 </template>
 
 <script>
@@ -77,6 +79,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .googleIcon {
   margin-right: 10px;
 }
@@ -105,8 +109,11 @@ p {
 .boxElements {
   margin-top: 13px;
 }
+
 #box {
-  max-width: 350px;
+  background-image: url("~@/assets/back1.jpg");
+  max-width: 350px;  /*350*/  
+  
   text-align: center;
   color: white;
   width: fixed;
@@ -142,4 +149,5 @@ p {
   display: inline-block;
   text-decoration: none;
 }
+
 </style>

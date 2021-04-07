@@ -7,13 +7,6 @@
     <div class="card-body">
       <p class="card-text" value="naslov">{{ info.naslov }}</p>
 
-      <!--<span
-        v-if="site == 'home'"
-        class="transform"
-        :class="favorite ? 'icon-heart-2' : 'icon-heart'"
-        @click.stop.prevent="toggleFav"
-      ></span> -->
-
       <div class="actions">
         <span
           :class="!heart ? 'far fa-heart' : 'fas fa-heart red'"
@@ -25,7 +18,7 @@
 </template>
 
 <script>
-import InformacijeCard from "@/components/InformacijeCard.vue";
+
 import { db } from "@/firebase";
 import DogadajiCard from "../components/DogadajiCard.vue";
 import store from "@/store";

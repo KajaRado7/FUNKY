@@ -349,7 +349,8 @@ export default {
 
   position: fixed;
   width: 100%;
-
+  //ja dodala height
+  height: 55px;
   background-color: rgba(0, 0, 0, 0.25);
 }
 
