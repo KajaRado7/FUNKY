@@ -63,15 +63,9 @@ export default {
           this.$router.replace({ name: "Regije" });
           //store.token = result.credential.accessToken; // mozda cu ga kasnije za nesto koristiti. za test neka ostane
         })
-        .catch(function(error) {
-          // Handle Errors here.
-          // var errorCode = error.code;
+        .catch(error => {
+          console.error(error);
           this.errorMessage = error.message;
-          // // The email of the user's account used.
-          // var email = error.email;
-          // // The firebase.auth.AuthCredential type that was used.
-          // var credential = error.credential;
-          // ...
         });
     }
   }
