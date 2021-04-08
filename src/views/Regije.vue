@@ -1,5 +1,8 @@
 <template>
-  <div class="container">
+  <div
+    class="container"
+    style="max-width: 500px;text-align: left; color: white"
+  >
     <form id="search" class="navbar-form form-inline ml-auto">
       <input
         v-model="store.searchText"
